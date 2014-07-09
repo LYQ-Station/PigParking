@@ -83,19 +83,22 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (0 == indexPath.row)
     {
-        
+        PPFeedbackViewController *c = [[PPFeedbackViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:c animated:YES];
     }
     else if (1 == indexPath.row)
     {
-        
+        PPHistoryViewController *c = [[PPHistoryViewController alloc] initWithStyle:UITableViewStylePlain];
+        [self.navigationController pushViewController:c animated:YES];
     }
     else
     {
-        
+        PPSettingViewController *c = [[PPSettingViewController alloc] initWithStyle:UITableViewStylePlain];
+        [self.navigationController pushViewController:c animated:YES];
     }
 }
 
