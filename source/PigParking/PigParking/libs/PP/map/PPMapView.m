@@ -272,18 +272,17 @@ static PPMapView *__instance = nil;
     NSLog(@"Unable to find current location. error: %@",error);
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    _coordinate = [locations[0] coordinate];
-    [self updateUserLocation:_coordinate];
-}
-
-//- (void)locationManager:(CLLocationManager *)manager
-//    didUpdateToLocation:(CLLocation *)newLocation
-//           fromLocation:(CLLocation *)oldLocation
 //- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 //{
-//    [self updateUserLocation:newLocation.coordinate];
+//    _coordinate = [locations[0] coordinate];
+//    [self updateUserLocation:_coordinate];
 //}
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    [self updateUserLocation:newLocation.coordinate];
+}
 
 @end
