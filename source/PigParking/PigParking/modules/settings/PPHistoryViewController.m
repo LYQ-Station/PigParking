@@ -34,6 +34,10 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack
                                                                                          target:self
                                                                                          action:@selector(btnBackClick:)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemClear
+                                                                                          target:self
+                                                                                          action:@selector(btnClearClick:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,6 +114,11 @@
 - (void)btnBackClick:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)btnClearClick:(id)sender
+{
+    
 }
 
 @end

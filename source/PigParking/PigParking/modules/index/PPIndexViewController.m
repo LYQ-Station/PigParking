@@ -12,6 +12,7 @@
 #import "PPMapView.h"
 #import "PPPullView.h"
 #import "PPParkingTableView.h"
+#import "PPParkingFilterView.h"
 #import "PPIndexModel.h"
 
 typedef enum {
@@ -30,7 +31,7 @@ typedef enum {
 @property (nonatomic, strong) UIBarButtonItem *leftBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
 
-@property (nonatomic, strong) PPPullView *parkingListView;
+@property (nonatomic, strong) PPPullView *pullView;
 
 @property (nonatomic, strong) PPIndexModel *indexModel;
 @property (nonatomic, strong) NSArray *parkingArray;
@@ -43,7 +44,10 @@ typedef enum {
 {
     PPIndexViewController *c = [[PPIndexViewController alloc] initWithNibName:nil bundle:nil];
     
+//    PPSettingsViewController *c = [[PPSettingsViewController alloc] initWithNibName:nil bundle:nil];
+    
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:c];
+    
     
     return nc;
 }
@@ -75,13 +79,19 @@ typedef enum {
     return self;
 }
 
+- (void)loadView
+{
+    CGRect win_s = [UIScreen mainScreen].bounds;
+    
+    self.view = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, win_s.size.width, win_s.size.height-20.0f-44.0f)];
+    self.view.backgroundColor = [UIColor whiteColor];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setupTheme];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
     
     _mapView = [PPMapView mapViewWithFrame:self.view.bounds];
     _mapView.mapView.userInteractionEnabled = YES;
@@ -187,7 +197,7 @@ typedef enum {
     }
     
         //tips
-    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 415.0f, [UIScreen mainScreen].bounds.size.width, 20.0f)];
+    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 405.0f, [UIScreen mainScreen].bounds.size.width, 20.0f)];
     lb.tag = PPIndexViewTagTipsLabel;
     lb.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     lb.font = [UIFont systemFontOfSize:13.0f];
@@ -284,22 +294,32 @@ typedef enum {
 
 - (void)btnBarListClick:(id)sender
 {
-    if (_parkingListView)
+    if (_pullView)
     {
-        [_parkingListView hide];
-        self.parkingListView = nil;
+        [_pullView hide];
+        self.pullView = nil;
         return;
     }
     
-    PPParkingTableView *tv = [[PPParkingTableView alloc] initWithFrame:self.view.bounds data:_parkingArray];
+    PPParkingTableView *tv = [[PPParkingTableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.view.bounds.size.height-80.0f)
+                                                                  data:_parkingArray];
     tv.actDelegate = self;
-    self.parkingListView = [[PPPullView alloc] initWithParentView:self.view contentView:tv];
-    [_parkingListView show];
+    self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:tv];
+    [_pullView show];
 }
 
 - (void)btnBarFilterClick:(id)sender
 {
+    if (_pullView)
+    {
+        [_pullView hide];
+        self.pullView = nil;
+        return;
+    }
     
+    PPParkingFilterView *fv = [[PPParkingFilterView alloc] initWithDelegate:self];
+    self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:fv];
+    [_pullView show];
 }
 
 #pragma mark - map tool bar buttons event

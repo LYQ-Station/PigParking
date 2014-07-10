@@ -12,7 +12,7 @@
 
 - (void)setupTheme
 {
-    [self setBarStyle:UIBarStyleBlackTranslucent];
+//    [self setBarStyle:UIBarStyleBlackTranslucent];
     
     if ([self respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
     {

@@ -10,6 +10,7 @@
 #import "PPFeedbackViewController.h"
 #import "PPHistoryViewController.h"
 #import "PPSettingViewController.h"
+#import "PPAboutViewController.h"
 
 @interface PPSettingsViewController ()
 
@@ -77,7 +78,7 @@
     }
     else
     {
-        cell.textLabel.text = @"设置";
+        cell.textLabel.text = @"关于我们";
     }
     
     return cell;
@@ -97,7 +98,10 @@
     }
     else
     {
-        PPSettingViewController *c = [[PPSettingViewController alloc] initWithStyle:UITableViewStylePlain];
+//        PPSettingViewController *c = [[PPSettingViewController alloc] initWithStyle:UITableViewStylePlain];
+//        [self.navigationController pushViewController:c animated:YES];
+        
+        PPAboutViewController *c = [[PPAboutViewController alloc] initWithNibName:nil bundle:nil];
         [self.navigationController pushViewController:c animated:YES];
     }
 }

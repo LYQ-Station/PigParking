@@ -38,7 +38,7 @@
         [self addSubview:_maskView];
         
         self.contentView = contentView;
-        _contentView.frame = CGRectMake(0.0f, 0.0f-_contentView.bounds.size.height-40.0f, _contentView.bounds.size.width, _contentView.bounds.size.height-40.0f);
+        _contentView.frame = CGRectMake(0.0f, 0.0f-_contentView.bounds.size.height, _contentView.bounds.size.width, _contentView.bounds.size.height);
         [self addSubview:_contentView];
     }
     return self;

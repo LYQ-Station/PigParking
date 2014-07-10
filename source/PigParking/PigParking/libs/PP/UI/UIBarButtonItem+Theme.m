@@ -35,12 +35,21 @@
         case UIBarButtonThemeItemFilter:
             img = [UIImage imageNamed:@"nav-item-filter"];
             break;
+            
+        case UIBarButtonThemeItemUp:
+            img = [UIImage imageNamed:@"nav-item-up"];
+            break;
+            
+        case UIBarButtonThemeItemClear:
+            img = [UIImage imageNamed:@"nav-item-clear"];
+            break;
     }
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     btn.bounds = CGRectMake(0.0f, 0.0f, img.size.width, img.size.height);
     [btn setImage:img forState:UIControlStateNormal];
+//    [btn setImage:img forState:UIControlStateHighlighted];
     btn.enabled = YES;
     
     self = [self initWithCustomView:btn];

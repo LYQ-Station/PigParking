@@ -29,7 +29,6 @@
     [super viewDidLoad];
     
     [self setupTheme];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack
                                                                                          target:self

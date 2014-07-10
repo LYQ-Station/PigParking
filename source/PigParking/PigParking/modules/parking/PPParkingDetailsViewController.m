@@ -29,11 +29,14 @@
     [super viewDidLoad];
     
     [self setupTheme];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack
                                                                                          target:self
                                                                                          action:@selector(btnBackClick:)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemUp
+                                                                                          target:self
+                                                                                          action:@selector(btnUpClick:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +50,11 @@
 - (void)btnBackClick:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)btnUpClick:(id)sender
+{
+    
 }
 
 @end

@@ -19,9 +19,11 @@
     title_lab.backgroundColor = [UIColor clearColor];
     title_lab.text = self.title;
     title_lab.textAlignment = NSTextAlignmentCenter;
-    title_lab.textColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
+    title_lab.textColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
     title_lab.font = [UIFont boldSystemFontOfSize:20.0f];
     item.titleView = title_lab;
+    
+    self.view.backgroundColor = [UIColor colorWithRed:0.92f green:0.92f blue:0.92f alpha:1.0f];
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
     {

@@ -1,25 +1,25 @@
 //
-//  PPFeedbackViewController.m
+//  PPAboutViewController.m
 //  PigParking
 //
-//  Created by VincentLi on 14-7-6.
+//  Created by VincentLi on 14-7-10.
 //  Copyright (c) 2014年 VincentStation. All rights reserved.
 //
 
-#import "PPFeedbackViewController.h"
+#import "PPAboutViewController.h"
 
-@interface PPFeedbackViewController ()
+@interface PPAboutViewController ()
 
 @end
 
-@implementation PPFeedbackViewController
+@implementation PPAboutViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        self.title = @"意见反馈";
+        self.title = @"关于我们";
     }
     return self;
 }

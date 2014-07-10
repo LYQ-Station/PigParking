@@ -1,0 +1,10 @@
+
+*.xcworkspacedata
+
+source/PigParking/PigParking.xcodeproj/project.xcworkspace/xcuserdata/steven.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.xcbkptlist
+
+*.xcscheme
+
+source/PigParking/PigParking.xcodeproj/xcuserdata/steven.xcuserdatad/xcschemes/xcschememanagement.plist

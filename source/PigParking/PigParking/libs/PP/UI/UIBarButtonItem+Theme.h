@@ -14,7 +14,9 @@ typedef enum
     UIBarButtonThemeItemBack,
     UIBarButtonThemeItemSave,
     UIBarButtonThemeItemList,
-    UIBarButtonThemeItemFilter
+    UIBarButtonThemeItemFilter,
+    UIBarButtonThemeItemUp,
+    UIBarButtonThemeItemClear
 } UIBarButtonThemeItem;
 
 @interface UIBarButtonItem (Theme)
