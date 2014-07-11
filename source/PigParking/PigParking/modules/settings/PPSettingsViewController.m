@@ -18,9 +18,19 @@
 
 @implementation PPSettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self)
+//    {
+//        self.title = @"设置";
+//    }
+//    return self;
+//}
+
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:UITableViewStylePlain];
     if (self)
     {
         self.title = @"设置";
@@ -33,7 +43,7 @@
     [super viewDidLoad];
     
     [self setupTheme];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack
                                                                                          target:self
@@ -50,12 +60,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    if (0 == section)
+    {
+        return 3;
+    }
+    
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 17.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIView alloc] init];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,18 +98,35 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cid];
     }
     
-    if (0 == indexPath.row)
+    if (0 == indexPath.section)
     {
-        cell.textLabel.text = @"帮助与反馈";
-    }
-    else if (1 == indexPath.row)
-    {
-        cell.textLabel.text = @"历史记录";
+        if (0 == indexPath.row)
+        {
+            cell.textLabel.text = @"帮助与反馈";
+            cell.imageView.image = [UIImage imageNamed:@"st-icon0"];
+        }
+        else if (1 == indexPath.row)
+        {
+            cell.textLabel.text = @"历史记录";
+            cell.imageView.image = [UIImage imageNamed:@"st-icon1"];
+        }
+        else
+        {
+            cell.textLabel.text = @"关于我们";
+            cell.imageView.image = [UIImage imageNamed:@"st-icon2"];
+        }
+        
+        cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell-acc"]];
     }
     else
     {
-        cell.textLabel.text = @"关于我们";
+        cell.textLabel.text = @"保存我的停车记录";
+        
+        UISwitch *sw = [[UISwitch alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50.0f, 30.0f)];
+        cell.accessoryView = sw;
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -93,7 +140,7 @@
     }
     else if (1 == indexPath.row)
     {
-        PPHistoryViewController *c = [[PPHistoryViewController alloc] initWithStyle:UITableViewStylePlain];
+        PPHistoryViewController *c = [[PPHistoryViewController alloc] initWithNibName:nil bundle:nil];
         [self.navigationController pushViewController:c animated:YES];
     }
     else
@@ -103,6 +150,30 @@
         
         PPAboutViewController *c = [[PPAboutViewController alloc] initWithNibName:nil bundle:nil];
         [self.navigationController pushViewController:c animated:YES];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (IS_IOS7)
+    {
+        return;
+    }
+    
+    cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    
+    if (0 == indexPath.row)
+    {
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell-bg-top"]];
+    }
+    else if (2 == indexPath.row)
+    {
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell-bg-bot"]];
+    }
+    else
+    {
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell-bg-midd"]];
     }
 }
 

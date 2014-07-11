@@ -99,7 +99,6 @@ typedef enum {
     [_mapView startUpdatingLocation];
     
     [self setupStartUI];
-    [self fetchAroundParking];
 }
 
 - (void)didReceiveMemoryWarning
@@ -163,6 +162,7 @@ typedef enum {
         btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, 49.0f, 49.0f);
         [btn setImage:[UIImage imageNamed:@"tool-scope"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"tool-scope-h"] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(btnScopeClick:) forControlEvents:UIControlEventTouchUpInside];
         it = [[UIBarButtonItem alloc] initWithCustomView:btn];
         [its addObject:it];
@@ -170,6 +170,7 @@ typedef enum {
         btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, 49.0f, 49.0f);
         [btn setImage:[UIImage imageNamed:@"tool-settings"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"tool-settings-h"] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(btnSettingClick:) forControlEvents:UIControlEventTouchUpInside];
         it = [[UIBarButtonItem alloc] initWithCustomView:btn];
         [its addObject:it];
@@ -180,6 +181,7 @@ typedef enum {
         btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, 49.0f, 49.0f);
         [btn setImage:[UIImage imageNamed:@"tool-zoomin"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"tool-zoomin-h"] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(btnZoominClick:) forControlEvents:UIControlEventTouchUpInside];
         it = [[UIBarButtonItem alloc] initWithCustomView:btn];
         [its addObject:it];
@@ -187,6 +189,7 @@ typedef enum {
         btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, 49.0f, 49.0f);
         [btn setImage:[UIImage imageNamed:@"tool-zoomout"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"tool-zoomout-h"] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(btnZoomoutClick:) forControlEvents:UIControlEventTouchUpInside];
         it = [[UIBarButtonItem alloc] initWithCustomView:btn];
         [its addObject:it];
@@ -298,6 +301,11 @@ typedef enum {
     {
         [_pullView hide];
         self.pullView = nil;
+        
+        [self.navigationItem setLeftBarButtonItem:self.leftBarButtonItem animated:YES];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        _tfSearchBox.enabled = YES;
+        
         return;
     }
     
@@ -306,6 +314,13 @@ typedef enum {
     tv.actDelegate = self;
     self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:tv];
     [_pullView show];
+    
+    UIBarButtonItem *back_it = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack
+                                                                            target:self
+                                                                            action:@selector(btnBarListClick:)];
+    [self.navigationItem setLeftBarButtonItem:back_it animated:YES];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    _tfSearchBox.enabled = NO;
 }
 
 - (void)btnBarFilterClick:(id)sender
@@ -314,12 +329,19 @@ typedef enum {
     {
         [_pullView hide];
         self.pullView = nil;
+        
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+        _tfSearchBox.enabled = YES;
+        
         return;
     }
     
     PPParkingFilterView *fv = [[PPParkingFilterView alloc] initWithDelegate:self];
     self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:fv];
     [_pullView show];
+    
+    self.navigationItem.leftBarButtonItem.enabled = NO;
+    _tfSearchBox.enabled = NO;
 }
 
 #pragma mark - map tool bar buttons event
@@ -331,7 +353,7 @@ typedef enum {
 
 - (void)btnSettingClick:(id)sender
 {
-    PPSettingsViewController *c = [[PPSettingsViewController alloc] initWithNibName:nil bundle:nil];
+    PPSettingsViewController *c = [[PPSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:c animated:YES];
 }
 
@@ -384,6 +406,13 @@ typedef enum {
                      }];
     
     _mapView.userInteractionEnabled = NO;
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
     
     return YES;
 }

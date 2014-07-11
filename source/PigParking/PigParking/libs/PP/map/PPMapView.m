@@ -82,22 +82,6 @@ static PPMapView *__instance = nil;
     [_locationManager startUpdatingLocation];
 }
 
-//- (void)showUserAt:(CLLocationCoordinate2D)coordinate
-//{
-//    if (!_userAnnotation)
-//    {
-//        _userAnnotation = [[PPMapAnnoation alloc] init];
-//        _userAnnotation.type = PPMapAnnoationTypeUser;
-//        _userAnnotation.coordinate = coordinate;
-//        
-//        [_mapView addAnnotation:_userAnnotation];
-//        
-//        return;
-//    }
-//    
-//    _userAnnotation.coordinate = coordinate;
-//}
-
 - (void)updateUserLocation:(CLLocationCoordinate2D)coordinate
 {
     if (PPMapViewscopeModeFollow == _scopeMode || PPMapViewscopeModeDirect == _scopeMode)
@@ -186,7 +170,6 @@ static PPMapView *__instance = nil;
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
     NSLog(@"start searching route line.");
-    return;
     
     NSArray *os = [NSArray arrayWithArray:_mapView.overlays];
     [_mapView removeOverlays:os];
@@ -197,30 +180,30 @@ static PPMapView *__instance = nil;
     BMKPlanNode *n_end = [[BMKPlanNode alloc] init];
     n_end.pt = ((BMKPointAnnotation *)view.annotation).coordinate;
     
-    BMKDrivingRoutePlanOption *p = [[BMKDrivingRoutePlanOption alloc] init];
-    p.from = n_start;
-    p.to = n_end;
-    
-    if (![_routeSearch drivingSearch:p])
-    {
-        NSLog(@"error: BMKRouteSearch fail");
-    }
-    
-//    BMKWalkingRoutePlanOption *w = [[BMKWalkingRoutePlanOption alloc] init];
-//    w.from = n_start;
-//    w.to = n_end;
-//    if (![_routeSearch walkingSearch:w])
+//    BMKDrivingRoutePlanOption *p = [[BMKDrivingRoutePlanOption alloc] init];
+//    p.from = n_start;
+//    p.to = n_end;
+//    
+//    if (![_routeSearch drivingSearch:p])
 //    {
 //        NSLog(@"error: BMKRouteSearch fail");
 //    }
+    
+    BMKWalkingRoutePlanOption *w = [[BMKWalkingRoutePlanOption alloc] init];
+    w.from = n_start;
+    w.to = n_end;
+    if (![_routeSearch walkingSearch:w])
+    {
+        NSLog(@"error: BMKRouteSearch fail");
+    }
 }
 
 - (BMKOverlayView *) mapView:(BMKMapView *)mapView viewForOverlay:(id< BMKOverlay >)overlay
 {
     BMKPolylineView *v = [[BMKPolylineView alloc] initWithPolyline:overlay];
-    v.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:1];
-    v.strokeColor = [[UIColor blueColor] colorWithAlphaComponent:0.7];
-    v.lineWidth = 3.0;
+    v.fillColor = [UIColor colorWithRed:0.34f green:0.69f blue:0.92f alpha:1.0f];
+    v.strokeColor = [UIColor colorWithRed:0.34f green:0.69f blue:0.92f alpha:1.0f];
+    v.lineWidth = 4.0f;
     return v;
 }
 
@@ -272,17 +255,30 @@ static PPMapView *__instance = nil;
     NSLog(@"Unable to find current location. error: %@",error);
 }
 
-//- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-//{
-//    _coordinate = [locations[0] coordinate];
-//    [self updateUserLocation:_coordinate];
-//}
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    _coordinate = [locations[0] coordinate];
+    [self updateUserLocation:_coordinate];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didUpdateToLocation:)])
+    {
+        [_delegate performSelector:@selector(ppMapView:didUpdateToLocation:)
+                        withObject:self
+                        withObject:[[CLLocation alloc] initWithLatitude:_coordinate.latitude longitude:_coordinate.longitude]];
+    }
+}
 
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
+    _coordinate = newLocation.coordinate;
     [self updateUserLocation:newLocation.coordinate];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didUpdateToLocation:)])
+    {
+        [_delegate performSelector:@selector(ppMapView:didUpdateToLocation:) withObject:self withObject:newLocation];
+    }
 }
 
 @end

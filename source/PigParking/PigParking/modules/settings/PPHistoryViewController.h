@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PPHistoryViewController : UITableViewController
+@interface PPHistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

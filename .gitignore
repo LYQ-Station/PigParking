@@ -1,7 +1,7 @@
 
 *.xcworkspacedata
 
-source/PigParking/PigParking.xcodeproj/project.xcworkspace/xcuserdata/steven.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcuserstate
 
 *.xcbkptlist
 

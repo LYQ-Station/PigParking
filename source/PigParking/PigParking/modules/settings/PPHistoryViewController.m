@@ -10,13 +10,15 @@
 
 @interface PPHistoryViewController ()
 
+@property (nonatomic, strong) IBOutlet UITableView *historyTableView;
+
 @end
 
 @implementation PPHistoryViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
         self.title = @"历史记录";
@@ -29,7 +31,6 @@
     [super viewDidLoad];
     
     [self setupTheme];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack
                                                                                          target:self
@@ -108,6 +109,13 @@
     return YES;
 }
 */
+
+#pragma mark -
+
+- (IBAction)btnGotoUserClick:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 #pragma mark -
 

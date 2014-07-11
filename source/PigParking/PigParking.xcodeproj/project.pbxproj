@@ -91,6 +91,19 @@
 		B01BBA05196ECC5C0082F10C /* PPParkingFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01BBA04196ECC5C0082F10C /* PPParkingFilterView.m */; };
 		B01BBA09196ECFCD0082F10C /* test-filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B01BBA08196ECFCD0082F10C /* test-filter@2x.png */; };
 		B01BBA0C196ED5FE0082F10C /* PPAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B01BBA0B196ED5FE0082F10C /* PPAboutViewController.m */; };
+		B0F60D96196FEE1B00CE7516 /* idx-btn-details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */; };
+		B0F60D97196FEE1B00CE7516 /* idx-btn-go-here@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */; };
+		B0F60D9A19700ACD00CE7516 /* st-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D9919700ACD00CE7516 /* st-logo@2x.png */; };
+		B0F60D9E1970207C00CE7516 /* cell-bg-bot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D9B1970207C00CE7516 /* cell-bg-bot@2x.png */; };
+		B0F60D9F1970207C00CE7516 /* cell-bg-midd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D9C1970207C00CE7516 /* cell-bg-midd@2x.png */; };
+		B0F60DA01970207C00CE7516 /* cell-bg-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D9D1970207C00CE7516 /* cell-bg-top@2x.png */; };
+		B0F60DA41970264D00CE7516 /* st-icon0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60DA11970264D00CE7516 /* st-icon0@2x.png */; };
+		B0F60DA51970264D00CE7516 /* st-icon1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60DA21970264D00CE7516 /* st-icon1@2x.png */; };
+		B0F60DA61970264D00CE7516 /* st-icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60DA31970264D00CE7516 /* st-icon2@2x.png */; };
+		B0F60DA81970279900CE7516 /* cell-acc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60DA71970279900CE7516 /* cell-acc@2x.png */; };
+		B0F60DAC19702AB800CE7516 /* PPHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F60DAB19702AB800CE7516 /* PPHistoryViewController.xib */; };
+		B0F60DAE19702B3800CE7516 /* his-none-item-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60DAD19702B3800CE7516 /* his-none-item-bg@2x.png */; };
+		B0F60DB019702BF300CE7516 /* his-btn-use-now@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60DAF19702BF300CE7516 /* his-btn-use-now@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +301,19 @@
 		B01BBA08196ECFCD0082F10C /* test-filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-filter@2x.png"; sourceTree = "<group>"; };
 		B01BBA0A196ED5FE0082F10C /* PPAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAboutViewController.h; sourceTree = "<group>"; };
 		B01BBA0B196ED5FE0082F10C /* PPAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPAboutViewController.m; sourceTree = "<group>"; };
+		B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idx-btn-details@2x.png"; sourceTree = "<group>"; };
+		B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idx-btn-go-here@2x.png"; sourceTree = "<group>"; };
+		B0F60D9919700ACD00CE7516 /* st-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "st-logo@2x.png"; sourceTree = "<group>"; };
+		B0F60D9B1970207C00CE7516 /* cell-bg-bot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-bg-bot@2x.png"; sourceTree = "<group>"; };
+		B0F60D9C1970207C00CE7516 /* cell-bg-midd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-bg-midd@2x.png"; sourceTree = "<group>"; };
+		B0F60D9D1970207C00CE7516 /* cell-bg-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-bg-top@2x.png"; sourceTree = "<group>"; };
+		B0F60DA11970264D00CE7516 /* st-icon0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "st-icon0@2x.png"; sourceTree = "<group>"; };
+		B0F60DA21970264D00CE7516 /* st-icon1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "st-icon1@2x.png"; sourceTree = "<group>"; };
+		B0F60DA31970264D00CE7516 /* st-icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "st-icon2@2x.png"; sourceTree = "<group>"; };
+		B0F60DA71970279900CE7516 /* cell-acc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-acc@2x.png"; sourceTree = "<group>"; };
+		B0F60DAB19702AB800CE7516 /* PPHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PPHistoryViewController.xib; sourceTree = "<group>"; };
+		B0F60DAD19702B3800CE7516 /* his-none-item-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "his-none-item-bg@2x.png"; sourceTree = "<group>"; };
+		B0F60DAF19702BF300CE7516 /* his-btn-use-now@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "his-btn-use-now@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +388,8 @@
 		8B88E0CF196A30B900722F22 /* index */ = {
 			isa = PBXGroup;
 			children = (
+				B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */,
+				B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */,
 				B01BB9F0196EC9080082F10C /* tool-scope-h@2x.png */,
 				B01BB9F1196EC9080082F10C /* tool-settings-h@2x.png */,
 				B01BB9F2196EC9080082F10C /* tool-zoomin-h@2x.png */,
@@ -396,6 +424,10 @@
 		8B88E0D8196A3D9A00722F22 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				B0F60DA71970279900CE7516 /* cell-acc@2x.png */,
+				B0F60D9B1970207C00CE7516 /* cell-bg-bot@2x.png */,
+				B0F60D9C1970207C00CE7516 /* cell-bg-midd@2x.png */,
+				B0F60D9D1970207C00CE7516 /* cell-bg-top@2x.png */,
 				8B88E0E3196A478100722F22 /* nav-btn-items */,
 				8B88E0D9196A3D9A00722F22 /* nav-bar-bg@2x.png */,
 			);
@@ -605,6 +637,7 @@
 		B00043C619680472008CBB2C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B0F60D9819700ACD00CE7516 /* settings */,
 				B01BBA08196ECFCD0082F10C /* test-filter@2x.png */,
 				B01BB9F8196EC91F0082F10C /* parking */,
 				B01BB9EB196EC2370082F10C /* feedback */,
@@ -735,6 +768,7 @@
 			children = (
 				B01123FA19698D2D00046745 /* PPHistoryViewController.h */,
 				B01123FB19698D2D00046745 /* PPHistoryViewController.m */,
+				B0F60DAB19702AB800CE7516 /* PPHistoryViewController.xib */,
 			);
 			name = history;
 			sourceTree = "<group>";
@@ -757,6 +791,19 @@
 				B01BB9FD196EC91F0082F10C /* pk-details-header@2x.png */,
 			);
 			path = parking;
+			sourceTree = "<group>";
+		};
+		B0F60D9819700ACD00CE7516 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				B0F60DAF19702BF300CE7516 /* his-btn-use-now@2x.png */,
+				B0F60DAD19702B3800CE7516 /* his-none-item-bg@2x.png */,
+				B0F60DA11970264D00CE7516 /* st-icon0@2x.png */,
+				B0F60DA21970264D00CE7516 /* st-icon1@2x.png */,
+				B0F60DA31970264D00CE7516 /* st-icon2@2x.png */,
+				B0F60D9919700ACD00CE7516 /* st-logo@2x.png */,
+			);
+			path = settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -842,22 +889,34 @@
 				B01BB9F7196EC9080082F10C /* tool-zoomout-h@2x.png in Resources */,
 				B01BBA09196ECFCD0082F10C /* test-filter@2x.png in Resources */,
 				8B88E0DC196A426000722F22 /* tf-srh-bg0@2x.png in Resources */,
+				B0F60DA41970264D00CE7516 /* st-icon0@2x.png in Resources */,
 				B01BB9F4196EC9080082F10C /* tool-scope-h@2x.png in Resources */,
+				B0F60D9F1970207C00CE7516 /* cell-bg-midd@2x.png in Resources */,
+				B0F60DAC19702AB800CE7516 /* PPHistoryViewController.xib in Resources */,
 				8B88E0D2196A30B900722F22 /* nav-bar-srh@2x.png in Resources */,
 				B01BB9F5196EC9080082F10C /* tool-settings-h@2x.png in Resources */,
+				B0F60D9E1970207C00CE7516 /* cell-bg-bot@2x.png in Resources */,
+				B0F60D9A19700ACD00CE7516 /* st-logo@2x.png in Resources */,
 				B01BB9ED196EC2370082F10C /* feedback-bg@2x.png in Resources */,
 				8B88E0D3196A30B900722F22 /* start-mask@2x.png in Resources */,
 				8B88E0EF196A7B2500722F22 /* tool-zoomout@2x.png in Resources */,
+				B0F60DA01970207C00CE7516 /* cell-bg-top@2x.png in Resources */,
+				B0F60DA61970264D00CE7516 /* st-icon2@2x.png in Resources */,
 				B000442219680EBC008CBB2C /* mapapi.bundle in Resources */,
 				B01BB9FF196EC91F0082F10C /* pk-details-cell-icon0@2x.png in Resources */,
+				B0F60DAE19702B3800CE7516 /* his-none-item-bg@2x.png in Resources */,
 				B01BBA00196EC91F0082F10C /* pk-details-cell-icon1@2x.png in Resources */,
 				B01BB9EA196EC0260082F10C /* nav-item-up@2x.png in Resources */,
 				8B88E0DA196A3D9A00722F22 /* nav-bar-bg@2x.png in Resources */,
+				B0F60D97196FEE1B00CE7516 /* idx-btn-go-here@2x.png in Resources */,
 				8B88E0F1196A865B00722F22 /* nav-item-back@2x.png in Resources */,
 				B01BB9E9196EC0260082F10C /* nav-item-clear@2x.png in Resources */,
 				B01BB9EF196EC25D0082F10C /* PPFeedbackViewController.xib in Resources */,
 				8B88E0E7196A478100722F22 /* nav-item-list@2x.png in Resources */,
+				B0F60DA81970279900CE7516 /* cell-acc@2x.png in Resources */,
 				B01BB9F6196EC9080082F10C /* tool-zoomin-h@2x.png in Resources */,
+				B0F60DB019702BF300CE7516 /* his-btn-use-now@2x.png in Resources */,
+				B0F60DA51970264D00CE7516 /* st-icon1@2x.png in Resources */,
 				B000436C1968025D008CBB2C /* InfoPlist.strings in Resources */,
 				8BACB5AD196BEA8C00D4E32B /* map-free-parking@2x.png in Resources */,
 				8B3A189B196CEC2900E79A46 /* parking-cell-flag1@2x.png in Resources */,
@@ -868,6 +927,7 @@
 				B01BBA02196EC91F0082F10C /* pk-details-header@2x.png in Resources */,
 				8BACB5AE196BEA8C00D4E32B /* map-nofree-parking@2x.png in Resources */,
 				8B88E0EC196A7B2500722F22 /* tool-scope@2x.png in Resources */,
+				B0F60D96196FEE1B00CE7516 /* idx-btn-details@2x.png in Resources */,
 				B01BBA01196EC91F0082F10C /* pk-details-cell-icon2@2x.png in Resources */,
 				B01BB9FE196EC91F0082F10C /* pk-details-cell-bg@2x.png in Resources */,
 			);

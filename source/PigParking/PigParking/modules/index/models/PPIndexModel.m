@@ -37,7 +37,7 @@
         r = arc4random() % 100;
         
         d = @{@"id": @1,
-              @"title":[NSString stringWithFormat:@"test parking%d", i],
+              @"title":[NSString stringWithFormat:@"步行%d分钟", i],
               @"lat":@(coordinate.latitude+(r*0.0001f*(r%10>5?1:-1))),
               @"lon":@(coordinate.longitude+(r*0.0001f*(r%10>5?1:-1))),
               };

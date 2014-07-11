@@ -16,6 +16,7 @@ typedef enum {
 
 @interface PPMapView : UIView  <CLLocationManagerDelegate,BMKMapViewDelegate,BMKRouteSearchDelegate>
 
+@property (nonatomic, assign) id delegate;
 @property (nonatomic, readonly) BMKMapView *mapView;
 @property (nonatomic, assign) PPMapViewscopeMode scopeMode;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
@@ -26,8 +27,6 @@ typedef enum {
 
 - (void)startUpdatingLocation;
 
-//- (void)showUserAt:(CLLocationCoordinate2D)coordinate;
-
 - (void)updateUserLocation:(CLLocationCoordinate2D)coordinate;
 
 - (void)showAroundParking:(NSArray *)list;
@@ -35,5 +34,12 @@ typedef enum {
 - (void)zoomIn;
 
 - (void)zoomOut;
+
+@end
+
+@protocol PPMapViewDelegate <NSObject>
+
+@optional
+- (void)ppMapView:(PPMapView *)mapView didUpdateToLocation:(CLLocation *)newLocation;
 
 @end

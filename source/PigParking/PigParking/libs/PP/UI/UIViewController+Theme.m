@@ -23,7 +23,7 @@
     title_lab.font = [UIFont boldSystemFontOfSize:20.0f];
     item.titleView = title_lab;
     
-    self.view.backgroundColor = [UIColor colorWithRed:0.92f green:0.92f blue:0.92f alpha:1.0f];
+    self.view.backgroundColor = [UIColor colorWithRed:0.95f green:0.95f blue:0.95f alpha:1.0f];
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
     {
