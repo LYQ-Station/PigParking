@@ -10,10 +10,12 @@
 
 @interface PPPullView : UIView
 
-- (id)initWithParentView:(UIView *)parentView contentView:(UIView *)contentView;
+- (id)initWithParentView:(UIView *)parentView contentView:(UIView *)contentView mask:(BOOL)hasMask;
 
 - (void)show;
 
-- (void)hide;
+- (void)showNoMask;
+
+- (void)hide:(BOOL)animated;
 
 @end

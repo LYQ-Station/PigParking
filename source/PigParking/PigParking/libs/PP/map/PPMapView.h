@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPMapAnnoation.h"
 
 typedef enum {
     PPMapViewscopeModeFollow,
     PPMapViewscopeModeBrowser,
     PPMapViewscopeModeDirect
 }PPMapViewscopeMode;
+
+@class PPMapAnnoation;
 
 @interface PPMapView : UIView  <CLLocationManagerDelegate,BMKMapViewDelegate,BMKRouteSearchDelegate>
 
@@ -41,5 +44,9 @@ typedef enum {
 
 @optional
 - (void)ppMapView:(PPMapView *)mapView didUpdateToLocation:(CLLocation *)newLocation;
+
+- (void)ppMapView:(PPMapView *)mapView didSelectAnnotation:(PPMapAnnoation *)annotation;
+
+- (void)ppMapView:(PPMapView *)mapView didDeselectAnnotation:(PPMapAnnoation *)annotation;
 
 @end

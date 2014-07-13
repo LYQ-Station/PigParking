@@ -7,14 +7,21 @@
 //
 
 #import "PPHistoryViewController.h"
+#import "PPHistoryTableViewCell.h"
 
 @interface PPHistoryViewController ()
 
 @property (nonatomic, strong) IBOutlet UITableView *historyTableView;
+@property (nonatomic, strong) NSMutableArray *data;
 
 @end
 
 @implementation PPHistoryViewController
+
+- (void)dealloc
+{
+    self.historyTableView = nil;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +46,13 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemClear
                                                                                           target:self
                                                                                           action:@selector(btnClearClick:)];
+    
+    if (_data.count)
+    {
+        [self.view addSubview:_historyTableView];
+        _historyTableView.dataSource = self;
+        _historyTableView.delegate = self;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,26 +65,35 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return 30;
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 76.0f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    PPHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"h-cell"];
     
-    // Configure the cell...
+    if (!cell)
+    {
+        cell = [[PPHistoryTableViewCell alloc] initWithReuseIdentifier:@"h-cell"];
+    }
+    
+    cell.chargeLabel.text = @"费用：免费";
+    cell.parkingCountLabel.text = @"车位：500个";
+    cell.addressLabel.text = @"地址：深圳市区松坪山公园";
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -112,12 +135,10 @@
 
 #pragma mark -
 
-- (IBAction)btnGotoUserClick:(id)sender
+- (IBAction)btnGotoUseClick:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
-#pragma mark -
 
 - (void)btnBackClick:(id)sender
 {
@@ -125,6 +146,13 @@
 }
 
 - (void)btnClearClick:(id)sender
+{
+    
+}
+
+#pragma mark -
+
+- (void)loadList
 {
     
 }

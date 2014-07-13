@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPMapView.h"
 #import "PPParkingTableView.h"
+#import "PPParkingDetailsView.h"
 
-@interface PPIndexViewController : UIViewController <UITextFieldDelegate, PPParkingTableViewActDelegate>
+@interface PPIndexViewController : UIViewController <UITextFieldDelegate, PPParkingTableViewActDelegate, PPMapViewDelegate, PPParkingDetailsViewDelegate>
 
 + (UINavigationController *)navController;
 

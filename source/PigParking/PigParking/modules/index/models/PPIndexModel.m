@@ -40,6 +40,10 @@
               @"title":[NSString stringWithFormat:@"步行%d分钟", i],
               @"lat":@(coordinate.latitude+(r*0.0001f*(r%10>5?1:-1))),
               @"lon":@(coordinate.longitude+(r*0.0001f*(r%10>5?1:-1))),
+              @"charge":@"免费",
+              @"distance":[NSString stringWithFormat:@"步行%d分钟", i],
+              @"parkingCount":@"500",
+              @"address":@"深圳市珠光村"
               };
         
         [arr addObject:d];

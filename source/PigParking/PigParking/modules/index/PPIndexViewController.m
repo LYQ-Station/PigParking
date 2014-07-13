@@ -13,6 +13,7 @@
 #import "PPPullView.h"
 #import "PPParkingTableView.h"
 #import "PPParkingFilterView.h"
+#import "PPParkingDetailsView.h"
 #import "PPIndexModel.h"
 
 typedef enum {
@@ -95,6 +96,7 @@ typedef enum {
     
     _mapView = [PPMapView mapViewWithFrame:self.view.bounds];
     _mapView.mapView.userInteractionEnabled = YES;
+    _mapView.delegate = self;
     [self.view addSubview:_mapView];
     [_mapView startUpdatingLocation];
     
@@ -299,25 +301,23 @@ typedef enum {
 {
     if (_pullView)
     {
-        [_pullView hide];
+        [_pullView hide:NO];
         self.pullView = nil;
         
         [self.navigationItem setLeftBarButtonItem:self.leftBarButtonItem animated:YES];
         self.navigationItem.rightBarButtonItem.enabled = YES;
         _tfSearchBox.enabled = YES;
-        
-        return;
     }
     
     PPParkingTableView *tv = [[PPParkingTableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.view.bounds.size.height-80.0f)
                                                                   data:_parkingArray];
     tv.actDelegate = self;
-    self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:tv];
+    self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:tv mask:YES];
     [_pullView show];
     
     UIBarButtonItem *back_it = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack
                                                                             target:self
-                                                                            action:@selector(btnBarListClick:)];
+                                                                            action:@selector(btnQuitParkingListClick)];
     [self.navigationItem setLeftBarButtonItem:back_it animated:YES];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     _tfSearchBox.enabled = NO;
@@ -327,7 +327,7 @@ typedef enum {
 {
     if (_pullView)
     {
-        [_pullView hide];
+        [_pullView hide:YES];
         self.pullView = nil;
         
         self.navigationItem.leftBarButtonItem.enabled = YES;
@@ -337,11 +337,20 @@ typedef enum {
     }
     
     PPParkingFilterView *fv = [[PPParkingFilterView alloc] initWithDelegate:self];
-    self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:fv];
+    self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:fv mask:YES];
     [_pullView show];
     
     self.navigationItem.leftBarButtonItem.enabled = NO;
     _tfSearchBox.enabled = NO;
+}
+
+- (void)btnQuitParkingListClick
+{
+    [_pullView hide:YES];
+    
+    [self.navigationItem setLeftBarButtonItem:self.leftBarButtonItem animated:YES];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+    _tfSearchBox.enabled = YES;
 }
 
 #pragma mark - map tool bar buttons event
@@ -417,12 +426,60 @@ typedef enum {
     return YES;
 }
 
-#pragma mark -
+#pragma mark - mapview delegate
+
+- (void)ppMapView:(PPMapView *)mapView didUpdateToLocation:(CLLocation *)newLocation
+{
+    [self fetchAroundParking];
+}
+
+- (void)ppMapView:(PPMapView *)mapView didSelectAnnotation:(PPMapAnnoation *)annotation
+{
+    if (_pullView)
+    {
+        [_pullView hide:NO];
+        _pullView = nil;
+    }
+    
+    NSDictionary *d = (NSDictionary *)annotation.data;
+    
+    PPParkingDetailsView *v = [[PPParkingDetailsView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, 138.0f)];
+    v.delegate = self;
+    v.chargeText = d[@"charge"];
+    v.distanceText = d[@"distance"];
+    v.parkingCountText = d[@"parkingCount"];
+    v.addressText = d[@"address"];
+    v.flag = PPParkingTableViewCellFlagCheap;
+    
+    _pullView = [[PPPullView alloc] initWithParentView:self.view contentView:v mask:NO];
+    [_pullView showNoMask];
+}
+
+- (void)ppMapView:(PPMapView *)mapView didDeselectAnnotation:(PPMapAnnoation *)annotation
+{
+    [_pullView hide:YES];
+    _pullView = nil;
+}
+
+#pragma mark - parking tableview delegate
 
 - (void)parkingTableView:(PPParkingTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PPParkingDetailsViewController *c = [[PPParkingDetailsViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:c animated:YES];
+}
+
+#pragma mark - parking details view delegate
+
+- (void)ppParkingDetailsViewGoHere:(PPParkingDetailsView *)view
+{
+    
+}
+
+- (void)ppParkingDetailsViewShowDetails:(PPParkingDetailsView *)view
+{
+    PPParkingDetailsViewController *v = [[PPParkingDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:v animated:YES];
 }
 
 @end

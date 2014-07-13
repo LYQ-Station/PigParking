@@ -25,23 +25,36 @@
     self.parentView = nil;
 }
 
-- (id)initWithParentView:(UIView *)parentView contentView:(UIView *)contentView
+- (id)initWithParentView:(UIView *)parentView contentView:(UIView *)contentView mask:(BOOL)hasMask
 {
     self = [super initWithFrame:parentView.bounds];
     if (self)
     {
         self.parentView = parentView;
         
-        self.maskView = [[UIView alloc] initWithFrame:self.bounds];
-        _maskView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
-        _maskView.alpha = 0.0f;
-        [self addSubview:_maskView];
+        if (hasMask)
+        {
+            self.maskView = [[UIView alloc] initWithFrame:self.bounds];
+            _maskView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+            _maskView.alpha = 0.0f;
+            [self addSubview:_maskView];
+        }
         
         self.contentView = contentView;
         _contentView.frame = CGRectMake(0.0f, 0.0f-_contentView.bounds.size.height, _contentView.bounds.size.width, _contentView.bounds.size.height);
         [self addSubview:_contentView];
     }
     return self;
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    if (_maskView)
+    {
+        return [super pointInside:point withEvent:event];
+    }
+    
+    return [_contentView pointInside:point withEvent:event];
 }
 
 - (void)show
@@ -65,8 +78,37 @@
                      }];
 }
 
-- (void)hide
+- (void)showNoMask
 {
+    [self.parentView addSubview:self];
+    
+    [self.maskView removeFromSuperview];
+    self.maskView = nil;
+    
+    self.contentView.userInteractionEnabled = NO;
+    
+    [UIView animateWithDuration:0.3f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.contentView.center = CGPointMake(self.contentView.center.x, self.contentView.center.y+self.contentView.bounds.size.height);
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished)
+                         {
+                             self.contentView.userInteractionEnabled = YES;
+                         }
+                     }];
+}
+
+- (void)hide:(BOOL)animated
+{
+    if (!animated)
+    {
+        [self removeFromSuperview];
+        return;
+    }
+    
     [UIView animateWithDuration:0.3f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseOut

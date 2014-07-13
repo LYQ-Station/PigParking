@@ -27,7 +27,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="btnGotoUserClick:" destination="-1" eventType="touchUpInside" id="a7j-MK-T5A"/>
+                        <action selector="btnGotoUseClick:" destination="-1" eventType="touchUpInside" id="rH5-QA-MZO"/>
                     </connections>
                 </button>
             </subviews>

@@ -117,6 +117,7 @@ static PPMapView *__instance = nil;
         ann.title = d[@"title"];
         ann.coordinate = CLLocationCoordinate2DMake([d[@"lat"] floatValue], [d[@"lon"] floatValue]);
         ann.type = PPMapAnnoationTypeParking;
+        ann.data = d;
         [arr addObject:ann];
     }
     
@@ -167,10 +168,19 @@ static PPMapView *__instance = nil;
     return nil;
 }
 
+- (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view
+{
+    NSArray *os = [NSArray arrayWithArray:_mapView.overlays];
+    [_mapView removeOverlays:os];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didDeselectAnnotation:)])
+    {
+        [_delegate performSelector:@selector(ppMapView:didDeselectAnnotation:) withObject:self withObject:(PPMapAnnoation *)(view.annotation)];
+    }
+}
+
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
-    NSLog(@"start searching route line.");
-    
     NSArray *os = [NSArray arrayWithArray:_mapView.overlays];
     [_mapView removeOverlays:os];
     
@@ -195,6 +205,11 @@ static PPMapView *__instance = nil;
     if (![_routeSearch walkingSearch:w])
     {
         NSLog(@"error: BMKRouteSearch fail");
+    }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didSelectAnnotation:)])
+    {
+        [_delegate performSelector:@selector(ppMapView:didSelectAnnotation:) withObject:self withObject:(PPMapAnnoation *)(view.annotation)];
     }
 }
 

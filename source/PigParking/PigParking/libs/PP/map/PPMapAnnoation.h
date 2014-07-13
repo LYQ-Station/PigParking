@@ -24,8 +24,9 @@ typedef enum {
 //    CLLocationCoordinate2D _coordinate;
 //}
 
+@property (nonatomic, assign) int arrayIndex;
 @property (nonatomic, assign) int type;
 @property (nonatomic, assign) int subType;
-//@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+@property (nonatomic, assign) id data;
 
 @end
