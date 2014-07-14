@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PPFeedbackViewController">
             <connections>
+                <outlet property="tfContact" destination="ZIH-aA-k2a" id="Cpe-aM-9d0"/>
+                <outlet property="tvContent" destination="abu-vE-rrF" id="hN3-x0-rhA"/>
                 <outlet property="view" destination="iN0-l3-epB" id="t23-nD-Jlu"/>
             </connections>
         </placeholder>
@@ -19,6 +21,86 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="abu-vE-rrF">
+                    <rect key="frame" x="20" y="26" width="280" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="dhZ-Qr-EuA"/>
+                    </connections>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Fkj-nf-a9J">
+                    <rect key="frame" x="13" y="399" width="294" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="提交" backgroundImage="btn-bg.png"/>
+                    <connections>
+                        <action selector="btnSubmitClick:" destination="-1" eventType="touchUpInside" id="YZJ-k5-3LY"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="电话/邮箱/QQ" minimumFontSize="17" id="ZIH-aA-k2a">
+                    <rect key="frame" x="20" y="344" width="280" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="3jH-3R-0uL"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TUs-GF-k8e">
+                    <rect key="frame" x="13" y="215" width="139" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="地址错误" backgroundImage="fb-sugg-btn-bg.png">
+                        <color key="titleColor" red="0.35686275360000003" green="0.33333334329999997" blue="0.27843138579999999" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" backgroundImage="fb-sugg-btn-bg-h.png"/>
+                    <state key="highlighted" backgroundImage="fb-sugg-btn-bg-h.png"/>
+                    <connections>
+                        <action selector="btnSuggestionClick:" destination="-1" eventType="touchUpInside" id="U4Z-H7-iet"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FC4-VN-nf1">
+                    <rect key="frame" x="168" y="215" width="139" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="找不到地点" backgroundImage="fb-sugg-btn-bg.png">
+                        <color key="titleColor" red="0.35686275360000003" green="0.33333334329999997" blue="0.27843138579999999" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" backgroundImage="fb-sugg-btn-bg-h.png"/>
+                    <connections>
+                        <action selector="btnSuggestionClick:" destination="-1" eventType="touchUpInside" id="KGM-o2-0v3"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rrt-wW-r9s">
+                    <rect key="frame" x="13" y="260" width="139" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="软件不稳定" backgroundImage="fb-sugg-btn-bg.png">
+                        <color key="titleColor" red="0.35686275360000003" green="0.33333334329999997" blue="0.27843138579999999" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" backgroundImage="fb-sugg-btn-bg-h.png"/>
+                    <connections>
+                        <action selector="btnSuggestionClick:" destination="-1" eventType="touchUpInside" id="tMW-wg-kU5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NyS-wm-HCr">
+                    <rect key="frame" x="168" y="260" width="139" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="改进建议" backgroundImage="fb-sugg-btn-bg.png">
+                        <color key="titleColor" red="0.35686275360000003" green="0.33333334329999997" blue="0.27843138579999999" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" backgroundImage="fb-sugg-btn-bg-h.png"/>
+                    <connections>
+                        <action selector="btnSuggestionClick:" destination="-1" eventType="touchUpInside" id="TSj-Wj-uUM"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -27,6 +109,9 @@
         </view>
     </objects>
     <resources>
+        <image name="btn-bg.png" width="294" height="36"/>
+        <image name="fb-sugg-btn-bg-h.png" width="138" height="37"/>
+        <image name="fb-sugg-btn-bg.png" width="138" height="37"/>
         <image name="feedback-bg.png" width="320" height="503"/>
     </resources>
 </document>

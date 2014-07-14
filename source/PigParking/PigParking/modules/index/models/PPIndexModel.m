@@ -43,7 +43,8 @@
               @"charge":@"免费",
               @"distance":[NSString stringWithFormat:@"步行%d分钟", i],
               @"parkingCount":@"500",
-              @"address":@"深圳市珠光村"
+              @"address":@"深圳市珠光村",
+              @"flag":@((i+3+1)%3)
               };
         
         [arr addObject:d];

@@ -92,6 +92,14 @@
 		B01BBA09196ECFCD0082F10C /* test-filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B01BBA08196ECFCD0082F10C /* test-filter@2x.png */; };
 		B01BBA0C196ED5FE0082F10C /* PPAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B01BBA0B196ED5FE0082F10C /* PPAboutViewController.m */; };
 		B03746C01972C2420091AA7F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03746BF1972C2420091AA7F /* MapKit.framework */; };
+		B0431982197400D60001B905 /* btn-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0431981197400D60001B905 /* btn-bg@2x.png */; };
+		B0431984197401510001B905 /* fb-btn-submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0431983197401510001B905 /* fb-btn-submit@2x.png */; };
+		B043198719740DCB0001B905 /* fb-sugg-btn-bg-h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B043198519740DCB0001B905 /* fb-sugg-btn-bg-h@2x.png */; };
+		B043198819740DCB0001B905 /* fb-sugg-btn-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B043198619740DCB0001B905 /* fb-sugg-btn-bg@2x.png */; };
+		B043198B197410980001B905 /* parking-cell-flag2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0431989197410980001B905 /* parking-cell-flag2@2x.png */; };
+		B043198C197410980001B905 /* parking-cell-flag3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B043198A197410980001B905 /* parking-cell-flag3@2x.png */; };
+		B043198E197415210001B905 /* PPParkingDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B043198D197415210001B905 /* PPParkingDetailsViewController.xib */; };
+		B0431991197415E40001B905 /* details-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0431990197415E40001B905 /* details-bg@2x.png */; };
 		B0F60D96196FEE1B00CE7516 /* idx-btn-details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */; };
 		B0F60D97196FEE1B00CE7516 /* idx-btn-go-here@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */; };
 		B0F60D9A19700ACD00CE7516 /* st-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D9919700ACD00CE7516 /* st-logo@2x.png */; };
@@ -306,6 +314,14 @@
 		B01BBA0A196ED5FE0082F10C /* PPAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAboutViewController.h; sourceTree = "<group>"; };
 		B01BBA0B196ED5FE0082F10C /* PPAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPAboutViewController.m; sourceTree = "<group>"; };
 		B03746BF1972C2420091AA7F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B0431981197400D60001B905 /* btn-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-bg@2x.png"; sourceTree = "<group>"; };
+		B0431983197401510001B905 /* fb-btn-submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-btn-submit@2x.png"; sourceTree = "<group>"; };
+		B043198519740DCB0001B905 /* fb-sugg-btn-bg-h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-sugg-btn-bg-h@2x.png"; sourceTree = "<group>"; };
+		B043198619740DCB0001B905 /* fb-sugg-btn-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-sugg-btn-bg@2x.png"; sourceTree = "<group>"; };
+		B0431989197410980001B905 /* parking-cell-flag2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parking-cell-flag2@2x.png"; sourceTree = "<group>"; };
+		B043198A197410980001B905 /* parking-cell-flag3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parking-cell-flag3@2x.png"; sourceTree = "<group>"; };
+		B043198D197415210001B905 /* PPParkingDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PPParkingDetailsViewController.xib; sourceTree = "<group>"; };
+		B0431990197415E40001B905 /* details-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details-bg@2x.png"; sourceTree = "<group>"; };
 		B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idx-btn-details@2x.png"; sourceTree = "<group>"; };
 		B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idx-btn-go-here@2x.png"; sourceTree = "<group>"; };
 		B0F60D9919700ACD00CE7516 /* st-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "st-logo@2x.png"; sourceTree = "<group>"; };
@@ -401,6 +417,8 @@
 		8B88E0CF196A30B900722F22 /* index */ = {
 			isa = PBXGroup;
 			children = (
+				B0431989197410980001B905 /* parking-cell-flag2@2x.png */,
+				B043198A197410980001B905 /* parking-cell-flag3@2x.png */,
 				B0F704AD1972952B00D0F87F /* parking-details-pull-view-bg@2x.png */,
 				B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */,
 				B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */,
@@ -438,6 +456,7 @@
 		8B88E0D8196A3D9A00722F22 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				B0431981197400D60001B905 /* btn-bg@2x.png */,
 				B0F60DA71970279900CE7516 /* cell-acc@2x.png */,
 				B0F60D9B1970207C00CE7516 /* cell-bg-bot@2x.png */,
 				B0F60D9C1970207C00CE7516 /* cell-bg-midd@2x.png */,
@@ -652,6 +671,7 @@
 		B00043C619680472008CBB2C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B043198F197415E40001B905 /* details */,
 				B0F60D9819700ACD00CE7516 /* settings */,
 				B01BBA08196ECFCD0082F10C /* test-filter@2x.png */,
 				B01BB9F8196EC91F0082F10C /* parking */,
@@ -737,6 +757,7 @@
 				B01123F619698C0000046745 /* models */,
 				B01123F219698B3700046745 /* PPParkingDetailsViewController.h */,
 				B01123F319698B3700046745 /* PPParkingDetailsViewController.m */,
+				B043198D197415210001B905 /* PPParkingDetailsViewController.xib */,
 			);
 			path = parking;
 			sourceTree = "<group>";
@@ -792,6 +813,9 @@
 		B01BB9EB196EC2370082F10C /* feedback */ = {
 			isa = PBXGroup;
 			children = (
+				B043198519740DCB0001B905 /* fb-sugg-btn-bg-h@2x.png */,
+				B043198619740DCB0001B905 /* fb-sugg-btn-bg@2x.png */,
+				B0431983197401510001B905 /* fb-btn-submit@2x.png */,
 				B01BB9EC196EC2370082F10C /* feedback-bg@2x.png */,
 			);
 			path = feedback;
@@ -807,6 +831,14 @@
 				B01BB9FD196EC91F0082F10C /* pk-details-header@2x.png */,
 			);
 			path = parking;
+			sourceTree = "<group>";
+		};
+		B043198F197415E40001B905 /* details */ = {
+			isa = PBXGroup;
+			children = (
+				B0431990197415E40001B905 /* details-bg@2x.png */,
+			);
+			path = details;
 			sourceTree = "<group>";
 		};
 		B0F60D9819700ACD00CE7516 /* settings */ = {
@@ -910,8 +942,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B043198719740DCB0001B905 /* fb-sugg-btn-bg-h@2x.png in Resources */,
 				8B0125F9196BCAD300775FDD /* map-user-point@2x.png in Resources */,
 				B01BB9F7196EC9080082F10C /* tool-zoomout-h@2x.png in Resources */,
+				B0431982197400D60001B905 /* btn-bg@2x.png in Resources */,
 				B01BBA09196ECFCD0082F10C /* test-filter@2x.png in Resources */,
 				8B88E0DC196A426000722F22 /* tf-srh-bg0@2x.png in Resources */,
 				B0F60DA41970264D00CE7516 /* st-icon0@2x.png in Resources */,
@@ -936,12 +970,16 @@
 				B0F60D97196FEE1B00CE7516 /* idx-btn-go-here@2x.png in Resources */,
 				8B88E0F1196A865B00722F22 /* nav-item-back@2x.png in Resources */,
 				B0F704AE1972952B00D0F87F /* parking-details-pull-view-bg@2x.png in Resources */,
+				B043198819740DCB0001B905 /* fb-sugg-btn-bg@2x.png in Resources */,
+				B043198C197410980001B905 /* parking-cell-flag3@2x.png in Resources */,
 				B01BB9E9196EC0260082F10C /* nav-item-clear@2x.png in Resources */,
 				B01BB9EF196EC25D0082F10C /* PPFeedbackViewController.xib in Resources */,
 				8B88E0E7196A478100722F22 /* nav-item-list@2x.png in Resources */,
 				B0F60DA81970279900CE7516 /* cell-acc@2x.png in Resources */,
+				B0431991197415E40001B905 /* details-bg@2x.png in Resources */,
 				B01BB9F6196EC9080082F10C /* tool-zoomin-h@2x.png in Resources */,
 				B0F60DB019702BF300CE7516 /* his-btn-use-now@2x.png in Resources */,
+				B043198E197415210001B905 /* PPParkingDetailsViewController.xib in Resources */,
 				B0F60DA51970264D00CE7516 /* st-icon1@2x.png in Resources */,
 				B000436C1968025D008CBB2C /* InfoPlist.strings in Resources */,
 				8BACB5AD196BEA8C00D4E32B /* map-free-parking@2x.png in Resources */,
@@ -952,8 +990,10 @@
 				8B88E0EE196A7B2500722F22 /* tool-zoomin@2x.png in Resources */,
 				B01BBA02196EC91F0082F10C /* pk-details-header@2x.png in Resources */,
 				8BACB5AE196BEA8C00D4E32B /* map-nofree-parking@2x.png in Resources */,
+				B0431984197401510001B905 /* fb-btn-submit@2x.png in Resources */,
 				8B88E0EC196A7B2500722F22 /* tool-scope@2x.png in Resources */,
 				B0F60D96196FEE1B00CE7516 /* idx-btn-details@2x.png in Resources */,
+				B043198B197410980001B905 /* parking-cell-flag2@2x.png in Resources */,
 				B01BBA01196EC91F0082F10C /* pk-details-cell-icon2@2x.png in Resources */,
 				B01BB9FE196EC91F0082F10C /* pk-details-cell-bg@2x.png in Resources */,
 			);

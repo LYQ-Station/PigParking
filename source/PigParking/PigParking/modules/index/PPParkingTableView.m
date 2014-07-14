@@ -38,7 +38,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -55,7 +55,7 @@
     cell.distanceLabel.text = @"距离：步行至此地5分钟";
     cell.parkingCountLabel.text = @"车位：500个";
     cell.addressLabel.text = @"地址：深圳市区松坪山公园";
-    cell.flag = PPParkingTableViewCellFlagCheap;
+    cell.flag = (PPParkingTableViewCellFlag)[[_data[indexPath.row] objectForKey:@"flag"] intValue];
     
     return cell;
 }

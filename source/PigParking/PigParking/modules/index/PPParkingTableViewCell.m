@@ -16,6 +16,7 @@
     if (self)
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        _flag = PPParkingTableViewCellFlagNone;
         
         _chargeLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0f, 11.0f, self.bounds.size.width, 14.0f)];
         _chargeLabel.font = [UIFont systemFontOfSize:14.0];
@@ -61,9 +62,21 @@
         [_flagImageView removeFromSuperview];
         _flagImageView = nil;
     }
-    else
+    else if (PPParkingTableViewCellFlagCheap == flag)
     {
         _flagImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parking-cell-flag1"]];
+        _flagImageView.frame = CGRectMake(self.bounds.size.width-_flagImageView.bounds.size.width-15.0f, 0.0f, _flagImageView.bounds.size.width, _flagImageView.bounds.size.height);
+        [self addSubview:_flagImageView];
+    }
+    else if (PPParkingTableViewCellFlagMost == flag)
+    {
+        _flagImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parking-cell-flag2"]];
+        _flagImageView.frame = CGRectMake(self.bounds.size.width-_flagImageView.bounds.size.width-15.0f, 0.0f, _flagImageView.bounds.size.width, _flagImageView.bounds.size.height);
+        [self addSubview:_flagImageView];
+    }
+    else if (PPParkingTableViewCellFlagNearest == flag)
+    {
+        _flagImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parking-cell-flag3"]];
         _flagImageView.frame = CGRectMake(self.bounds.size.width-_flagImageView.bounds.size.width-15.0f, 0.0f, _flagImageView.bounds.size.width, _flagImageView.bounds.size.height);
         [self addSubview:_flagImageView];
     }

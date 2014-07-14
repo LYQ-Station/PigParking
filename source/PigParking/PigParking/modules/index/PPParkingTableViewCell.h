@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    PPParkingTableViewCellFlagNone,
-    PPParkingTableViewCellFlagCheap
+    PPParkingTableViewCellFlagNone = 0,
+    PPParkingTableViewCellFlagCheap,
+    PPParkingTableViewCellFlagMost,
+    PPParkingTableViewCellFlagNearest,
 } PPParkingTableViewCellFlag;
 
 @interface PPParkingTableViewCell : UITableViewCell

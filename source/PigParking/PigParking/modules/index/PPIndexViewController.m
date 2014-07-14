@@ -327,17 +327,24 @@ typedef enum {
 {
     if (_pullView)
     {
-        [_pullView hide:YES];
+        if (102 == _pullView.tag)
+        {
+            [_pullView hide:YES];
+            self.pullView = nil;
+            
+            self.navigationItem.leftBarButtonItem.enabled = YES;
+            _tfSearchBox.enabled = YES;
+            
+            return;
+        }
+        
+        [_pullView hide:NO];
         self.pullView = nil;
-        
-        self.navigationItem.leftBarButtonItem.enabled = YES;
-        _tfSearchBox.enabled = YES;
-        
-        return;
     }
     
     PPParkingFilterView *fv = [[PPParkingFilterView alloc] initWithDelegate:self];
     self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:fv mask:YES];
+    _pullView.tag = 102;
     [_pullView show];
     
     self.navigationItem.leftBarButtonItem.enabled = NO;
@@ -406,6 +413,12 @@ typedef enum {
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
     
+    if (_pullView)
+    {
+        [_pullView hide:YES];
+        _pullView = nil;
+    }
+    
     [UIView animateWithDuration:0.25f
                      animations:^{
                          UIImage *im_srh = [UIImage imageNamed:@"nav-bar-srh"];
@@ -445,12 +458,7 @@ typedef enum {
     
     PPParkingDetailsView *v = [[PPParkingDetailsView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, 138.0f)];
     v.delegate = self;
-    v.title = d[@"title"];
-    v.chargeText = d[@"charge"];
-    v.distanceText = d[@"distance"];
-    v.parkingCountText = d[@"parkingCount"];
-    v.addressText = d[@"address"];
-    v.flag = PPParkingTableViewCellFlagCheap;
+    v.data = annotation.data;
     v.fromCoordinate = _mapView.coordinate;
     v.toCoordinate = CLLocationCoordinate2DMake([d[@"lat"] floatValue], [d[@"lon"] floatValue]);
     
@@ -469,6 +477,7 @@ typedef enum {
 - (void)parkingTableView:(PPParkingTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PPParkingDetailsViewController *c = [[PPParkingDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    c.data = [_parkingArray objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:c animated:YES];
 }
 
@@ -482,6 +491,8 @@ typedef enum {
 - (void)ppParkingDetailsViewShowDetails:(PPParkingDetailsView *)view
 {
     PPParkingDetailsViewController *v = [[PPParkingDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    v.data = view.data;
+    v.fromCoordinate = _mapView.coordinate;
     [self.navigationController pushViewController:v animated:YES];
 }
 

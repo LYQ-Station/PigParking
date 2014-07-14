@@ -10,4 +10,8 @@
 
 @interface PPParkingDetailsViewController : UIViewController
 
+@property (nonatomic, assign) NSDictionary *data;
+@property (nonatomic, assign) CLLocationCoordinate2D fromCoordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D toCoordinate;
+
 @end

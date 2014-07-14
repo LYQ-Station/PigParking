@@ -12,6 +12,7 @@
 @interface PPParkingDetailsView : UIView
 
 @property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) NSDictionary *data;
 
 @property (nonatomic, readonly) UILabel *chargeLabel;
 @property (nonatomic, readonly) UILabel *distanceLabel;

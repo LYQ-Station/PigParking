@@ -98,6 +98,20 @@
     }
 }
 
+- (void)setData:(NSDictionary *)data
+{
+    _data = data;
+    
+    _chargeLabel.text = [NSString stringWithFormat:@"费用：%@", data[@"charge"]];
+    _distanceLabel.text = [NSString stringWithFormat:@"距离：%@", data[@"distance"]];
+    _parkingCountLabel.text = [NSString stringWithFormat:@"车位：%@", data[@"parkingCount"]];
+    _addressLabel.text = [NSString stringWithFormat:@"地址：%@", data[@"address"]];
+    
+    _toCoordinate = CLLocationCoordinate2DMake([data[@"lat"] floatValue], [data[@"lon"] floatValue]);
+    
+    self.flag = (PPParkingTableViewCellFlag)[data[@"flag"] intValue];
+}
+
 #pragma mark - 
 
 - (void)btnGoHereClick
