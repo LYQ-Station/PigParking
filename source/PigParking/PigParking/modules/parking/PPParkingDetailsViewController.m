@@ -34,9 +34,9 @@
                                                                                          target:self
                                                                                          action:@selector(btnBackClick:)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemUp
-                                                                                          target:self
-                                                                                          action:@selector(btnUpClick:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemUp
+//                                                                                          target:self
+//                                                                                          action:@selector(btnUpClick:)];
 }
 
 - (void)didReceiveMemoryWarning

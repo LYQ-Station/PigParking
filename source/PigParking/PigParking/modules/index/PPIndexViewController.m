@@ -445,11 +445,14 @@ typedef enum {
     
     PPParkingDetailsView *v = [[PPParkingDetailsView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, 138.0f)];
     v.delegate = self;
+    v.title = d[@"title"];
     v.chargeText = d[@"charge"];
     v.distanceText = d[@"distance"];
     v.parkingCountText = d[@"parkingCount"];
     v.addressText = d[@"address"];
     v.flag = PPParkingTableViewCellFlagCheap;
+    v.fromCoordinate = _mapView.coordinate;
+    v.toCoordinate = CLLocationCoordinate2DMake([d[@"lat"] floatValue], [d[@"lon"] floatValue]);
     
     _pullView = [[PPPullView alloc] initWithParentView:self.view contentView:v mask:NO];
     [_pullView showNoMask];

@@ -18,10 +18,15 @@
 @property (nonatomic, readonly) UILabel *parkingCountLabel;
 @property (nonatomic, readonly) UILabel *addressLabel;
 
+@property (nonatomic, copy) NSString *title;
+
 @property (nonatomic, assign) NSString *chargeText;
 @property (nonatomic, assign) NSString *distanceText;
 @property (nonatomic, assign) NSString *parkingCountText;
 @property (nonatomic, assign) NSString *addressText;
+
+@property (nonatomic, assign) CLLocationCoordinate2D fromCoordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D toCoordinate;
 
 @property (nonatomic, assign) PPParkingTableViewCellFlag flag;
 

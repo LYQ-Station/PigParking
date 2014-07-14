@@ -10,6 +10,11 @@
 
 @implementation PPParkingDetailsView
 
+- (void)dealloc
+{
+    self.title = nil;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -97,11 +102,8 @@
 
 - (void)btnGoHereClick
 {
-    
-    CLLocationCoordinate2D coords1 =
-    CLLocationCoordinate2DMake(30.691793,104.088264);
-    CLLocationCoordinate2D coords2 =
-    CLLocationCoordinate2DMake(30.691293,104.088264);
+    CLLocationCoordinate2D coords1 = _fromCoordinate;
+    CLLocationCoordinate2D coords2 = _toCoordinate;
     
 //    {
 //        NSString *urlString = @"http://api.map.baidu.com/direction?origin=latlng:30.691793,104.088264|name=x&destination=latlng:30.691393,104.085264|name:y&mode=driving&region=深圳&output=html";
@@ -111,58 +113,61 @@
 //        NSLog(@"%d", x);
 //    }
     
-//    if (SYSTEM_VERSION_LESS_THAN(@"6.0"))// ios6以下，调用google map
-//    {
-        NSString *urlString = [[NSString alloc]
-                               initWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f&dirfl=d",
-                               coords1.latitude,coords1.longitude,coords2.latitude,coords2.longitude];
-        NSURL *aURL = [NSURL URLWithString:urlString];
-    
-        [[UIApplication sharedApplication] openURL:aURL];
-//    }else// 直接调用ios自己带的apple map
-//    {
-//        //当前的位置
-//        //MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
-//        //起点
-//        MKMapItem *currentLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords1 addressDictionary:nil]];
-//        //目的地的位置
-//        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords2 addressDictionary:nil]];
-//        toLocation.name = @"目的地";
-//        NSArray *items = [NSArray arrayWithObjects:currentLocation, toLocation, nil];
-//        
-//        /*
-//         //keys
-//         MKLaunchOptionsMapCenterKey:地图中心的坐标(NSValue)
-//         MKLaunchOptionsMapSpanKey:地图显示的范围(NSValue)
-//         MKLaunchOptionsShowsTrafficKey:是否显示交通信息(boolean NSNumber)
-//         
-//         //MKLaunchOptionsDirectionsModeKey: 导航类型(NSString)
-//         {
-//         MKLaunchOptionsDirectionsModeDriving:驾车
-//         MKLaunchOptionsDirectionsModeWalking:步行
-//         }
-//         
-//         //MKLaunchOptionsMapTypeKey:地图类型(NSNumber)
-//         enum {
-//         MKMapTypeStandard = 0,
-//         MKMapTypeSatellite,
-//         MKMapTypeHybrid
-//         };
-//         */
-//        NSDictionary *options = @{
-//                                  MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
-//                                  MKLaunchOptionsMapTypeKey:[NSNumber numberWithInteger:MKMapTypeStandard],
-//                                  MKLaunchOptionsShowsTrafficKey:@YES
-//                                  };
-//        //打开苹果自身地图应用，并呈现特定的item  
-//        [MKMapItem openMapsWithItems:items launchOptions:options];  
-//    }
-    return;
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(ppParkingDetailsViewGoHere:)])
+    if (LESS_THAN_IOS6)
     {
-        [_delegate performSelector:@selector(ppParkingDetailsViewGoHere:) withObject:self];
+        NSString *url_str = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f&dirfl=d",
+                               coords1.latitude,coords1.longitude,coords2.latitude,coords2.longitude];
+        NSURL *url = [NSURL URLWithString:url_str];
+    
+        [[UIApplication sharedApplication] openURL:url];
     }
+    else
+    {
+        //当前的位置
+        MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+        
+        //起点
+//        MKMapItem *currentLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords1 addressDictionary:nil]];
+        
+        //目的地的位置
+        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords2 addressDictionary:nil]];
+        toLocation.name = _title;
+        
+        NSArray *items = [NSArray arrayWithObjects:currentLocation, toLocation, nil];
+        
+        /*
+         //keys
+         MKLaunchOptionsMapCenterKey:地图中心的坐标(NSValue)
+         MKLaunchOptionsMapSpanKey:地图显示的范围(NSValue)
+         MKLaunchOptionsShowsTrafficKey:是否显示交通信息(boolean NSNumber)
+         
+         //MKLaunchOptionsDirectionsModeKey: 导航类型(NSString)
+         {
+         MKLaunchOptionsDirectionsModeDriving:驾车
+         MKLaunchOptionsDirectionsModeWalking:步行
+         }
+         
+         //MKLaunchOptionsMapTypeKey:地图类型(NSNumber)
+         enum {
+         MKMapTypeStandard = 0,
+         MKMapTypeSatellite,
+         MKMapTypeHybrid
+         };
+         */
+        NSDictionary *options = @{
+                                  MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
+                                  MKLaunchOptionsMapTypeKey:[NSNumber numberWithInteger:MKMapTypeStandard],
+                                  MKLaunchOptionsShowsTrafficKey:@YES
+                                  };
+        
+        //打开苹果自身地图应用，并呈现特定的item  
+        [MKMapItem openMapsWithItems:items launchOptions:options];  
+    }
+//
+//    if (_delegate && [_delegate respondsToSelector:@selector(ppParkingDetailsViewGoHere:)])
+//    {
+//        [_delegate performSelector:@selector(ppParkingDetailsViewGoHere:) withObject:self];
+//    }
 }
 
 - (void)btnShowDetailsClick

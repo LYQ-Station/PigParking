@@ -18,6 +18,11 @@
     {
         [self setBackgroundImage:[UIImage imageNamed:@"nav-bar-bg"] forBarMetrics:UIBarMetricsDefault];
     }
+    
+    if ([self respondsToSelector:@selector(setShadowImage:)])
+    {
+        [self setShadowImage:[[UIImage alloc] init]];
+    }
 }
 
 @end

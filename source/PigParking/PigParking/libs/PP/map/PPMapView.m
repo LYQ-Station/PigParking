@@ -114,7 +114,7 @@ static PPMapView *__instance = nil;
     for (NSDictionary *d in list)
     {
         ann = [[PPMapAnnoation alloc] init];
-        ann.title = d[@"title"];
+        ann.title = d[@"distance"];
         ann.coordinate = CLLocationCoordinate2DMake([d[@"lat"] floatValue], [d[@"lon"] floatValue]);
         ann.type = PPMapAnnoationTypeParking;
         ann.data = d;

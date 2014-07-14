@@ -8,12 +8,13 @@
 
 #pragma mark - device
 
-#define IS_SCREEN568    (568.0f==[UIScreen mainScreen].bounds.size.height)
-#define IS_IOS7         ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define IS_SCREEN568        (568.0f==[UIScreen mainScreen].bounds.size.height)
+#define IS_IOS7             ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define LESS_THAN_IOS6      ([[[UIDevice currentDevice] systemVersion] floatValue] < 6.0)
 
 #pragma mark - map
 
-#define BAIDU_MAP_KEY   @"fxQ5FtFisHAqeCkhDWNIrDGA"
+#define BAIDU_MAP_KEY       @"fxQ5FtFisHAqeCkhDWNIrDGA"
 
 #pragma mark - URLs
 
