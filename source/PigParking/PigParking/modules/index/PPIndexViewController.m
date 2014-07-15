@@ -23,7 +23,7 @@ typedef enum {
     PPIndexViewTagMapToolBar,
 }PPIndexViewTags;
 
-@interface PPIndexViewController ()
+@interface PPIndexViewController () <PPParkingTableViewActDelegate, PPMapViewDelegate, PPParkingDetailsViewDelegate, PPMapSearchTableViewControllerDelegate>
 
 @property (nonatomic, assign) BOOL isStartPage;
 
@@ -143,6 +143,7 @@ typedef enum {
     
         //mask
     UIImageView *mask = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"start-mask"]];
+    mask.userInteractionEnabled = YES;
     mask.tag = PPIndexViewTagMask;
     [self.view addSubview:mask];
     
@@ -210,10 +211,10 @@ typedef enum {
     lb.textAlignment = NSTextAlignmentCenter;
     lb.textColor = [UIColor colorWithRed:0.73f green:0.73f blue:0.73f alpha:1.0f];
     lb.text = @"已累计为 XXXXXXXX 位用户找到免费车位";
-    [self.view addSubview:lb];
+    [mask addSubview:lb];
     
     UIGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapStartUIGesture:)];
-    [self.view addGestureRecognizer:g];
+    [mask addGestureRecognizer:g];
 }
 
 - (void)onTapStartUIGesture:(UIGestureRecognizer *)gesture
@@ -254,7 +255,7 @@ typedef enum {
     UIView *v1 = [self.view viewWithTag:PPIndexViewTagMask];
     UIView *v2 = [self.view viewWithTag:PPIndexViewTagTipsLabel];
     UIView *v3 = self.navigationItem.titleView;
-    UIView *v4 = [self.view viewWithTag:PPIndexViewTagMapToolBar];
+    UIView *v4 = [v1 viewWithTag:PPIndexViewTagMapToolBar];
     
     [UIView animateWithDuration:0.5f
                           delay:0.0f
@@ -371,12 +372,24 @@ typedef enum {
                              [self.searchViewController.view removeFromSuperview];
                          }];
         
-        self.searchViewController = nil;
         [self.navigationItem setLeftBarButtonItem:self.leftBarButtonItem animated:YES];
         [self.navigationItem setRightBarButtonItem:self.rightBarButtonItem animated:YES];
+        
+        _mapView.userInteractionEnabled = YES;
     }
+//    else
+//    {
+//        [UIView animateWithDuration:0.25f
+//                         animations:^{
+//                             UIView *v = self.navigationItem.titleView;
+//                             v.frame = CGRectMake(0.0f, 0.0f, _tfSearchBox.background.size.width, v.bounds.size.height);
+//                             [self.searchViewController.view removeFromSuperview];
+//                         }];
+//        
+//        [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+//    }
     
-    _mapView.userInteractionEnabled = YES;
+    self.searchViewController = nil;
     
     [_tfSearchBox resignFirstResponder];
 }
@@ -432,25 +445,15 @@ typedef enum {
     }
     
     self.searchViewController = [[PPMapSearchTableViewController alloc] initWithDelegate:self];
+    _searchViewController.searchDelegate = self;
     _searchViewController.view.frame = self.view.bounds;
     [self.view addSubview:_searchViewController.view];
     _searchViewController.view.alpha = 0.0f;
-    
-    if (_isStartPage)
-    {
-        return YES;
-    }
     
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack target:self action:@selector(btnQuitSearchClick)]
                                      animated:YES];
     
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
-    
-    if (_pullView)
-    {
-        [_pullView hide:YES];
-        _pullView = nil;
-    }
     
     [UIView animateWithDuration:0.25f
                      animations:^{
@@ -461,12 +464,30 @@ typedef enum {
                          [UIView animateWithDuration:0.15f
                                           animations:^{
                                               self.searchViewController.view.alpha = 1.0f;
+                                          }
+                                          completion:^(BOOL finished) {
+                                              if (self.isStartPage)
+                                              {
+                                                  [[self.view viewWithTag:PPIndexViewTagMask] removeFromSuperview];
+                                                  self.isStartPage = NO;
+                                              }
+                                              
+                                              [self.searchViewController showHistory];
                                           }];
                      }];
     
+    if (_isStartPage)
+    {
+        return YES;
+    }
     
+    if (_pullView)
+    {
+        [_pullView hide:YES];
+        _pullView = nil;
+    }
     
-    _mapView.userInteractionEnabled = NO;
+//    _mapView.userInteractionEnabled = NO;
     
     return YES;
 }
@@ -474,6 +495,8 @@ typedef enum {
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    
+    [_searchViewController doSearch:textField.text];
     
     return YES;
 }
@@ -532,6 +555,42 @@ typedef enum {
     PPParkingDetailsViewController *c = [[PPParkingDetailsViewController alloc] initWithNibName:nil bundle:nil];
     c.data = [_parkingArray objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:c animated:YES];
+}
+
+#pragma mark - search tableview controller delegate
+
+- (void)ppMapSearchTableViewContrllerDidSelectHistory:(PPMapSearchTableViewController *)controller item:(id)item
+{
+    [self btnQuitSearchClick];
+    
+//    NSLog(@"%@", item);
+    
+    CLLocationCoordinate2D coor = CLLocationCoordinate2DMake([[item objectForKey:@"lat"] floatValue], [[item objectForKey:@"lon"] floatValue]);
+    [_mapView updateUserLocation:coor];
+    
+    _mapView.scopeMode = PPMapViewscopeModeBrowser;
+    
+    [_indexModel fetchAroundParking:coor block:^(NSArray *data, NSError *error) {
+        self.parkingArray = data;
+        [self.mapView showAroundParking:data];
+    }];
+}
+
+- (void)ppMapSearchTableViewContrllerDidSelectSearchResult:(PPMapSearchTableViewController *)controller item:(id)item
+{
+    [self btnQuitSearchClick];
+    
+//    NSLog(@"%@", item);
+    
+    CLLocationCoordinate2D coor = CLLocationCoordinate2DMake([[item objectForKey:@"lat"] floatValue], [[item objectForKey:@"lon"] floatValue]);
+    [_mapView updateUserLocation:coor];
+    
+    _mapView.scopeMode = PPMapViewscopeModeBrowser;
+    
+    [_indexModel fetchAroundParking:coor block:^(NSArray *data, NSError *error) {
+        self.parkingArray = data;
+        [self.mapView showAroundParking:data];
+    }];
 }
 
 #pragma mark - parking details view delegate

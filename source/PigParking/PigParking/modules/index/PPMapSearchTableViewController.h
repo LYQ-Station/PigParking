@@ -18,4 +18,14 @@
 
 - (void)showHistory;
 
+- (void)doSearch:(NSString *)keyword;
+
+@end
+
+@protocol PPMapSearchTableViewControllerDelegate <NSObject>
+
+- (void)ppMapSearchTableViewContrllerDidSelectHistory:(PPMapSearchTableViewController *)controller item:(id)item;
+
+- (void)ppMapSearchTableViewContrllerDidSelectSearchResult:(PPMapSearchTableViewController *)controller item:(id)item;
+
 @end

@@ -74,10 +74,17 @@ static PPMapView *__instance = nil;
     return self;
 }
 
+- (CLLocationCoordinate2D)coordinate
+{
+    return _userAnnotation.coordinate;
+}
+
 #pragma mark - show annotation
 
 - (void)startUpdatingLocation
 {
+    _scopeMode = PPMapViewscopeModeFollow;
+    
     [_locationManager stopUpdatingLocation];
     [_locationManager startUpdatingLocation];
 }
@@ -272,14 +279,19 @@ static PPMapView *__instance = nil;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    _coordinate = [locations[0] coordinate];
-    [self updateUserLocation:_coordinate];
+    if (PPMapViewscopeModeFollow != _scopeMode)
+    {
+        return;
+    }
+    
+    CLLocationCoordinate2D coor = [locations[0] coordinate];
+    [self updateUserLocation:[locations[0] coordinate]];
     
     if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didUpdateToLocation:)])
     {
         [_delegate performSelector:@selector(ppMapView:didUpdateToLocation:)
                         withObject:self
-                        withObject:[[CLLocation alloc] initWithLatitude:_coordinate.latitude longitude:_coordinate.longitude]];
+                        withObject:[[CLLocation alloc] initWithLatitude:coor.latitude longitude:coor.longitude]];
     }
 }
 
@@ -287,7 +299,6 @@ static PPMapView *__instance = nil;
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    _coordinate = newLocation.coordinate;
     [self updateUserLocation:newLocation.coordinate];
     
     if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didUpdateToLocation:)])

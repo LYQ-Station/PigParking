@@ -7,14 +7,29 @@
 //
 
 #import "PPMapSearchTableViewController.h"
+#import "PPMapSearchModel.h"
+
+typedef enum {
+    PPMapSearchTableViewControllerModeHistory = 1,
+    PPMapSearchTableViewControllerModeSearch
+} PPMapSearchTableViewControllerMode;
 
 @interface PPMapSearchTableViewController ()
 
+@property (nonatomic, strong) PPMapSearchModel *model;
 @property (nonatomic, strong) NSMutableArray *data;
+
+@property (nonatomic, assign) PPMapSearchTableViewControllerMode mode;
 
 @end
 
 @implementation PPMapSearchTableViewController
+
+- (void)dealloc
+{
+    self.model = nil;
+    self.data = nil;
+}
 
 - (id)initWithDelegate:(id)delegate
 {
@@ -23,6 +38,8 @@
     if (self)
     {
         _searchDelegate = delegate;
+        self.model = [PPMapSearchModel model];
+        self.data = [NSMutableArray array];
     }
     
     return self;
@@ -54,7 +71,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _data.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,13 +88,29 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"srh-cell"];
     }
     
+    NSDictionary *d = (NSDictionary *)(_data[indexPath.row]);
+    
     cell.imageView.image = [UIImage imageNamed:@"map-free-parking"];
-    cell.textLabel.text = @"松坪山小区停车场";
-    cell.detailTextLabel.text = @"车位：500 地址：深圳市南山区松坪山小区";
+    cell.textLabel.text = d[@"title"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"车位：%@ 地址：%@", d[@"parkingCount"], d[@"address"]];
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_searchDelegate)
+    {
+        if (PPMapSearchTableViewControllerModeHistory == _mode)
+        {
+            [_searchDelegate performSelector:@selector(ppMapSearchTableViewContrllerDidSelectHistory:item:) withObject:self withObject:_data[indexPath.row]];
+        }
+        else
+        {
+            [_searchDelegate performSelector:@selector(ppMapSearchTableViewContrllerDidSelectSearchResult:item:) withObject:self withObject:_data[indexPath.row]];
+        }
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -117,27 +150,35 @@
 }
 */
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark -
 
 - (void)clean
 {
+    [_data removeAllObjects];
     [self.tableView reloadData];
 }
 
 - (void)showHistory
 {
+    _mode = PPMapSearchTableViewControllerModeHistory;
+    
+    [_data removeAllObjects];
+    [_data addObjectsFromArray:[_model fetchHistoryList]];
     [self.tableView reloadData];
+}
+
+- (void)doSearch:(NSString *)keyword
+{
+    _mode = PPMapSearchTableViewControllerModeSearch;
+    
+    [self clean];
+    
+    [_model doSearch:keyword
+            complete:^(NSArray *data, NSError *error) {
+                [_data removeAllObjects];
+                [_data addObjectsFromArray:data];
+                [self.tableView reloadData];
+            }];
 }
 
 @end
