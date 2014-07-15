@@ -9,6 +9,7 @@
 #import "PPIndexViewController.h"
 #import "PPSettingsViewController.h"
 #import "PPParkingDetailsViewController.h"
+#import "PPMapSearchTableViewController.h"
 #import "PPMapView.h"
 #import "PPPullView.h"
 #import "PPParkingTableView.h"
@@ -37,6 +38,8 @@ typedef enum {
 @property (nonatomic, strong) PPIndexModel *indexModel;
 @property (nonatomic, strong) NSArray *parkingArray;
 
+@property (nonatomic, strong) PPMapSearchTableViewController *searchViewController;
+
 @end
 
 @implementation PPIndexViewController
@@ -45,10 +48,7 @@ typedef enum {
 {
     PPIndexViewController *c = [[PPIndexViewController alloc] initWithNibName:nil bundle:nil];
     
-//    PPSettingsViewController *c = [[PPSettingsViewController alloc] initWithNibName:nil bundle:nil];
-    
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:c];
-    
     
     return nc;
 }
@@ -228,26 +228,26 @@ typedef enum {
     [self transacteToIndexUI];
 }
 
-- (void)onTapSearchUIGesture:(UITapGestureRecognizer *)gesture
-{
-    [self.view removeGestureRecognizer:gesture];
-    
-    if (!_isStartPage)
-    {
-        [UIView animateWithDuration:0.25f
-                         animations:^{
-                             UIView *v = self.navigationItem.titleView;
-                             v.frame = CGRectMake(0.0f, 0.0f, 230.0f, v.bounds.size.height);
-                         }];
-        
-        [self.navigationItem setLeftBarButtonItem:self.leftBarButtonItem animated:YES];
-        [self.navigationItem setRightBarButtonItem:self.rightBarButtonItem animated:YES];
-    }
-    
-    _mapView.userInteractionEnabled = YES;
-    
-    [_tfSearchBox resignFirstResponder];
-}
+//- (void)onTapSearchUIGesture:(UITapGestureRecognizer *)gesture
+//{
+//    [self.view removeGestureRecognizer:gesture];
+//    
+//    if (!_isStartPage)
+//    {
+//        [UIView animateWithDuration:0.25f
+//                         animations:^{
+//                             UIView *v = self.navigationItem.titleView;
+//                             v.frame = CGRectMake(0.0f, 0.0f, 230.0f, v.bounds.size.height);
+//                         }];
+//        
+//        [self.navigationItem setLeftBarButtonItem:self.leftBarButtonItem animated:YES];
+//        [self.navigationItem setRightBarButtonItem:self.rightBarButtonItem animated:YES];
+//    }
+//    
+//    _mapView.userInteractionEnabled = YES;
+//    
+//    [_tfSearchBox resignFirstResponder];
+//}
 
 - (void)transacteToIndexUI
 {
@@ -360,6 +360,27 @@ typedef enum {
     _tfSearchBox.enabled = YES;
 }
 
+- (void)btnQuitSearchClick
+{
+    if (!_isStartPage)
+    {
+        [UIView animateWithDuration:0.25f
+                         animations:^{
+                             UIView *v = self.navigationItem.titleView;
+                             v.frame = CGRectMake(0.0f, 0.0f, 230.0f, v.bounds.size.height);
+                             [self.searchViewController.view removeFromSuperview];
+                         }];
+        
+        self.searchViewController = nil;
+        [self.navigationItem setLeftBarButtonItem:self.leftBarButtonItem animated:YES];
+        [self.navigationItem setRightBarButtonItem:self.rightBarButtonItem animated:YES];
+    }
+    
+    _mapView.userInteractionEnabled = YES;
+    
+    [_tfSearchBox resignFirstResponder];
+}
+
 #pragma mark - map tool bar buttons event
 
 - (void)btnScopeClick:(id)sender
@@ -402,15 +423,27 @@ typedef enum {
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    UITapGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapSearchUIGesture:)];
-    [self.view addGestureRecognizer:g];
+//    UITapGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapSearchUIGesture:)];
+//    [self.view addGestureRecognizer:g];
+    
+    if (_searchViewController)
+    {
+        return YES;
+    }
+    
+    self.searchViewController = [[PPMapSearchTableViewController alloc] initWithDelegate:self];
+    _searchViewController.view.frame = self.view.bounds;
+    [self.view addSubview:_searchViewController.view];
+    _searchViewController.view.alpha = 0.0f;
     
     if (_isStartPage)
     {
         return YES;
     }
     
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack target:self action:@selector(btnQuitSearchClick)]
+                                     animated:YES];
+    
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
     
     if (_pullView)
@@ -421,11 +454,17 @@ typedef enum {
     
     [UIView animateWithDuration:0.25f
                      animations:^{
-                         UIImage *im_srh = [UIImage imageNamed:@"nav-bar-srh"];
                          UIView *v = self.navigationItem.titleView;
-                         
-                         v.frame = CGRectMake(0.0f, 0.0f, im_srh.size.width, v.bounds.size.height);
+                         v.frame = CGRectMake(0.0f, 0.0f, 270.0f, v.bounds.size.height);
+                     }
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:0.15f
+                                          animations:^{
+                                              self.searchViewController.view.alpha = 1.0f;
+                                          }];
                      }];
+    
+    
     
     _mapView.userInteractionEnabled = NO;
     
@@ -435,6 +474,20 @@ typedef enum {
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (0 == textField.text.length && 0 != string.UTF8String[0])
+    {
+        [_searchViewController clean];
+    }
+    else if (1 == textField.text.length && 0 == string.UTF8String[0])
+    {
+        [_searchViewController showHistory];
+    }
     
     return YES;
 }

@@ -18,6 +18,7 @@
 		8B3A1896196CE48600E79A46 /* PPParkingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A1895196CE48600E79A46 /* PPParkingTableView.m */; };
 		8B3A1899196CE5BD00E79A46 /* PPParkingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A1898196CE5BD00E79A46 /* PPParkingTableViewCell.m */; };
 		8B3A189B196CEC2900E79A46 /* parking-cell-flag1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B3A189A196CEC2900E79A46 /* parking-cell-flag1@2x.png */; };
+		8B5247FB1974B1B00061FADB /* PPMapSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5247FA1974B1B00061FADB /* PPMapSearchTableViewController.m */; };
 		8B88E0D2196A30B900722F22 /* nav-bar-srh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B88E0D0196A30B900722F22 /* nav-bar-srh@2x.png */; };
 		8B88E0D3196A30B900722F22 /* start-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B88E0D1196A30B900722F22 /* start-mask@2x.png */; };
 		8B88E0D7196A3CDF00722F22 /* UINavigationBar+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B88E0D6196A3CDF00722F22 /* UINavigationBar+Theme.m */; };
@@ -149,6 +150,8 @@
 		8B3A1897196CE5BD00E79A46 /* PPParkingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPParkingTableViewCell.h; sourceTree = "<group>"; };
 		8B3A1898196CE5BD00E79A46 /* PPParkingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPParkingTableViewCell.m; sourceTree = "<group>"; };
 		8B3A189A196CEC2900E79A46 /* parking-cell-flag1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parking-cell-flag1@2x.png"; sourceTree = "<group>"; };
+		8B5247F91974B1B00061FADB /* PPMapSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMapSearchTableViewController.h; sourceTree = "<group>"; };
+		8B5247FA1974B1B00061FADB /* PPMapSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMapSearchTableViewController.m; sourceTree = "<group>"; };
 		8B88E0D0196A30B900722F22 /* nav-bar-srh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-bar-srh@2x.png"; sourceTree = "<group>"; };
 		8B88E0D1196A30B900722F22 /* start-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start-mask@2x.png"; sourceTree = "<group>"; };
 		8B88E0D5196A3CDF00722F22 /* UINavigationBar+Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Theme.h"; sourceTree = "<group>"; };
@@ -644,6 +647,8 @@
 				B000441319680A49008CBB2C /* PPStartViewController.m */,
 				B000440F19680A39008CBB2C /* PPIndexViewController.h */,
 				B000441019680A39008CBB2C /* PPIndexViewController.m */,
+				8B5247F91974B1B00061FADB /* PPMapSearchTableViewController.h */,
+				8B5247FA1974B1B00061FADB /* PPMapSearchTableViewController.m */,
 			);
 			path = index;
 			sourceTree = "<group>";
@@ -1050,6 +1055,7 @@
 				B01123FC19698D2D00046745 /* PPHistoryViewController.m in Sources */,
 				B00043BF19680441008CBB2C /* UIImageView+AFNetworking.m in Sources */,
 				B00043B719680441008CBB2C /* AFHTTPClient.m in Sources */,
+				8B5247FB1974B1B00061FADB /* PPMapSearchTableViewController.m in Sources */,
 				B01123F419698B3700046745 /* PPParkingDetailsViewController.m in Sources */,
 				B000440E196809B5008CBB2C /* PPSettingsViewController.m in Sources */,
 				8B012608196BE01700775FDD /* PPMapUserAnnotationView.m in Sources */,
@@ -1182,7 +1188,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
+				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1206,7 +1212,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
+				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
