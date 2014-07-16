@@ -14,6 +14,8 @@
 @property (nonatomic, readonly) UILabel *parkingCountLabel;
 @property (nonatomic, readonly) UILabel *addressLabel;
 
++ (CGFloat)cellHeight;
+
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 
 @end

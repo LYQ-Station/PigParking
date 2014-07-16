@@ -130,11 +130,12 @@ typedef enum {
         im_srh = [UIImage animatedResizableImageNamed:@"tf-srh-bg" capInsets:UIEdgeInsetsMake(0, 25, 0, 25) duration:0.0f];
     }
     
-    UITextField *tf_srh = [[UITextField alloc] initWithFrame:CGRectMake(0.0f, 0.0f, im_srh.size.width, im_srh.size.height)];
+    UITextField *tf_srh = [[UITextField alloc] initWithFrame:CGRectMake(0.0f, 80.0f, im_srh.size.width, im_srh.size.height)];
+    tf_srh.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     tf_srh.background = im_srh;
     tf_srh.delegate = self;
     tf_srh.returnKeyType = UIReturnKeySearch;
-    tf_srh.font = [UIFont systemFontOfSize:13.0f];
+    tf_srh.font = [UIFont systemFontOfSize:15.0f];
     tf_srh.leftView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 15.0f, tf_srh.bounds.size.height)];
     tf_srh.leftViewMode = UITextFieldViewModeAlways;
     self.tfSearchBox = tf_srh;

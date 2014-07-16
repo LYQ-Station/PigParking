@@ -8,11 +8,13 @@
 
 #import "PPHistoryViewController.h"
 #import "PPHistoryTableViewCell.h"
+#import "PPHistoryModel.h"
 
 @interface PPHistoryViewController ()
 
 @property (nonatomic, strong) IBOutlet UITableView *historyTableView;
 @property (nonatomic, strong) NSMutableArray *data;
+@property (nonatomic, strong) PPHistoryModel *model;
 
 @end
 
@@ -21,6 +23,8 @@
 - (void)dealloc
 {
     self.historyTableView = nil;
+    self.data = nil;
+    self.model = nil;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,6 +33,8 @@
     if (self)
     {
         self.title = @"历史记录";
+        self.data = [NSMutableArray array];
+        self.model = [PPHistoryModel model];
     }
     return self;
 }
@@ -47,12 +53,16 @@
                                                                                           target:self
                                                                                           action:@selector(btnClearClick:)];
     
+    [self.data addObjectsFromArray:[_model fetchHistory]];
+    
     if (_data.count)
     {
         [self.view addSubview:_historyTableView];
         _historyTableView.dataSource = self;
         _historyTableView.delegate = self;
     }
+    
+    self.navigationItem.rightBarButtonItem.enabled = _data.count != 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,12 +80,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 30;
+    return _data.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 76.0f;
+    return [PPHistoryTableViewCell cellHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,27 +105,28 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [self.data removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert)
+    {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
 
 /*
 // Override to support rearranging the table view.
@@ -147,7 +158,13 @@
 
 - (void)btnClearClick:(id)sender
 {
+    [_historyTableView endUpdates];
     
+    [_data removeAllObjects];
+    [_historyTableView reloadData];
+    [_historyTableView removeFromSuperview];
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 #pragma mark -

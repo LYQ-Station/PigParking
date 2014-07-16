@@ -20,6 +20,7 @@
     #import "AFNetworking.h"
     #import "FMDatabase.h"
     #import "BMapKit.h"
+    #import "MBProgressHUD.h"
 
     #import "PPConfigs.h"
     #import "UINavigationBar+Theme.h"

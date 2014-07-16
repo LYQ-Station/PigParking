@@ -107,6 +107,9 @@
 		B043198C197410980001B905 /* parking-cell-flag3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B043198A197410980001B905 /* parking-cell-flag3@2x.png */; };
 		B043198E197415210001B905 /* PPParkingDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B043198D197415210001B905 /* PPParkingDetailsViewController.xib */; };
 		B0431991197415E40001B905 /* details-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0431990197415E40001B905 /* details-bg@2x.png */; };
+		B05C89061976B0DD007AE669 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B05C89051976B0DD007AE669 /* MBProgressHUD.m */; };
+		B05C89091976B1D4007AE669 /* PPParkingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B05C89081976B1D4007AE669 /* PPParkingModel.m */; };
+		B05C890D1976B39F007AE669 /* PPHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B05C890C1976B39F007AE669 /* PPHistoryModel.m */; };
 		B0F60D96196FEE1B00CE7516 /* idx-btn-details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */; };
 		B0F60D97196FEE1B00CE7516 /* idx-btn-go-here@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */; };
 		B0F60D9A19700ACD00CE7516 /* st-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D9919700ACD00CE7516 /* st-logo@2x.png */; };
@@ -339,6 +342,12 @@
 		B043198A197410980001B905 /* parking-cell-flag3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parking-cell-flag3@2x.png"; sourceTree = "<group>"; };
 		B043198D197415210001B905 /* PPParkingDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PPParkingDetailsViewController.xib; sourceTree = "<group>"; };
 		B0431990197415E40001B905 /* details-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details-bg@2x.png"; sourceTree = "<group>"; };
+		B05C89041976B0DD007AE669 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		B05C89051976B0DD007AE669 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B05C89071976B1D4007AE669 /* PPParkingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPParkingModel.h; path = PigParking/modules/parking/PPParkingModel.h; sourceTree = SOURCE_ROOT; };
+		B05C89081976B1D4007AE669 /* PPParkingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPParkingModel.m; path = PigParking/modules/parking/PPParkingModel.m; sourceTree = SOURCE_ROOT; };
+		B05C890B1976B39F007AE669 /* PPHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPHistoryModel.h; sourceTree = "<group>"; };
+		B05C890C1976B39F007AE669 /* PPHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPHistoryModel.m; sourceTree = "<group>"; };
 		B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idx-btn-details@2x.png"; sourceTree = "<group>"; };
 		B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idx-btn-go-here@2x.png"; sourceTree = "<group>"; };
 		B0F60D9919700ACD00CE7516 /* st-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "st-logo@2x.png"; sourceTree = "<group>"; };
@@ -586,6 +595,7 @@
 		B000439319680441008CBB2C /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				B05C89031976B0DD007AE669 /* MBProgessHUD */,
 				B00043C7196805BA008CBB2C /* BaiduMap */,
 				B000439419680441008CBB2C /* AFNetworking */,
 				B00043A819680441008CBB2C /* FMDB */,
@@ -801,6 +811,8 @@
 		B01123F619698C0000046745 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				B05C89071976B1D4007AE669 /* PPParkingModel.h */,
+				B05C89081976B1D4007AE669 /* PPParkingModel.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -829,6 +841,7 @@
 		B01123F919698D0900046745 /* history */ = {
 			isa = PBXGroup;
 			children = (
+				B05C890A1976B38A007AE669 /* model */,
 				B0F704A6197211C200D0F87F /* views */,
 				B01123FA19698D2D00046745 /* PPHistoryViewController.h */,
 				B01123FB19698D2D00046745 /* PPHistoryViewController.m */,
@@ -866,6 +879,24 @@
 				B0431990197415E40001B905 /* details-bg@2x.png */,
 			);
 			path = details;
+			sourceTree = "<group>";
+		};
+		B05C89031976B0DD007AE669 /* MBProgessHUD */ = {
+			isa = PBXGroup;
+			children = (
+				B05C89041976B0DD007AE669 /* MBProgressHUD.h */,
+				B05C89051976B0DD007AE669 /* MBProgressHUD.m */,
+			);
+			path = MBProgessHUD;
+			sourceTree = "<group>";
+		};
+		B05C890A1976B38A007AE669 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				B05C890B1976B39F007AE669 /* PPHistoryModel.h */,
+				B05C890C1976B39F007AE669 /* PPHistoryModel.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		B0F60D9819700ACD00CE7516 /* settings */ = {
@@ -1061,6 +1092,7 @@
 				B00043BA19680441008CBB2C /* AFJSONRequestOperation.m in Sources */,
 				B00043C319680441008CBB2C /* FMDatabaseQueue.m in Sources */,
 				8B88E0F4196A879800722F22 /* UIViewController+Theme.m in Sources */,
+				B05C890D1976B39F007AE669 /* PPHistoryModel.m in Sources */,
 				B00043C419680441008CBB2C /* FMResultSet.m in Sources */,
 				B00043BD19680441008CBB2C /* AFURLConnectionOperation.m in Sources */,
 				8B012605196BDFA400775FDD /* PPMapAnnoation.m in Sources */,
@@ -1073,8 +1105,10 @@
 				B00043C119680441008CBB2C /* FMDatabaseAdditions.m in Sources */,
 				B000436E1968025D008CBB2C /* main.m in Sources */,
 				8B012602196BD20000775FDD /* PPIndexModel.m in Sources */,
+				B05C89091976B1D4007AE669 /* PPParkingModel.m in Sources */,
 				B00043BB19680441008CBB2C /* AFNetworkActivityIndicatorManager.m in Sources */,
 				B01BBA05196ECC5C0082F10C /* PPParkingFilterView.m in Sources */,
+				B05C89061976B0DD007AE669 /* MBProgressHUD.m in Sources */,
 				B011240219698D8600046745 /* PPFeedbackViewController.m in Sources */,
 				B00043C219680441008CBB2C /* FMDatabasePool.m in Sources */,
 				8B3A1892196CDC4B00E79A46 /* PPPullView.m in Sources */,
@@ -1216,7 +1250,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
+				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1240,7 +1274,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
+				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

@@ -54,12 +54,7 @@
         
             //
         v = [[PPRadioButtonGroupView alloc] initWithFrame:CGRectMake(0.0f, v.frame.origin.y+v.frame.size.height, iv.bounds.size.width, 54.0f)];
-        v.mode = PPButtonGroupModeRadio;
-        
-        btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0.0f, 0.0f, 94.0f, 37.0f);
-        [btn setTitle:@"不限" forState:UIControlStateNormal];
-        [v addButton:btn];
+        v.mode = PPButtonGroupModeSelect;
         
         btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, 94.0f, 37.0f);
@@ -68,7 +63,15 @@
         
         btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, 94.0f, 37.0f);
-        [btn setTitle:@"凭购物小票免费" forState:UIControlStateNormal];
+        [btn setTitle:@"凭购物\n小票免费" forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:10.0f];
+        btn.titleLabel.numberOfLines = 2;
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [v addButton:btn];
+        
+        btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0.0f, 0.0f, 94.0f, 37.0f);
+        [btn setTitle:@"收费" forState:UIControlStateNormal];
         [v addButton:btn];
         
         [self addSubview:v];

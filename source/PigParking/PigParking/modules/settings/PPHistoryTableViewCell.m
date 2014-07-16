@@ -10,6 +10,11 @@
 
 @implementation PPHistoryTableViewCell
 
++ (CGFloat)cellHeight
+{
+    return 76.0f;
+}
+
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];

@@ -71,6 +71,11 @@ typedef enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (0 == _data.count)
+    {
+        return 1;
+    }
+    
     return _data.count;
 }
 
@@ -81,6 +86,16 @@ typedef enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (0 == _data.count)
+    {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"empty-cell"];
+        cell.textLabel.text = @"暂无记录。";
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.textColor = [UIColor grayColor];
+        
+        return cell;
+    }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"srh-cell"];
     
     if (!cell)
@@ -99,6 +114,11 @@ typedef enum {
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (0 == _data.count)
+    {
+        return;
+    }
+    
     if (_searchDelegate)
     {
         if (PPMapSearchTableViewControllerModeHistory == _mode)

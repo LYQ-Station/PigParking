@@ -7,6 +7,7 @@
 //
 
 #import "PPParkingDetailsViewController.h"
+#import "PPParkingModel.h"
 
 @interface PPParkingDetailsViewController ()
 
@@ -16,6 +17,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *parkingCountLabel;
 
 @property (nonatomic, strong) IBOutlet UIScrollView *imagesScrollView;
+
+@property (nonatomic, strong) PPParkingModel *model;
 
 @end
 
@@ -29,6 +32,8 @@
     self.parkingCountLabel = nil;
     
     self.imagesScrollView = nil;
+    
+    self.model = nil;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +42,7 @@
     if (self)
     {
         self.title = @"停车场详情";
+        self.model = [PPParkingModel model];
     }
     return self;
 }

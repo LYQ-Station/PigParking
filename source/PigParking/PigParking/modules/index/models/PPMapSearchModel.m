@@ -17,6 +17,8 @@
 
 - (NSArray *)fetchHistoryList
 {
+//    return nil;
+    
     NSMutableArray *a = [NSMutableArray array];
     
     for (int i=0; i<20; i++)
