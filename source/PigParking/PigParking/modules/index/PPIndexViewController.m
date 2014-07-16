@@ -229,33 +229,12 @@ typedef enum {
     [self transacteToIndexUI];
 }
 
-//- (void)onTapSearchUIGesture:(UITapGestureRecognizer *)gesture
-//{
-//    [self.view removeGestureRecognizer:gesture];
-//    
-//    if (!_isStartPage)
-//    {
-//        [UIView animateWithDuration:0.25f
-//                         animations:^{
-//                             UIView *v = self.navigationItem.titleView;
-//                             v.frame = CGRectMake(0.0f, 0.0f, 230.0f, v.bounds.size.height);
-//                         }];
-//        
-//        [self.navigationItem setLeftBarButtonItem:self.leftBarButtonItem animated:YES];
-//        [self.navigationItem setRightBarButtonItem:self.rightBarButtonItem animated:YES];
-//    }
-//    
-//    _mapView.userInteractionEnabled = YES;
-//    
-//    [_tfSearchBox resignFirstResponder];
-//}
-
 - (void)transacteToIndexUI
 {
     UIView *v1 = [self.view viewWithTag:PPIndexViewTagMask];
-    UIView *v2 = [self.view viewWithTag:PPIndexViewTagTipsLabel];
+    UIView *v2 = [v1 viewWithTag:PPIndexViewTagTipsLabel];
     UIView *v3 = self.navigationItem.titleView;
-    UIView *v4 = [v1 viewWithTag:PPIndexViewTagMapToolBar];
+    UIView *v4 = [self.view viewWithTag:PPIndexViewTagMapToolBar];
     
     [UIView animateWithDuration:0.5f
                           delay:0.0f
@@ -436,9 +415,6 @@ typedef enum {
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-//    UITapGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapSearchUIGesture:)];
-//    [self.view addGestureRecognizer:g];
-    
     if (_searchViewController)
     {
         return YES;
@@ -470,6 +446,9 @@ typedef enum {
                                               {
                                                   [[self.view viewWithTag:PPIndexViewTagMask] removeFromSuperview];
                                                   self.isStartPage = NO;
+                                                  
+                                                  UIView *v = [self.view viewWithTag:PPIndexViewTagMapToolBar];
+                                                  v.center = CGPointMake(v.center.x, v.center.y-v.bounds.size.height);
                                               }
                                               
                                               [self.searchViewController showHistory];
