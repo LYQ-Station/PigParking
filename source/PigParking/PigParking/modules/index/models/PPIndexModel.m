@@ -32,14 +32,19 @@
     NSDictionary *d = nil;
     UInt32 r = 0;
     
+    CLLocationCoordinate2D coor;
+    
     for (int i=0; i<6; i++)
     {
         r = arc4random() % 100;
         
+        coor = CLLocationCoordinate2DMake(coordinate.latitude+(r*0.0001f*(r%10>5?1:-1)), coordinate.longitude+(r*0.0001f*(r%10>5?1:-1)));
+        coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
+        
         d = @{@"id": @1,
               @"title":[NSString stringWithFormat:@"步行%d分钟", i],
-              @"lat":@(coordinate.latitude+(r*0.0001f*(r%10>5?1:-1))),
-              @"lon":@(coordinate.longitude+(r*0.0001f*(r%10>5?1:-1))),
+              @"lat":@(coor.latitude),
+              @"lon":@(coor.longitude),
               @"charge":@"免费",
               @"distance":[NSString stringWithFormat:@"步行%d分钟", i],
               @"parkingCount":@"500",

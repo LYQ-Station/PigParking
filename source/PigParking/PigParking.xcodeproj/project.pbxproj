@@ -40,6 +40,8 @@
 		8BEC1B71197652B900E827CF /* btn-bg-gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BEC1B70197652B900E827CF /* btn-bg-gray@2x.png */; };
 		8BEC1B731976537B00E827CF /* btn-bg-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BEC1B721976537B00E827CF /* btn-bg-white@2x.png */; };
 		8BEC1B751976550700E827CF /* idx-filter-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BEC1B741976550700E827CF /* idx-filter-bg@2x.png */; };
+		8BF3469819776167004018D6 /* DB.rdb in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3469719776167004018D6 /* DB.rdb */; };
+		8BF3469B197761AD004018D6 /* PPBaseDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3469A197761AD004018D6 /* PPBaseDB.m */; };
 		B00043621968025C008CBB2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00043611968025C008CBB2C /* Foundation.framework */; };
 		B00043641968025C008CBB2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00043631968025C008CBB2C /* CoreGraphics.framework */; };
 		B00043661968025D008CBB2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00043651968025D008CBB2C /* UIKit.framework */; };
@@ -186,6 +188,9 @@
 		8BEC1B70197652B900E827CF /* btn-bg-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-bg-gray@2x.png"; sourceTree = "<group>"; };
 		8BEC1B721976537B00E827CF /* btn-bg-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-bg-white@2x.png"; sourceTree = "<group>"; };
 		8BEC1B741976550700E827CF /* idx-filter-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idx-filter-bg@2x.png"; sourceTree = "<group>"; };
+		8BF3469719776167004018D6 /* DB.rdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = DB.rdb; sourceTree = "<group>"; };
+		8BF34699197761AD004018D6 /* PPBaseDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPBaseDB.h; sourceTree = "<group>"; };
+		8BF3469A197761AD004018D6 /* PPBaseDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPBaseDB.m; sourceTree = "<group>"; };
 		B000435E1968025C008CBB2C /* PigParking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PigParking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00043611968025C008CBB2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B00043631968025C008CBB2C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -511,6 +516,14 @@
 			path = "nav-btn-items";
 			sourceTree = "<group>";
 		};
+		8BF3469619776167004018D6 /* databases */ = {
+			isa = PBXGroup;
+			children = (
+				8BF3469719776167004018D6 /* DB.rdb */,
+			);
+			path = databases;
+			sourceTree = "<group>";
+		};
 		B00043551968025C008CBB2C = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +667,8 @@
 				8B88E0D4196A3CC900722F22 /* UI */,
 				8B0125FD196BD11400775FDD /* PPBaseModel.h */,
 				8B0125FE196BD11400775FDD /* PPBaseModel.m */,
+				8BF34699197761AD004018D6 /* PPBaseDB.h */,
+				8BF3469A197761AD004018D6 /* PPBaseDB.m */,
 			);
 			path = PP;
 			sourceTree = "<group>";
@@ -698,6 +713,7 @@
 		B00043C519680472008CBB2C /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				8BF3469619776167004018D6 /* databases */,
 				B00043C619680472008CBB2C /* images */,
 			);
 			path = resource;
@@ -1044,6 +1060,7 @@
 				B000436C1968025D008CBB2C /* InfoPlist.strings in Resources */,
 				8BACB5AD196BEA8C00D4E32B /* map-free-parking@2x.png in Resources */,
 				8B3A189B196CEC2900E79A46 /* parking-cell-flag1@2x.png in Resources */,
+				8BF3469819776167004018D6 /* DB.rdb in Resources */,
 				8B88E0ED196A7B2500722F22 /* tool-settings@2x.png in Resources */,
 				8BEC1B6F1976523900E827CF /* btn-bg-blue@2x.png in Resources */,
 				B00043741968025D008CBB2C /* Images.xcassets in Resources */,
@@ -1080,6 +1097,7 @@
 				B00043B819680441008CBB2C /* AFHTTPRequestOperation.m in Sources */,
 				B000441119680A39008CBB2C /* PPIndexViewController.m in Sources */,
 				8B0125F3196B9E7800775FDD /* PPMapView.m in Sources */,
+				8BF3469B197761AD004018D6 /* PPBaseDB.m in Sources */,
 				B000441419680A49008CBB2C /* PPStartViewController.m in Sources */,
 				B0F704A9197212BF00D0F87F /* PPHistoryTableViewCell.m in Sources */,
 				B00043B919680441008CBB2C /* AFImageRequestOperation.m in Sources */,
@@ -1235,6 +1253,7 @@
 		B000438B1968025D008CBB2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1243,14 +1262,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PigParking/PigParking-Prefix.pch";
 				INFOPLIST_FILE = "PigParking/PigParking-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PigParking/libs/BaiduMap",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
+				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1259,6 +1278,7 @@
 		B000438C1968025D008CBB2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1267,14 +1287,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PigParking/PigParking-Prefix.pch";
 				INFOPLIST_FILE = "PigParking/PigParking-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PigParking/libs/BaiduMap",
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
+				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

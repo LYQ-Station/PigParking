@@ -7,12 +7,23 @@
 //
 
 #import "PPMapSearchModel.h"
+#import "PPBaseDB.h"
 
 @implementation PPMapSearchModel
 
 + (id)model
 {
     return [[PPMapSearchModel alloc] init];
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        _db = [PPBaseDB db];
+    }
+    return self;
 }
 
 - (NSArray *)fetchHistoryList

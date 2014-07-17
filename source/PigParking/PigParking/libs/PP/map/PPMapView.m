@@ -285,7 +285,10 @@ static PPMapView *__instance = nil;
     }
     
     CLLocationCoordinate2D coor = [locations[0] coordinate];
-    [self updateUserLocation:[locations[0] coordinate]];
+    
+    coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
+    
+    [self updateUserLocation:coor];
     
     if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didUpdateToLocation:)])
     {
