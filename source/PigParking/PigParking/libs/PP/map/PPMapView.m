@@ -46,6 +46,74 @@ static PPMapView *__instance = nil;
     return __instance;
 }
 
++ (void)navigateFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
+{
+        //from Baidu to GPS
+    from.latitude -= 0.0060f;
+    from.longitude -= 0.0065f;
+    
+    to.latitude -= 0.0060f;
+    to.longitude -= 0.0065f;
+    
+//    {
+//        NSString *urlString = @"http://api.map.baidu.com/direction?origin=latlng:30.691793,104.088264|name=x&destination=latlng:30.691393,104.085264|name:y&mode=driving&region=深圳&output=html";
+////        urlString = @"http://map.baidu.com";
+//        NSURL *aURL = [NSURL URLWithString:urlString];
+//        BOOL x = [[UIApplication sharedApplication] openURL:aURL];
+//        NSLog(@"%d", x);
+//    }
+    
+    if (LESS_THAN_IOS6)
+    {
+        NSString *url_str = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f&dirfl=d",
+                             from.latitude, from.longitude, to.latitude, to.longitude];
+        NSURL *url = [NSURL URLWithString:url_str];
+        
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    else
+    {
+        //当前的位置
+        MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+        
+        //起点
+        //        MKMapItem *currentLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords1 addressDictionary:nil]];
+        
+        //目的地的位置
+        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:to addressDictionary:nil]];
+//        toLocation.name = _title;
+        
+        NSArray *items = [NSArray arrayWithObjects:currentLocation, toLocation, nil];
+        
+        /*
+         //keys
+         MKLaunchOptionsMapCenterKey:地图中心的坐标(NSValue)
+         MKLaunchOptionsMapSpanKey:地图显示的范围(NSValue)
+         MKLaunchOptionsShowsTrafficKey:是否显示交通信息(boolean NSNumber)
+         
+         //MKLaunchOptionsDirectionsModeKey: 导航类型(NSString)
+         {
+         MKLaunchOptionsDirectionsModeDriving:驾车
+         MKLaunchOptionsDirectionsModeWalking:步行
+         }
+         
+         //MKLaunchOptionsMapTypeKey:地图类型(NSNumber)
+         enum {
+         MKMapTypeStandard = 0,
+         MKMapTypeSatellite,
+         MKMapTypeHybrid
+         };
+         */
+        NSDictionary *options = @{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
+                                  MKLaunchOptionsMapTypeKey:[NSNumber numberWithInteger:MKMapTypeStandard],
+                                  MKLaunchOptionsShowsTrafficKey:@YES
+                                  };
+        
+        //打开苹果自身地图应用，并呈现特定的item
+        [MKMapItem openMapsWithItems:items launchOptions:options];
+    }
+}
+
 - (void)dealloc
 {
     _mapView.delegate = nil;
@@ -218,6 +286,30 @@ static PPMapView *__instance = nil;
     {
         [_delegate performSelector:@selector(ppMapView:didSelectAnnotation:) withObject:self withObject:(PPMapAnnoation *)(view.annotation)];
     }
+    
+    CLLocationCoordinate2D center;
+    BMKCoordinateRegion region;
+    
+    if (n_end.pt.latitude > n_start.pt.latitude)
+    {
+        center.latitude = n_start.pt.latitude + (n_end.pt.latitude - n_start.pt.latitude) * 0.5;
+    }
+    else
+    {
+        center.latitude = n_end.pt.latitude + (n_start.pt.latitude - n_end.pt.latitude) * 0.5;
+    }
+    
+    if (n_end.pt.longitude > n_start.pt.longitude)
+    {
+        center.longitude = n_start.pt.longitude + (n_end.pt.longitude - n_start.pt.longitude) * 0.5;
+    }
+    else
+    {
+        center.longitude = n_end.pt.longitude + (n_start.pt.longitude - n_end.pt.longitude) * 0.5;
+    }
+    
+    region = [_mapView regionThatFits:BMKCoordinateRegionMake(center, BMKCoordinateSpanMake(ABS(n_start.pt.latitude - n_end.pt.latitude), ABS(n_start.pt.longitude - n_end.pt.longitude)))];
+    [_mapView setRegion:region animated:YES];
 }
 
 - (BMKOverlayView *) mapView:(BMKMapView *)mapView viewForOverlay:(id< BMKOverlay >)overlay
@@ -285,7 +377,6 @@ static PPMapView *__instance = nil;
     }
     
     CLLocationCoordinate2D coor = [locations[0] coordinate];
-    
     coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
     
     [self updateUserLocation:coor];
@@ -302,11 +393,16 @@ static PPMapView *__instance = nil;
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    [self updateUserLocation:newLocation.coordinate];
+    CLLocationCoordinate2D coor = newLocation.coordinate;
+    coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
+    
+    [self updateUserLocation:coor];
     
     if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didUpdateToLocation:)])
     {
-        [_delegate performSelector:@selector(ppMapView:didUpdateToLocation:) withObject:self withObject:newLocation];
+        [_delegate performSelector:@selector(ppMapView:didUpdateToLocation:)
+                        withObject:self
+                        withObject:[[CLLocation alloc] initWithLatitude:coor.latitude longitude:coor.longitude]];
     }
 }
 

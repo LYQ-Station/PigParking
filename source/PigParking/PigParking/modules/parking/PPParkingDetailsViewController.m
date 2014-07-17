@@ -8,6 +8,7 @@
 
 #import "PPParkingDetailsViewController.h"
 #import "PPParkingModel.h"
+#import "PPMapView.h"
 
 @interface PPParkingDetailsViewController ()
 
@@ -79,42 +80,7 @@
 
 - (IBAction)btnGoHereClick:(id)sender
 {
-    CLLocationCoordinate2D coords1 = _fromCoordinate;
-    CLLocationCoordinate2D coords2 = _toCoordinate;
-    
-//    {
-//        NSString *urlString = @"http://api.map.baidu.com/direction?origin=latlng:30.691793,104.088264|name=x&destination=latlng:30.691393,104.085264|name:y&mode=driving&region=深圳&output=html";
-////        urlString = @"http://map.baidu.com";
-//        NSURL *aURL = [NSURL URLWithString:urlString];
-//        BOOL x = [[UIApplication sharedApplication] openURL:aURL];
-//        NSLog(@"%d", x);
-//    }
-    
-    if (LESS_THAN_IOS6)
-    {
-        NSString *url_str = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f&dirfl=d",
-                             coords1.latitude,coords1.longitude,coords2.latitude,coords2.longitude];
-        NSURL *url = [NSURL URLWithString:url_str];
-        
-        [[UIApplication sharedApplication] openURL:url];
-    }
-    else
-    {
-        MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
-        
-        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords2 addressDictionary:nil]];
-        toLocation.name = _data[@"title"];
-        
-        NSArray *items = [NSArray arrayWithObjects:currentLocation, toLocation, nil];
-        
-        NSDictionary *options = @{
-                                  MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
-                                  MKLaunchOptionsMapTypeKey:[NSNumber numberWithInteger:MKMapTypeStandard],
-                                  MKLaunchOptionsShowsTrafficKey:@YES
-                                  };
-        
-        [MKMapItem openMapsWithItems:items launchOptions:options];
-    }
+    [PPMapView navigateFrom:_fromCoordinate to:_toCoordinate];
 }
 
 - (void)btnBackClick:(id)sender

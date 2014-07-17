@@ -28,6 +28,8 @@ typedef enum {
 
 + (PPMapView *)mapViewWithFrame:(CGRect)frame;
 
++ (void)navigateFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to;
+
 - (void)startUpdatingLocation;
 
 - (void)updateUserLocation:(CLLocationCoordinate2D)coordinate;
