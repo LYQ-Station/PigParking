@@ -9,6 +9,7 @@
 #import "PPParkingDetailsViewController.h"
 #import "PPParkingModel.h"
 #import "PPMapView.h"
+#import "FBImagesWheel.h"
 
 @interface PPParkingDetailsViewController ()
 
@@ -17,9 +18,10 @@
 @property (nonatomic, strong) IBOutlet UILabel *chargeLabel;
 @property (nonatomic, strong) IBOutlet UILabel *parkingCountLabel;
 
-@property (nonatomic, strong) IBOutlet UIScrollView *imagesScrollView;
+@property (nonatomic, strong) IBOutlet FBImagesWheel *imagesWheelView;
 
 @property (nonatomic, strong) PPParkingModel *model;
+@property (nonatomic, strong) NSDictionary *parkingInfo;
 
 @end
 
@@ -32,9 +34,10 @@
     self.chargeLabel = nil;
     self.parkingCountLabel = nil;
     
-    self.imagesScrollView = nil;
+    self.imagesWheelView = nil;
     
     self.model = nil;
+    self.parkingInfo = nil;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -62,10 +65,22 @@
 //                                                                                          target:self
 //                                                                                          action:@selector(btnUpClick:)];
     
-    self.titleLabel.text = _data[@"title"];
-    self.addressLabel.text = _data[@"address"];
-    self.chargeLabel.text = _data[@"charge"];
-    self.parkingCountLabel.text = _data[@"parkingCount"];
+    [self.model fetchParkingDetails:nil
+                           complete:^(id data, NSError *error) {
+                               self.titleLabel.text = _data[@"title"];
+                               self.addressLabel.text = _data[@"address"];
+                               self.chargeLabel.text = _data[@"charge"];
+                               self.parkingCountLabel.text = _data[@"parkingCount"];
+                               self.parkingInfo = data;
+                               
+                               NSMutableArray *a = [NSMutableArray array];
+                               for (NSDictionary *d in data[@"images"])
+                               {
+                                   [a addObject:d[@"thumb"]];
+                               }
+                               
+                               [self setupImagesScrollView:a];
+                           }];
     
     _toCoordinate = CLLocationCoordinate2DMake([_data[@"lat"] floatValue], [_data[@"lon"] floatValue]);
 }
@@ -74,6 +89,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+
+- (void)setupImagesScrollView:(NSArray *)images
+{
+    if (0 == images.count)
+    {
+        return;
+    }
+    
+    [_imagesWheelView setImages:images];
 }
 
 #pragma mark -

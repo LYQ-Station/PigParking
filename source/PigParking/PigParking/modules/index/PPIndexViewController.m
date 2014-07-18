@@ -425,6 +425,7 @@ typedef enum {
     _searchViewController.searchDelegate = self;
     _searchViewController.view.frame = self.view.bounds;
     [self.view addSubview:_searchViewController.view];
+    [self.searchViewController showHistory];
     _searchViewController.view.alpha = 0.0f;
     
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack target:self action:@selector(btnQuitSearchClick)]
@@ -451,8 +452,6 @@ typedef enum {
                                                   UIView *v = [self.view viewWithTag:PPIndexViewTagMapToolBar];
                                                   v.center = CGPointMake(v.center.x, v.center.y-v.bounds.size.height);
                                               }
-                                              
-                                              [self.searchViewController showHistory];
                                           }];
                      }];
     
@@ -466,8 +465,6 @@ typedef enum {
         [_pullView hide:YES];
         _pullView = nil;
     }
-    
-//    _mapView.userInteractionEnabled = NO;
     
     return YES;
 }

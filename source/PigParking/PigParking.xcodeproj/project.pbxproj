@@ -35,6 +35,8 @@
 		8B88E0F4196A879800722F22 /* UIViewController+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B88E0F3196A879800722F22 /* UIViewController+Theme.m */; };
 		8BACB5AD196BEA8C00D4E32B /* map-free-parking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BACB5AB196BEA8C00D4E32B /* map-free-parking@2x.png */; };
 		8BACB5AE196BEA8C00D4E32B /* map-nofree-parking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BACB5AC196BEA8C00D4E32B /* map-nofree-parking@2x.png */; };
+		8BC6E66F1978A8D700DB9158 /* FBImagesWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6E66E1978A8D700DB9158 /* FBImagesWheel.m */; };
+		8BC6E6801978C67D00DB9158 /* PPURLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6E67F1978C67D00DB9158 /* PPURLImageView.m */; };
 		8BEC1B6D19764FDC00E827CF /* PPRadioButtonGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC1B6C19764FDC00E827CF /* PPRadioButtonGroupView.m */; };
 		8BEC1B6F1976523900E827CF /* btn-bg-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BEC1B6E1976523900E827CF /* btn-bg-blue@2x.png */; };
 		8BEC1B71197652B900E827CF /* btn-bg-gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BEC1B70197652B900E827CF /* btn-bg-gray@2x.png */; };
@@ -182,6 +184,10 @@
 		8B88E0F3196A879800722F22 /* UIViewController+Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Theme.m"; sourceTree = "<group>"; };
 		8BACB5AB196BEA8C00D4E32B /* map-free-parking@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-free-parking@2x.png"; sourceTree = "<group>"; };
 		8BACB5AC196BEA8C00D4E32B /* map-nofree-parking@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-nofree-parking@2x.png"; sourceTree = "<group>"; };
+		8BC6E66D1978A8D700DB9158 /* FBImagesWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBImagesWheel.h; sourceTree = "<group>"; };
+		8BC6E66E1978A8D700DB9158 /* FBImagesWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBImagesWheel.m; sourceTree = "<group>"; };
+		8BC6E67E1978C67D00DB9158 /* PPURLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPURLImageView.h; sourceTree = "<group>"; };
+		8BC6E67F1978C67D00DB9158 /* PPURLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPURLImageView.m; sourceTree = "<group>"; };
 		8BEC1B6B19764FDC00E827CF /* PPRadioButtonGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRadioButtonGroupView.h; sourceTree = "<group>"; };
 		8BEC1B6C19764FDC00E827CF /* PPRadioButtonGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRadioButtonGroupView.m; sourceTree = "<group>"; };
 		8BEC1B6E1976523900E827CF /* btn-bg-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-bg-blue@2x.png"; sourceTree = "<group>"; };
@@ -475,6 +481,8 @@
 		8B88E0D4196A3CC900722F22 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8BC6E66D1978A8D700DB9158 /* FBImagesWheel.h */,
+				8BC6E66E1978A8D700DB9158 /* FBImagesWheel.m */,
 				8B88E0D5196A3CDF00722F22 /* UINavigationBar+Theme.h */,
 				8B88E0D6196A3CDF00722F22 /* UINavigationBar+Theme.m */,
 				8B88E0E0196A44F300722F22 /* UIBarButtonItem+Theme.h */,
@@ -483,6 +491,8 @@
 				8B88E0F3196A879800722F22 /* UIViewController+Theme.m */,
 				8B3A1890196CDC4B00E79A46 /* PPPullView.h */,
 				8B3A1891196CDC4B00E79A46 /* PPPullView.m */,
+				8BC6E67E1978C67D00DB9158 /* PPURLImageView.h */,
+				8BC6E67F1978C67D00DB9158 /* PPURLImageView.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1121,6 +1131,7 @@
 				8B0125FF196BD11400775FDD /* PPBaseModel.m in Sources */,
 				B00043BE19680441008CBB2C /* AFXMLRequestOperation.m in Sources */,
 				B00043C119680441008CBB2C /* FMDatabaseAdditions.m in Sources */,
+				8BC6E6801978C67D00DB9158 /* PPURLImageView.m in Sources */,
 				B000436E1968025D008CBB2C /* main.m in Sources */,
 				8B012602196BD20000775FDD /* PPIndexModel.m in Sources */,
 				B05C89091976B1D4007AE669 /* PPParkingModel.m in Sources */,
@@ -1136,6 +1147,7 @@
 				B00043B719680441008CBB2C /* AFHTTPClient.m in Sources */,
 				8B5247FB1974B1B00061FADB /* PPMapSearchTableViewController.m in Sources */,
 				B01123F419698B3700046745 /* PPParkingDetailsViewController.m in Sources */,
+				8BC6E66F1978A8D700DB9158 /* FBImagesWheel.m in Sources */,
 				B000440E196809B5008CBB2C /* PPSettingsViewController.m in Sources */,
 				8BEC1B6D19764FDC00E827CF /* PPRadioButtonGroupView.m in Sources */,
 				8B012608196BE01700775FDD /* PPMapUserAnnotationView.m in Sources */,
@@ -1269,7 +1281,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
+				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1294,7 +1306,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
+				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

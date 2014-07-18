@@ -14,4 +14,6 @@
 
 - (void)fetchAroundParking:(id)params complete:(void(^)(id data, NSError *error))complete;
 
+- (void)fetchParkingDetails:(id)params complete:(void(^)(id data, NSError *error))complete;
+
 @end
