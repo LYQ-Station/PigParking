@@ -10,8 +10,11 @@
 #import "PPParkingModel.h"
 #import "PPMapView.h"
 #import "FBImagesWheel.h"
+#import "UIImageView+MJWebCache.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 
-@interface PPParkingDetailsViewController ()
+@interface PPParkingDetailsViewController () <FBImagesWheelDelegate>
 
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *addressLabel;
@@ -118,6 +121,26 @@
 - (void)btnUpClick:(id)sender
 {
     
+}
+
+#pragma mark -
+
+- (void)imageWheelDidChangeImage:(FBImagesWheel *)wheel imageView:(UIImageView *)imageView
+{
+    NSMutableArray *a = [NSMutableArray array];
+    for (NSDictionary *d in _parkingInfo[@"images"])
+    {
+        NSString *url = d[@"original"];
+        MJPhoto *photo = [[MJPhoto alloc] init];
+        photo.url = [NSURL URLWithString:url];
+        photo.srcImageView = imageView;
+        [a addObject:photo];
+    }
+    
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    browser.currentPhotoIndex = imageView.tag;
+    browser.photos = a;
+    [browser show];
 }
 
 @end

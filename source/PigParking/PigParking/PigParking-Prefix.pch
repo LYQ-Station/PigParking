@@ -27,4 +27,5 @@
     #import "UIBarButtonItem+Theme.h"
     #import "UIViewController+Theme.h"
     #import "PPURLImageView.h"
+    #import "PPImageCache.h"
 #endif

@@ -15,4 +15,6 @@
 
 @property (nonatomic, assign) NSString *imageUrl;
 
+- (void)setImageUrl:(NSString *)imageUrl complete:(void(^)(UIImage *image))complete;
+
 @end

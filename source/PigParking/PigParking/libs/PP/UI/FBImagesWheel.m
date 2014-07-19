@@ -54,29 +54,43 @@
     for (int i=0; i<images.count; i++)
     {
         PPURLImageView *v = [[PPURLImageView alloc] initWithFrame:CGRectMake((_scorllView.bounds.size.width-20)*i+20*i+10, 10, _scorllView.bounds.size.width-20, _scorllView.bounds.size.height-20)];
+        v.tag = i;
+        v.userInteractionEnabled = YES;
         v.imageUrl = images[i];
         v.contentMode = UIViewContentModeScaleAspectFit;
+        [v addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onGestureTapImage:)]];
         [_scorllView addSubview:v];
     }
 }
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-{
-    UIView *v = [super hitTest:point withEvent:event];
-    
-    if (v)
-    {
-        return _scorllView;
-    }
-    
-    return v;
-}
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+//{
+//    UIView *v = [super hitTest:point withEvent:event];
+//    NSLog(@"%@", v);
+//    
+//    if (v)
+//    {
+//        return _scorllView;
+//    }
+//    
+//    return v;
+//}
 
 #pragma mark - scorll view delegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
      _pageControl.currentPage = (int)(scrollView.contentOffset.x / scrollView.bounds.size.width);
+}
+
+#pragma mark -
+
+- (void)onGestureTapImage:(UITapGestureRecognizer *)gesture
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(imageWheelDidChangeImage:imageView:)])
+    {
+        [_delegate performSelector:@selector(imageWheelDidChangeImage:imageView:) withObject:self withObject:gesture.view];
+    }
 }
 
 @end

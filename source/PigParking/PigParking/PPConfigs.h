@@ -20,3 +20,6 @@
 
 #define PP_BASE_DOMAIN      @"pig-parking.com"
 #define PP_API_URL          @"http://pig-parking.com/apis"
+
+#define PATH_IN_DOCUMENTS_DIR(f) ([NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(),f])
+#define PATH_IN_CACHE_DIR(f) ([NSString stringWithFormat:@"%@/Documents/cache/%@", NSHomeDirectory(),f])

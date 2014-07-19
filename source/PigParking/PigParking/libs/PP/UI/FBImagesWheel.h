@@ -14,7 +14,7 @@
     UIPageControl *_pageControl;
 }
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) IBOutlet id delegate;
 @property (nonatomic, strong) NSArray *images;
 
 @end
@@ -23,6 +23,6 @@
 
 @optional
 
-- (void) wheelDidChangeImage:(FBImagesWheel *)wheel;
+- (void)imageWheelDidChangeImage:(FBImagesWheel *)wheel imageView:(UIImageView *)imageView;
 
 @end
