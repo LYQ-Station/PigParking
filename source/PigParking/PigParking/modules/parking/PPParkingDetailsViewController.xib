@@ -52,7 +52,7 @@
                 <view contentMode="scaleToFill" id="w9N-Eh-zr7" customClass="FBImagesWheel">
                     <rect key="frame" x="0.0" y="269" width="320" height="217"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tEC-5f-uJM">
                     <rect key="frame" x="13" y="217" width="294" height="36"/>

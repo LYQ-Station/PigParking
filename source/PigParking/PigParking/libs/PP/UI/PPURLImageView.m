@@ -20,6 +20,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.backgroundColor = [UIColor blackColor];
     }
     return self;
 }
@@ -37,9 +38,20 @@
 {
     __weak PPURLImageView *myself = self;
     
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    [self addSubview:hud];
+    [hud show:YES];
+    
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
     _requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:req];
+    [_requestOperation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+        hud.progress = (float)totalBytesRead / (float)totalBytesExpectedToRead;
+    }];
+    
     [_requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [hud hide:YES];
+        
         UIImage *im = [UIImage imageWithData:responseObject];
         if (!im)
         {

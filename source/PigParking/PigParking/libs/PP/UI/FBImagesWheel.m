@@ -56,12 +56,6 @@
         PPURLImageView *v = [[PPURLImageView alloc] initWithFrame:CGRectMake((_scorllView.bounds.size.width-20)*i+20*i+10, 10, _scorllView.bounds.size.width-20, _scorllView.bounds.size.height-20)];
         v.imageUrl = images[i];
         v.contentMode = UIViewContentModeScaleAspectFit;
-        v.backgroundColor = [UIColor clearColor];
-        v.layer.shadowColor = [UIColor blackColor].CGColor;
-        v.layer.shadowOpacity = 0.6f;
-        v.layer.shadowOffset = CGSizeMake(2.0, 2.0);
-//        v.layer.borderColor = [UIColor whiteColor].CGColor;
-//        v.layer.borderWidth = 3.0f;
         [_scorllView addSubview:v];
     }
 }
