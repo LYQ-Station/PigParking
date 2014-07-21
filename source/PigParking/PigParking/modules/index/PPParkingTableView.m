@@ -22,6 +22,8 @@
     self = [super initWithFrame:frame style:UITableViewStylePlain];
     if (self)
     {
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
         self.data = data;
         self.dataSource = self;
         self.delegate = self;
@@ -62,7 +64,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 96.0f;
+    return 97.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
