@@ -10,6 +10,11 @@
 
 @implementation PPBaseModel
 
++ (id)model
+{
+    return [[[self class] alloc] init];
+}
+
 + (NSDictionary *)makeJSONParam:(NSDictionary *)params
 {
     NSData *d = [NSJSONSerialization dataWithJSONObject:params options:0 error:NULL];
@@ -20,6 +25,15 @@
 
 - (id)parseResponseData:(NSData *)data error:(NSError **)error
 {
+    if (!data)
+    {
+        *error = [NSError errorWithDomain:PP_BASE_DOMAIN
+                                     code:1002
+                                 userInfo:@{NSLocalizedDescriptionKey:@"无效的json data"}];
+        
+        return nil;
+    }
+    
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                          options:NSJSONReadingMutableContainers
                                                            error:nil];
@@ -33,14 +47,14 @@
         return nil;
     }
     
-    int code = [json[@"code"] intValue];
+    int code = [json[@"retcode"] intValue];
     if (code)
     {
         id msg = nil;
         
-        if ([json objectForKey:@"msg"])
+        if ([json objectForKey:@"retMsg"])
         {
-            msg = json[@"msg"];
+            msg = json[@"retMsg"];
         }
         
         *error = [NSError errorWithDomain:PP_BASE_DOMAIN

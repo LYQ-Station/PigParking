@@ -16,6 +16,7 @@
 #import "PPParkingFilterView.h"
 #import "PPParkingDetailsView.h"
 #import "PPIndexModel.h"
+#import "PPConfigsModel.h"
 
 typedef enum {
     PPIndexViewTagMask          = 901,
@@ -98,9 +99,13 @@ typedef enum {
     _mapView.mapView.userInteractionEnabled = YES;
     _mapView.delegate = self;
     [self.view addSubview:_mapView];
-    [_mapView startUpdatingLocation];
+//    [_mapView startUpdatingLocation];
     
     [self setupStartUI];
+    
+    [[PPConfigsModel model] fetchConfigs:^(id json, NSError *err) {
+        [_mapView startUpdatingLocation];
+    }];
 }
 
 - (void)didReceiveMemoryWarning

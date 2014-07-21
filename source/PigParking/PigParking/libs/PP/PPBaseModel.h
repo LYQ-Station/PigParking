@@ -10,4 +10,10 @@
 
 @interface PPBaseModel : NSObject
 
++ (id)model;
+
++ (NSDictionary *)makeJSONParam:(NSDictionary *)params;
+
+- (id)parseResponseData:(NSData *)data error:(NSError **)error;
+
 @end

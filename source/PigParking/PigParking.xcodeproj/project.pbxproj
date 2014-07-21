@@ -18,6 +18,9 @@
 		8B3A1896196CE48600E79A46 /* PPParkingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A1895196CE48600E79A46 /* PPParkingTableView.m */; };
 		8B3A1899196CE5BD00E79A46 /* PPParkingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A1898196CE5BD00E79A46 /* PPParkingTableViewCell.m */; };
 		8B3A189B196CEC2900E79A46 /* parking-cell-flag1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B3A189A196CEC2900E79A46 /* parking-cell-flag1@2x.png */; };
+		8B3B2449197CFB840037BB38 /* PPBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B2448197CFB840037BB38 /* PPBaseService.m */; };
+		8B3B244C197CFDF50037BB38 /* PPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B244B197CFDF50037BB38 /* PPUser.m */; };
+		8B3B244F197D0E130037BB38 /* PPConfigsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B244E197D0E130037BB38 /* PPConfigsModel.m */; };
 		8B5247FB1974B1B00061FADB /* PPMapSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5247FA1974B1B00061FADB /* PPMapSearchTableViewController.m */; };
 		8B88E0D2196A30B900722F22 /* nav-bar-srh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B88E0D0196A30B900722F22 /* nav-bar-srh@2x.png */; };
 		8B88E0D3196A30B900722F22 /* start-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B88E0D1196A30B900722F22 /* start-mask@2x.png */; };
@@ -174,6 +177,12 @@
 		8B3A1897196CE5BD00E79A46 /* PPParkingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPParkingTableViewCell.h; sourceTree = "<group>"; };
 		8B3A1898196CE5BD00E79A46 /* PPParkingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPParkingTableViewCell.m; sourceTree = "<group>"; };
 		8B3A189A196CEC2900E79A46 /* parking-cell-flag1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parking-cell-flag1@2x.png"; sourceTree = "<group>"; };
+		8B3B2447197CFB840037BB38 /* PPBaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPBaseService.h; sourceTree = "<group>"; };
+		8B3B2448197CFB840037BB38 /* PPBaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPBaseService.m; sourceTree = "<group>"; };
+		8B3B244A197CFDF50037BB38 /* PPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPUser.h; sourceTree = "<group>"; };
+		8B3B244B197CFDF50037BB38 /* PPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPUser.m; sourceTree = "<group>"; };
+		8B3B244D197D0E130037BB38 /* PPConfigsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPConfigsModel.h; sourceTree = "<group>"; };
+		8B3B244E197D0E130037BB38 /* PPConfigsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPConfigsModel.m; sourceTree = "<group>"; };
 		8B5247F91974B1B00061FADB /* PPMapSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMapSearchTableViewController.h; sourceTree = "<group>"; };
 		8B5247FA1974B1B00061FADB /* PPMapSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMapSearchTableViewController.m; sourceTree = "<group>"; };
 		8B88E0D0196A30B900722F22 /* nav-bar-srh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-bar-srh@2x.png"; sourceTree = "<group>"; };
@@ -608,11 +617,11 @@
 				B00043C519680472008CBB2C /* resource */,
 				B000439319680441008CBB2C /* libs */,
 				B00043B419680441008CBB2C /* modules */,
+				B000441519680AC0008CBB2C /* PPConfigs.h */,
 				B00043701968025D008CBB2C /* PPAppDelegate.h */,
 				B0004405196806E3008CBB2C /* PPAppDelegate.mm */,
 				B00043731968025D008CBB2C /* Images.xcassets */,
 				B00043681968025D008CBB2C /* Supporting Files */,
-				B000441519680AC0008CBB2C /* PPConfigs.h */,
 			);
 			path = PigParking;
 			sourceTree = "<group>";
@@ -713,6 +722,12 @@
 				8BF3469A197761AD004018D6 /* PPBaseDB.m */,
 				B0562DBD197AB9A9007CFDC4 /* PPImageCache.h */,
 				B0562DBE197AB9A9007CFDC4 /* PPImageCache.m */,
+				8B3B2447197CFB840037BB38 /* PPBaseService.h */,
+				8B3B2448197CFB840037BB38 /* PPBaseService.m */,
+				8B3B244A197CFDF50037BB38 /* PPUser.h */,
+				8B3B244B197CFDF50037BB38 /* PPUser.m */,
+				8B3B244D197D0E130037BB38 /* PPConfigsModel.h */,
+				8B3B244E197D0E130037BB38 /* PPConfigsModel.m */,
 			);
 			path = PP;
 			sourceTree = "<group>";
@@ -1180,6 +1195,7 @@
 				B00043BC19680441008CBB2C /* AFPropertyListRequestOperation.m in Sources */,
 				B0562DB5197AAB40007CFDC4 /* MJPhotoBrowser.m in Sources */,
 				B00043C019680441008CBB2C /* FMDatabase.m in Sources */,
+				8B3B2449197CFB840037BB38 /* PPBaseService.m in Sources */,
 				B0004406196806E3008CBB2C /* PPAppDelegate.mm in Sources */,
 				B00043BA19680441008CBB2C /* AFJSONRequestOperation.m in Sources */,
 				B00043C319680441008CBB2C /* FMDatabaseQueue.m in Sources */,
@@ -1196,6 +1212,7 @@
 				B00043BE19680441008CBB2C /* AFXMLRequestOperation.m in Sources */,
 				B0562DB7197AAB40007CFDC4 /* MJPhotoProgressView.m in Sources */,
 				B00043C119680441008CBB2C /* FMDatabaseAdditions.m in Sources */,
+				8B3B244F197D0E130037BB38 /* PPConfigsModel.m in Sources */,
 				8BC6E6801978C67D00DB9158 /* PPURLImageView.m in Sources */,
 				B000436E1968025D008CBB2C /* main.m in Sources */,
 				8B012602196BD20000775FDD /* PPIndexModel.m in Sources */,
@@ -1204,6 +1221,7 @@
 				B01BBA05196ECC5C0082F10C /* PPParkingFilterView.m in Sources */,
 				B05C89061976B0DD007AE669 /* MBProgressHUD.m in Sources */,
 				B0562DB6197AAB40007CFDC4 /* MJPhotoLoadingView.m in Sources */,
+				8B3B244C197CFDF50037BB38 /* PPUser.m in Sources */,
 				B011240219698D8600046745 /* PPFeedbackViewController.m in Sources */,
 				B0562DA4197AAB37007CFDC4 /* MBProgressHUD+Add.m in Sources */,
 				B00043C219680441008CBB2C /* FMDatabasePool.m in Sources */,
@@ -1351,7 +1369,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
+				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1376,7 +1394,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C5DDCBD7-526D-4E40-8F0B-891F6FF79CE3";
+				PROVISIONING_PROFILE = "9986A9E7-2DE0-49BE-B5AA-1135EA04A757";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
