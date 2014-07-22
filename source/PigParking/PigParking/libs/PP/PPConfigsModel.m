@@ -18,21 +18,15 @@
                         @"os_version":@"ios"
                         };
     
-    NSData *jd = [NSJSONSerialization dataWithJSONObject:p options:0 error:NULL];
+    NSData *jd = [AFQueryStringFromParametersWithEncoding(p, NSUTF8StringEncoding) dataUsingEncoding:NSUTF8StringEncoding];
     
     NSString *url = [PPBaseService apiForKey:kApiUploadUserInfo];
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [req setHTTPMethod:@"POST"];
     [req setHTTPBody:jd];
-    [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:req];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSData *d = [(NSData *)responseObject DESDecryptWithKey:@"123456"];
-        
-//        NSData *d = [[[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding] base64DecodedData] DESDecryptWithKey:@"123456"];
-        
-        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
         NSError *err = nil;
         NSDictionary *j = [self parseResponseData:responseObject error:&err];
         

@@ -23,14 +23,19 @@ static NSMutableDictionary *__users = nil;
     return __currentUser;
 }
 
-+ (void)loginUser:(NSDictionary *)userInfo
++ (PPUser *)loginUser:(NSDictionary *)userInfo
 {
-    __currentUser = [[PPUser alloc] initWithUserInfo:userInfo];
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithDictionary:userInfo];
+    [d setObject:@(YES) forKey:@"logined"];
+    
+    __currentUser = [[PPUser alloc] initWithUserInfo:d];
     __currentUserID = userInfo[@"uid"];
     
-    [__users setObject:userInfo forKey:__currentUserID];
+    [__users setObject:d forKey:__currentUserID];
     
     [self saveToCache];
+    
+    return __currentUser;
 }
 
 + (void)loadFromCache
@@ -39,11 +44,11 @@ static NSMutableDictionary *__users = nil;
     NSDictionary *td = (NSDictionary *)[df objectForKey:__LocalUsersCacheKey];
     
     __users = [[NSMutableDictionary alloc] initWithDictionary:td];
+    __currentUserID = [df objectForKey:__CurrentUserIDCacheKey];
     
-    if ([df objectForKey:__CurrentUserIDCacheKey])
+    if ([td objectForKey:__currentUserID])
     {
-        __currentUser = [[PPUser alloc] initWithUserInfo:[df objectForKey:__CurrentUserIDCacheKey]];
-        __currentUserID = __currentUser.uid;
+        __currentUser = [[PPUser alloc] initWithUserInfo:[NSMutableDictionary dictionaryWithDictionary:[__users objectForKey:__currentUserID]]];
     }
 }
 
@@ -51,15 +56,13 @@ static NSMutableDictionary *__users = nil;
 {
     NSUserDefaults *df = [NSUserDefaults standardUserDefaults];
     [df setObject:__currentUserID forKey:__CurrentUserIDCacheKey];
-    [df synchronize];
-    
     [df setObject:__users forKey:__LocalUsersCacheKey];
     [df synchronize];
 }
 
 #pragma mark -
 
-- (id)initWithUserInfo:(NSDictionary *)userInfo
+- (id)initWithUserInfo:(NSMutableDictionary *)userInfo
 {
     self = [super init];
     if (self)
@@ -72,6 +75,21 @@ static NSMutableDictionary *__users = nil;
 - (NSString *)uid
 {
     return _userInfo[@"uid"];
+}
+
+- (BOOL)logined
+{
+    return [_userInfo[@"logined"] boolValue];
+}
+
+- (void)logout
+{
+    [_userInfo setObject:@(NO) forKey:@"logined"];
+    
+    __currentUser = nil;
+    __currentUserID = @"";
+    
+    [PPUser saveToCache];
 }
 
 @end

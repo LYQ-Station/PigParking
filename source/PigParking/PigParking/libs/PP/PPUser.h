@@ -10,12 +10,14 @@
 
 @interface PPUser : NSObject
 
-@property (nonatomic, readonly) NSDictionary *userInfo;
+@property (nonatomic, readonly) NSMutableDictionary *userInfo;
 
 @property (nonatomic, readonly) NSString *uid;
 
 + (id)currentUser;
 
-+ (void)loginUser:(NSDictionary *)userInfo;
++ (PPUser *)loginUser:(NSDictionary *)userInfo;
+
+- (void)logout;
 
 @end
