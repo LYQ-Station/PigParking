@@ -16,9 +16,12 @@ static NSMutableDictionary *__users = nil;
 
 @implementation PPUser
 
-+ (id)currentUser
++ (PPUser *)currentUser
 {
-    [self loadFromCache];
+    if (!__currentUser)
+    {
+        [self loadFromCache];
+    }
     
     return __currentUser;
 }
@@ -90,6 +93,11 @@ static NSMutableDictionary *__users = nil;
     __currentUserID = @"";
     
     [PPUser saveToCache];
+}
+
+- (NSString *)description
+{
+    return [_userInfo description];
 }
 
 @end

@@ -30,4 +30,5 @@
     #import "PPURLImageView.h"
     #import "PPImageCache.h"
     #import "PPBaseService.h"
+    #import "PPUser.h"
 #endif

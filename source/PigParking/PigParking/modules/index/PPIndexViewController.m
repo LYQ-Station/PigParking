@@ -104,7 +104,12 @@ typedef enum {
     [self setupStartUI];
     
     [[PPConfigsModel model] fetchConfigs:^(id json, NSError *err) {
+        [PPUser loginUser:json];
+        
         [_mapView startUpdatingLocation];
+        
+        UIGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapStartUIGesture:)];
+        [[self.view viewWithTag:PPIndexViewTagMask] addGestureRecognizer:g];
     }];
 }
 
@@ -218,9 +223,6 @@ typedef enum {
     lb.textColor = [UIColor colorWithRed:0.73f green:0.73f blue:0.73f alpha:1.0f];
     lb.text = @"已累计为 XXXXXXXX 位用户找到免费车位";
     [mask addSubview:lb];
-    
-    UIGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapStartUIGesture:)];
-    [mask addGestureRecognizer:g];
 }
 
 - (void)onTapStartUIGesture:(UIGestureRecognizer *)gesture

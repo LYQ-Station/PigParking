@@ -7,6 +7,7 @@
 //
 
 #import "PPFeedbackViewController.h"
+#import "PPFeedbackModel.h"
 
 @interface PPFeedbackViewController ()
 

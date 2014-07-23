@@ -13,6 +13,7 @@
 #import "UIImageView+MJWebCache.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import "PPParkingModel.h"
 
 @interface PPParkingDetailsViewController () <FBImagesWheelDelegate>
 

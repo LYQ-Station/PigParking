@@ -14,7 +14,7 @@
 
 @property (nonatomic, readonly) NSString *uid;
 
-+ (id)currentUser;
++ (PPUser *)currentUser;
 
 + (PPUser *)loginUser:(NSDictionary *)userInfo;
 

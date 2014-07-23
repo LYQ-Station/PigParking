@@ -10,8 +10,6 @@
 
 @interface PPIndexModel : PPBaseModel
 
-+ (id)model;
-
 - (void)cancel;
 
 - (void)fetchAroundParking:(CLLocationCoordinate2D)coordinate block:(void(^)(NSArray *data, NSError *error))complete;
