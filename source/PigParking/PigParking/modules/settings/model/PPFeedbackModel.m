@@ -14,15 +14,15 @@
 {
     NSDictionary *p = @{
                         @"qq":[params objectForKey:@"qq"],
-                        @"phone":[params objectForKey:@"phone"],
+                        @"phone":@"123456",
                         @"content":[params objectForKey:@"content"],
-                        @"lables":[params objectForKey:@"lables"],
+                        @"lables":[params objectForKey:@"labels"],
                         @"uid":[PPUser currentUser].uid
                         };
     
     NSData *jd = [AFQueryStringFromParametersWithEncoding(p, NSUTF8StringEncoding) dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSString *url = [PPBaseService apiForKey:kApiParkingDetails];
+    NSString *url = [PPBaseService apiForKey:kApiSuggest];
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [req setHTTPMethod:@"POST"];
     [req setHTTPBody:jd];

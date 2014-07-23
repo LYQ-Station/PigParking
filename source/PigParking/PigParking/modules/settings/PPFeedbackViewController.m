@@ -16,6 +16,8 @@
 
 @property (nonatomic, assign) UIScrollView *scrollView;
 
+@property (nonatomic, strong) NSMutableDictionary *labelsDict;
+
 @end
 
 @implementation PPFeedbackViewController
@@ -32,6 +34,7 @@
     if (self)
     {
         self.title = @"意见反馈";
+        self.labelsDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -97,16 +100,50 @@
     if (sender.selected)
     {
         sender.selected = NO;
+        
+        if (101 == sender.tag)
+        {
+            [_labelsDict removeObjectForKey:@"101"];
+        }
+        else if (102 == sender.tag)
+        {
+            [_labelsDict removeObjectForKey:@"102"];
+        }
+        else if (103 == sender.tag)
+        {
+            [_labelsDict removeObjectForKey:@"103"];
+        }
+        else if (104 == sender.tag)
+        {
+            [_labelsDict removeObjectForKey:@"104"];
+        }
     }
     else
     {
         sender.selected = YES;
+        
+        if (101 == sender.tag)
+        {
+            [_labelsDict setObject:@"101" forKey:@"地址错误"];
+        }
+        else if (102 == sender.tag)
+        {
+            [_labelsDict setObject:@"102" forKey:@"找不到地点"];
+        }
+        else if (103 == sender.tag)
+        {
+            [_labelsDict setObject:@"103" forKey:@"软件不稳定"];
+        }
+        else if (104 == sender.tag)
+        {
+            [_labelsDict setObject:@"104" forKey:@"改进建议"];
+        }
     }
 }
 
 - (IBAction)btnSubmitClick:(id)sender
 {
-    
+    [self postFeedback];
 }
 
 - (void)onTapGesture:(UITapGestureRecognizer *)g
@@ -120,6 +157,42 @@
 - (void)btnBackClick:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark -
+
+- (void)postFeedback
+{
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:hud];
+    [hud show:YES];
+    
+    NSDictionary *p = @{@"content": _tvContent.text,
+                        @"qq":_tfContact.text,
+                        @"labels":[[_labelsDict allKeys] componentsJoinedByString:@","]};
+    
+    [[PPFeedbackModel model] postFeedback:p
+                                 complete:^(NSError *error) {
+                                     [hud hide:YES];
+                                     
+                                     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+                                     hud.mode = MBProgressHUDModeText;
+                                     [self.view addSubview:hud];
+                                     
+                                     if (error)
+                                     {
+                                         hud.labelText = [error.userInfo objectForKey:NSLocalizedDescriptionKey];
+                                         [hud show:YES];
+                                         [hud hide:YES afterDelay:1.0];
+                                         
+                                         return ;
+                                     }
+                                     
+                                     hud.labelText = @"谢谢你的意见反馈！";
+                                     [hud show:YES];
+                                     
+                                     [self performSelector:@selector(btnBackClick:) withObject:nil afterDelay:1.0];
+                                 }];
 }
 
 @end

@@ -10,4 +10,6 @@
 
 @interface PPFeedbackModel : PPBaseModel
 
+- (void)postFeedback:(id)params complete:(void(^)(NSError *error))complete;
+
 @end

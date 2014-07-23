@@ -29,6 +29,8 @@
                         @"uid":[PPUser currentUser].uid
                         };
     
+    NSLog(@"fetch suround parking: %@", p);
+    
     NSData *jd = [AFQueryStringFromParametersWithEncoding(p, NSUTF8StringEncoding) dataUsingEncoding:NSUTF8StringEncoding];
     
     NSString *url = [PPBaseService apiForKey:kApiQueryPoint];
@@ -40,6 +42,8 @@
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *err = nil;
         id j = [self parseResponseData:responseObject error:&err];
+        
+        NSLog(@"suround parking : %@", j);
         
         if (err)
         {
