@@ -69,12 +69,13 @@
 //                                                                                          target:self
 //                                                                                          action:@selector(btnUpClick:)];
     
-    [self.model fetchParkingDetails:nil
+    self.titleLabel.text = _data[@"title"];
+    self.addressLabel.text = _data[@"address"];
+    self.chargeLabel.text = _data[@"charge"];
+    self.parkingCountLabel.text = _data[@"parkingCount"];
+    
+    [self.model fetchParkingDetails:_data[@"id"]
                            complete:^(id data, NSError *error) {
-                               self.titleLabel.text = _data[@"title"];
-                               self.addressLabel.text = _data[@"address"];
-                               self.chargeLabel.text = _data[@"charge"];
-                               self.parkingCountLabel.text = _data[@"parkingCount"];
                                self.parkingInfo = data;
                                
                                NSMutableArray *a = [NSMutableArray array];
@@ -86,7 +87,7 @@
                                [self setupImagesScrollView:a];
                            }];
     
-    _toCoordinate = CLLocationCoordinate2DMake([_data[@"lat"] floatValue], [_data[@"lon"] floatValue]);
+    _toCoordinate = MAKE_COOR_S(_data[@"lat"], _data[@"lon"]);
 }
 
 - (void)didReceiveMemoryWarning

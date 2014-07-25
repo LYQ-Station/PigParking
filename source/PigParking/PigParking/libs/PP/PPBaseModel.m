@@ -52,9 +52,9 @@
     {
         id msg = nil;
         
-        if ([json objectForKey:@"retMsg"])
+        if ([json objectForKey:@"retmsg"])
         {
-            msg = json[@"retMsg"];
+            msg = json[@"retmsg"];
         }
         
         *error = [NSError errorWithDomain:PP_BASE_DOMAIN

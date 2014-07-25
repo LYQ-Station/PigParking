@@ -23,7 +23,7 @@
 - (void)fetchParkingDetails:(id)params complete:(void(^)(id data, NSError *error))complete
 {
     NSDictionary *p = @{
-                        @"id":[params objectForKey:@"id"],
+                        @"id":params,
                         @"uid":[PPUser currentUser].uid
                         };
     

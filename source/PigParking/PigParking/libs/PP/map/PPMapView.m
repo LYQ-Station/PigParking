@@ -189,8 +189,8 @@ static PPMapView *__instance = nil;
     for (NSDictionary *d in list)
     {
         ann = [[PPMapAnnoation alloc] init];
-        ann.title = d[@"distance"];
-        ann.coordinate = CLLocationCoordinate2DMake([d[@"lat"] floatValue], [d[@"lon"] floatValue]);
+        ann.title = d[@"title"];
+        ann.coordinate = MAKE_COOR_S(d[@"lat"], d[@"lon"]);
         ann.type = PPMapAnnoationTypeParking;
         ann.data = d;
         [arr addObject:ann];

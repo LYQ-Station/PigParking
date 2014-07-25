@@ -520,7 +520,7 @@ typedef enum {
     v.delegate = self;
     v.data = annotation.data;
     v.fromCoordinate = _mapView.coordinate;
-    v.toCoordinate = CLLocationCoordinate2DMake([d[@"lat"] floatValue], [d[@"lon"] floatValue]);
+    v.toCoordinate = MAKE_COOR_S(d[@"lat"], d[@"lon"]);
     
     _pullView = [[PPPullView alloc] initWithParentView:self.view contentView:v mask:NO];
     [_pullView showNoMask];
@@ -549,7 +549,7 @@ typedef enum {
     
 //    NSLog(@"%@", item);
     
-    CLLocationCoordinate2D coor = CLLocationCoordinate2DMake([[item objectForKey:@"lat"] floatValue], [[item objectForKey:@"lon"] floatValue]);
+    CLLocationCoordinate2D coor = MAKE_COOR_S(item[@"lat"], item[@"lon"]);
     [_mapView updateUserLocation:coor];
     
     _mapView.scopeMode = PPMapViewscopeModeBrowser;
@@ -566,7 +566,7 @@ typedef enum {
     
 //    NSLog(@"%@", item);
     
-    CLLocationCoordinate2D coor = CLLocationCoordinate2DMake([[item objectForKey:@"lat"] floatValue], [[item objectForKey:@"lon"] floatValue]);
+    CLLocationCoordinate2D coor = MAKE_COOR_S(item[@"lat"], item[@"lon"]);
     [_mapView updateUserLocation:coor];
     
     _mapView.scopeMode = PPMapViewscopeModeBrowser;

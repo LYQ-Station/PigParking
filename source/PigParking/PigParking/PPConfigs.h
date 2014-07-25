@@ -16,6 +16,8 @@
 
 #define BAIDU_MAP_KEY       @"fxQ5FtFisHAqeCkhDWNIrDGA"
 
+#define MAKE_COOR_S(lat,lng)  (CLLocationCoordinate2DMake([lat floatValue]*0.00001, [lng floatValue]*0.00001))
+
 #pragma mark - URLs
 
 #define PP_BASE_DOMAIN      @"pig-parking.com"
