@@ -38,6 +38,9 @@
             _maskView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
             _maskView.alpha = 0.0f;
             [self addSubview:_maskView];
+            
+            UITapGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapMaskGesture:)];
+            [_maskView addGestureRecognizer:g];
         }
         
         self.contentView = contentView;
@@ -132,5 +135,17 @@
     // Drawing code
 }
 */
+
+#pragma mark -
+
+- (void)onTapMaskGesture:(UIGestureRecognizer *)gesture
+{
+    [gesture.view removeGestureRecognizer:gesture];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(pullViewDidTouchMask:)])
+    {
+        [_delegate performSelector:@selector(pullViewDidTouchMask:) withObject:self];
+    }
+}
 
 @end

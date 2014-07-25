@@ -24,7 +24,7 @@ typedef enum {
     PPIndexViewTagMapToolBar,
 }PPIndexViewTags;
 
-@interface PPIndexViewController () <PPParkingTableViewActDelegate, PPMapViewDelegate, PPParkingDetailsViewDelegate, PPMapSearchTableViewControllerDelegate>
+@interface PPIndexViewController () <PPParkingTableViewActDelegate, PPMapViewDelegate, PPParkingDetailsViewDelegate, PPMapSearchTableViewControllerDelegate, PPPullViewDelegate>
 
 @property (nonatomic, assign) BOOL isStartPage;
 
@@ -301,6 +301,8 @@ typedef enum {
                                                                   data:_parkingArray];
     tv.actDelegate = self;
     self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:tv mask:YES];
+    _pullView.tag = 101;
+    _pullView.delegate = self;
     [_pullView show];
     
     UIBarButtonItem *back_it = [[UIBarButtonItem alloc] initWithBarButtonThemeItem:UIBarButtonThemeItemBack
@@ -332,6 +334,7 @@ typedef enum {
     
     PPParkingFilterView *fv = [[PPParkingFilterView alloc] initWithDelegate:self];
     self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:fv mask:YES];
+    _pullView.delegate = self;
     _pullView.tag = 102;
     [_pullView show];
     
@@ -342,6 +345,7 @@ typedef enum {
 - (void)btnQuitParkingListClick
 {
     [_pullView hide:YES];
+    self.pullView = nil;
     
     [self.navigationItem setLeftBarButtonItem:self.leftBarButtonItem animated:YES];
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -379,6 +383,20 @@ typedef enum {
     self.searchViewController = nil;
     
     [_tfSearchBox resignFirstResponder];
+}
+
+#pragma mark -
+
+- (void)pullViewDidTouchMask:(PPPullView *)pullView
+{
+    if (101 == _pullView.tag)
+    {
+        [self btnQuitParkingListClick];
+    }
+    else if (102 == _pullView.tag)
+    {
+        [self btnBarFilterClick:nil];
+    }
 }
 
 #pragma mark - map tool bar buttons event
