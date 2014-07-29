@@ -13,6 +13,7 @@ static const NSString *kApiUploadUserInfo = @"uploadUserInfo";
 static const NSString *kApiQueryPoint = @"queryPoint";
 static const NSString *kApiSuggest = @"suggest";
 static const NSString *kApiParkingDetails = @"parkingDetail";
+static const NSString *kApiSearch = @"search";
 
 @interface PPBaseService : NSObject
 

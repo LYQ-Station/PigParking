@@ -432,6 +432,17 @@ typedef enum {
     }
     
     [_indexModel fetchAroundParking:_mapView.coordinate block:^(NSArray *data, NSError *error) {
+        if (error)
+        {
+            MBProgressHUD *alert = [[MBProgressHUD alloc] initWithView:self.view];
+            alert.labelText = error.userInfo[NSLocalizedDescriptionKey];
+            alert.mode = MBProgressHUDModeText;
+            [self.view addSubview:alert];
+            [alert show:YES];
+            [alert hide:YES afterDelay:1.5];
+            return ;
+        }
+        
         self.parkingArray = data;
         [self.mapView showAroundParking:data];
     }];

@@ -8,6 +8,7 @@
 
 #import "PPParkingDetailsView.h"
 #import "PPMapView.h"
+#import "PPHistoryDB.h"
 
 @implementation PPParkingDetailsView
 
@@ -117,6 +118,8 @@
 
 - (void)btnGoHereClick
 {
+    [[PPHistoryDB db] insert:_data];
+    
     [PPMapView navigateFrom:_fromCoordinate to:_toCoordinate];
     
 //    if (_delegate && [_delegate respondsToSelector:@selector(ppParkingDetailsViewGoHere:)])

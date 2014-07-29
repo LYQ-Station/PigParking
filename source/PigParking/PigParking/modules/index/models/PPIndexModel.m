@@ -23,17 +23,19 @@
 
 - (void)fetchAroundParking:(CLLocationCoordinate2D)coordinate block:(void(^)(NSArray *data, NSError *error))complete
 {
-//    NSDictionary *p = @{
-//                        @"lat":[NSString stringWithFormat:@"%u", (uint)(coordinate.latitude*1000000)],
-//                        @"lng":[NSString stringWithFormat:@"%u", (uint)(coordinate.longitude*1000000)],
-//                        @"uid":[PPUser currentUser].uid
-//                        };
-    
     NSDictionary *p = @{
-                        @"lat":@"2255355",
-                        @"lng":@"11409940",
+                        @"lat":[NSString stringWithFormat:@"%u", (uint)(coordinate.latitude*100000)],
+                        @"lng":[NSString stringWithFormat:@"%u", (uint)(coordinate.longitude*100000)],
+                        @"distance":@"500",
                         @"uid":[PPUser currentUser].uid
                         };
+    
+//    NSDictionary *p = @{
+//                        @"lat":@"2255355",
+//                        @"lng":@"11409940",
+//                        @"distance":@"1000",
+//                        @"uid":[PPUser currentUser].uid
+//                        };
     
     NSData *jd = [AFQueryStringFromParametersWithEncoding(p, NSUTF8StringEncoding) dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -62,8 +64,8 @@
                    @"lat":d[@"lat"],
                    @"lon":d[@"lng"],
                    @"charge":d[@"price"],
-                   @"distance":d[@"name"],
-                   @"parkingCount":d[@"parkingNum"],
+                   @"distance":@"0",
+                   @"parkingCount":d[@"carNum"],
                    @"address":d[@"addr"],
                    @"flag":d[@"type"]
                    };

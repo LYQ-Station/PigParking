@@ -81,7 +81,7 @@ static PPMapView *__instance = nil;
         
         //目的地的位置
         MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:to addressDictionary:nil]];
-//        toLocation.name = _title;
+//        toLocation.name = @"目的地";
         
         NSArray *items = [NSArray arrayWithObjects:currentLocation, toLocation, nil];
         

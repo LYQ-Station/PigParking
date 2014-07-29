@@ -14,7 +14,6 @@
 {
     NSDictionary *p = @{
                         @"qq":[params objectForKey:@"qq"],
-                        @"phone":@"123456",
                         @"content":[params objectForKey:@"content"],
                         @"lables":[params objectForKey:@"labels"],
                         @"uid":[PPUser currentUser].uid

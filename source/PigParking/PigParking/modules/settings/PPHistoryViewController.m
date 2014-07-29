@@ -9,12 +9,13 @@
 #import "PPHistoryViewController.h"
 #import "PPHistoryTableViewCell.h"
 #import "PPHistoryModel.h"
+#import "PPHistoryDB.h"
 
 @interface PPHistoryViewController ()
 
 @property (nonatomic, strong) IBOutlet UITableView *historyTableView;
 @property (nonatomic, strong) NSMutableArray *data;
-@property (nonatomic, strong) PPHistoryModel *model;
+@property (nonatomic, strong) PPHistoryDB *db;
 
 @end
 
@@ -24,7 +25,7 @@
 {
     self.historyTableView = nil;
     self.data = nil;
-    self.model = nil;
+    self.db = nil;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,7 +35,7 @@
     {
         self.title = @"历史记录";
         self.data = [NSMutableArray array];
-        self.model = [PPHistoryModel model];
+        self.db = [[PPHistoryDB alloc] init];
     }
     return self;
 }
@@ -53,7 +54,7 @@
                                                                                           target:self
                                                                                           action:@selector(btnClearClick:)];
     
-    [self.data addObjectsFromArray:[_model fetchHistory]];
+    [self.data addObjectsFromArray:[_db fetchAll]];
     
     if (_data.count)
     {
@@ -97,9 +98,9 @@
         cell = [[PPHistoryTableViewCell alloc] initWithReuseIdentifier:@"h-cell"];
     }
     
-    cell.chargeLabel.text = @"费用：免费";
-    cell.parkingCountLabel.text = @"车位：500个";
-    cell.addressLabel.text = @"地址：深圳市区松坪山公园";
+    cell.chargeLabel.text = [NSString stringWithFormat:@"费用:%@", _data[indexPath.row][@"charge"]];
+    cell.parkingCountLabel.text = [NSString stringWithFormat:@"车位:%@个", _data[indexPath.row][@"parkingCount"]];
+    cell.addressLabel.text = [NSString stringWithFormat:@"地址:%@", _data[indexPath.row][@"address"]];
     
     return cell;
 }

@@ -9,9 +9,6 @@
 #import "PPBaseModel.h"
 
 @interface PPMapSearchModel : PPBaseModel
-{
-    FMDatabase *_db;
-}
 
 + (id)model;
 

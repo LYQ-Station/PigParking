@@ -76,15 +76,26 @@
     
     [self.model fetchParkingDetails:_data[@"id"]
                            complete:^(id data, NSError *error) {
-                               self.parkingInfo = data;
-                               
-                               NSMutableArray *a = [NSMutableArray array];
-                               for (NSDictionary *d in data[@"images"])
+                               if (error)
                                {
-                                   [a addObject:d[@"thumb"]];
+                                   MBProgressHUD *alert = [[MBProgressHUD alloc] initWithView:self.view];
+                                   alert.labelText = error.userInfo[NSLocalizedDescriptionKey];
+                                   alert.mode = MBProgressHUDModeText;
+                                   [self.view addSubview:alert];
+                                   [alert show:YES];
+                                   [alert hide:YES afterDelay:1.5];
+                                   return ;
                                }
                                
-                               [self setupImagesScrollView:a];
+                               self.parkingInfo = data;
+                               
+//                               NSMutableArray *a = [NSMutableArray array];
+//                               for (NSDictionary *d in data[@"images"])
+//                               {
+//                                   [a addObject:d[@"thumb"]];
+//                               }
+                               
+                               [self setupImagesScrollView:data[@"samllImages"]];
                            }];
     
     _toCoordinate = MAKE_COOR_S(_data[@"lat"], _data[@"lon"]);
@@ -130,11 +141,19 @@
 - (void)imageWheelDidChangeImage:(FBImagesWheel *)wheel imageView:(UIImageView *)imageView
 {
     NSMutableArray *a = [NSMutableArray array];
-    for (NSDictionary *d in _parkingInfo[@"images"])
+//    for (NSDictionary *d in _parkingInfo[@"images"])
+//    {
+//        NSString *url = d[@"original"];
+//        MJPhoto *photo = [[MJPhoto alloc] init];
+//        photo.url = [NSURL URLWithString:url];
+//        photo.srcImageView = imageView;
+//        [a addObject:photo];
+//    }
+    
+    for (NSString *d in _parkingInfo[@"bigImages"])
     {
-        NSString *url = d[@"original"];
         MJPhoto *photo = [[MJPhoto alloc] init];
-        photo.url = [NSURL URLWithString:url];
+        photo.url = [NSURL URLWithString:d];
         photo.srcImageView = imageView;
         [a addObject:photo];
     }

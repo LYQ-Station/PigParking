@@ -105,9 +105,17 @@ typedef enum {
     
     NSDictionary *d = (NSDictionary *)(_data[indexPath.row]);
     
-    cell.imageView.image = [UIImage imageNamed:@"map-free-parking"];
+    if ([d[@"charge"] hasPrefix:@"0"])
+    {
+        cell.imageView.image = [UIImage imageNamed:@"map-free-parking"];
+    }
+    else
+    {
+        cell.imageView.image = [UIImage imageNamed:@"map-nofree-parking"];
+    }
+    
     cell.textLabel.text = d[@"title"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"车位：%@ 地址：%@", d[@"parkingCount"], d[@"address"]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"车位:%@  地址:%@", d[@"parkingCount"], d[@"address"]];
     
     return cell;
 }
@@ -189,14 +197,36 @@ typedef enum {
 
 - (void)doSearch:(NSString *)keyword
 {
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    hud.labelText = @"搜索中...";
+    [self.view addSubview:hud];
+    [hud show:YES];
+    
     _mode = PPMapSearchTableViewControllerModeSearch;
     
     [self clean];
     
     [_model doSearch:keyword
             complete:^(NSArray *data, NSError *error) {
+                [hud hide:NO];
+                if (error)
+                {
+                    MBProgressHUD *alert = [[MBProgressHUD alloc] initWithView:self.view];
+                    alert.labelText = error.userInfo[NSLocalizedDescriptionKey];
+                    alert.mode = MBProgressHUDModeText;
+                    [self.view addSubview:alert];
+                    [alert show:YES];
+                    [alert hide:YES afterDelay:1.5];
+                    return ;
+                }
+                
                 [_data removeAllObjects];
-                [_data addObjectsFromArray:data];
+                
+                if ([[data class] isSubclassOfClass:[NSArray class]])
+                {
+                    [_data addObjectsFromArray:data];
+                }
+                
                 [self.tableView reloadData];
             }];
 }

@@ -7,7 +7,13 @@
 //
 
 #import "PPMapSearchModel.h"
-#import "PPBaseDB.h"
+#import "PPHistoryDB.h"
+
+@interface PPMapSearchModel ()
+
+@property (nonatomic, strong) PPHistoryDB *historyDb;
+
+@end
 
 @implementation PPMapSearchModel
 
@@ -21,50 +27,79 @@
     self = [super init];
     if (self)
     {
-        _db = [PPBaseDB db];
+        self.historyDb = [PPHistoryDB db];
     }
     return self;
 }
 
 - (NSArray *)fetchHistoryList
 {
-//    return nil;
-    
-    NSMutableArray *a = [NSMutableArray array];
-    
-    for (int i=0; i<20; i++)
-    {
-        [a addObject:@{@"id": @1,
-                       @"title":[NSString stringWithFormat:@"深圳市宝安地点 ＃%d", i],
-                       @"lat":@(30.691393),
-                       @"lon":@(104.085264),
-                       @"charge":@"免费",
-                       @"distance":[NSString stringWithFormat:@"步行%d分钟", i],
-                       @"parkingCount":@"500",
-                       @"address":@"深圳市盐田村",
-                       @"flag":@((i+3+1)%3)
-                       }];
-    }
-    
-    return a;
+    return [_historyDb fetchAll];
 }
 
 - (void)doSearch:(NSString *)keyword complete:(void(^)(NSArray *data, NSError *error))complete
 {
-    NSMutableArray *a = [NSMutableArray array];
+    NSDictionary *p = @{
+                        @"keyWord":keyword,
+                        @"distance":@"500",
+                        @"uid":[PPUser currentUser].uid
+                        };
     
-    for (int i=0; i<20; i++)
-    {
-        [a addObject:@{@"id": @1,
-                       @"title":[NSString stringWithFormat:@"南山地点 ＃%d", i],
-                       @"lat":@(30.691393),
-                       @"lon":@(104.085264),
-                       @"parkingCount":@"200",
-                       @"address":@"深圳市南山松坪村"
-                       }];
+    NSData *jd = [AFQueryStringFromParametersWithEncoding(p, NSUTF8StringEncoding) dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *url = [PPBaseService apiForKey:kApiSearch];
+    NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [req setHTTPMethod:@"POST"];
+    [req setHTTPBody:jd];
+    
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:req];
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *err = nil;
+        id j = [self parseResponseData:responseObject error:&err];
+        
+        if (err)
+        {
+            complete(nil, err);
+            return ;
+        }
+        
+        NSMutableArray *a = [NSMutableArray array];
+        for (NSDictionary *d in j)
+        {
+            [a addObject:@{@"id":d[@"id"],
+                           @"title":d[@"name"],
+                           @"lat":d[@"lat"],
+                           @"lon":d[@"lng"],
+                           @"parkingCount":d[@"carNum"],
+                           @"address":d[@"addr"],
+                           @"charge":d[@"price"],
+                           @"flag":d[@"type"]
+                           }];
+        }
+        
+        complete(a, nil);
     }
+                              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                  complete(nil, error);
+                              }];
     
-    complete(a, nil);
+    [op start];
+    
+    
+//    NSMutableArray *a = [NSMutableArray array];
+//    
+//    for (int i=0; i<20; i++)
+//    {
+//        [a addObject:@{@"id": @1,
+//                       @"title":[NSString stringWithFormat:@"南山地点 ＃%d", i],
+//                       @"lat":@(30.691393),
+//                       @"lon":@(104.085264),
+//                       @"parkingCount":@"200",
+//                       @"address":@"深圳市南山松坪村"
+//                       }];
+//    }
+//    
+//    complete(a, nil);
 }
 
 @end

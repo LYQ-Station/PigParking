@@ -19,7 +19,7 @@ static FMDatabase *__db;
         
         NSFileManager *fm = [NSFileManager defaultManager];
         
-        NSString *new_db_file = [[NSBundle mainBundle] pathForResource:@"DB" ofType:@"rdb"];
+        NSString *new_db_file = PATH_IN_DOCUMENTS_DIR(@"DB.rdb");
         
         if (![fm fileExistsAtPath:new_db_file])
         {

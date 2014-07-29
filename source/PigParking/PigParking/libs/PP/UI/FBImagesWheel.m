@@ -63,18 +63,17 @@
     }
 }
 
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-//{
-//    UIView *v = [super hitTest:point withEvent:event];
-//    NSLog(@"%@", v);
-//    
-//    if (v)
-//    {
-//        return _scorllView;
-//    }
-//    
-//    return v;
-//}
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    UIView *v = [super hitTest:point withEvent:event];
+    
+    if ([v isKindOfClass:[PPURLImageView class]])
+    {
+        return v;
+    }
+    
+    return _scorllView;
+}
 
 #pragma mark - scorll view delegate
 

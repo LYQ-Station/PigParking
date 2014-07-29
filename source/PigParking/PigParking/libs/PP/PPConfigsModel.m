@@ -15,7 +15,11 @@
     NSDictionary *p = @{
                         @"imei":@"1234567",
                         @"brand":@"apple",
-                        @"os_version":@"ios"
+                        @"phoneType":@"ios",
+                        @"appVer":@"1.0",
+                        @"sdkVer":@"1.0",
+                        @"width":@"320",
+                        @"height":@"480"
                         };
     
     NSData *jd = [AFQueryStringFromParametersWithEncoding(p, NSUTF8StringEncoding) dataUsingEncoding:NSUTF8StringEncoding];
