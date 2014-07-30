@@ -115,6 +115,8 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        NSDictionary *d = _data[indexPath.row];
+        [_db remove:d[@"id"]];
         [self.data removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -159,8 +161,7 @@
 
 - (void)btnClearClick:(id)sender
 {
-    [_historyTableView endUpdates];
-    
+    [_db removeAll];
     [_data removeAllObjects];
     [_historyTableView reloadData];
     [_historyTableView removeFromSuperview];

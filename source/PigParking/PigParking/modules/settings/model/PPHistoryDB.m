@@ -52,6 +52,12 @@
     return nil;
 }
 
+- (void)removeAll
+{
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE 1", _tableName];
+    [self.db executeUpdate:sql];
+}
+
 - (void)insert:(NSDictionary *)history
 {
     {
@@ -77,6 +83,12 @@
     
     NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (id,title,lat,lon,charge,parkingCount,address,flag) VALUES (:id,:title,:lat,:lon,:charge,:parkingCount,:address,:flag)", _tableName];
     [self.db executeUpdate:sql withParameterDictionary:d];
+}
+
+- (void)remove:(NSString *)rid
+{
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id=?", _tableName];
+    [self.db executeUpdate:sql, rid];
 }
 
 @end

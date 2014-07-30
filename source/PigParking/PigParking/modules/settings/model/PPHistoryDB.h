@@ -16,6 +16,10 @@
 
 - (NSArray *)fetchAll;
 
+- (void)removeAll;
+
 - (void)insert:(NSDictionary *)history;
+
+- (void)remove:(NSString *)rid;
 
 @end
