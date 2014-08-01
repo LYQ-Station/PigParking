@@ -18,6 +18,8 @@
 
 - (void)showHistory;
 
+- (void)filterHistory:(NSString *)keyword;
+
 - (void)doSearch:(NSString *)keyword;
 
 @end

@@ -195,6 +195,13 @@ typedef enum {
     [self.tableView reloadData];
 }
 
+- (void)filterHistory:(NSString *)keyword
+{
+    [_data removeAllObjects];
+    [_data addObjectsFromArray:[_model filterHistoryList:keyword]];
+    [self.tableView reloadData];
+}
+
 - (void)doSearch:(NSString *)keyword
 {
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];

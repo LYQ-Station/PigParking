@@ -52,6 +52,33 @@
     return nil;
 }
 
+- (NSArray *)search:(NSString *)keyword
+{
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE (title LIKE '%%%@%%') OR (address LIKE '%%%@%%')", _tableName, keyword, keyword];
+    FMResultSet *res = [self.db executeQuery:sql];
+    
+    if (res)
+    {
+        NSMutableArray *a = [NSMutableArray array];
+        while ([res next])
+        {
+            [a addObject:@{@"id":[res stringForColumn:@"id"],
+                           @"title":[res stringForColumn:@"title"],
+                           @"lat":[res stringForColumn:@"lat"],
+                           @"lon":[res stringForColumn:@"lon"],
+                           @"charge":[res stringForColumn:@"charge"],
+                           @"parkingCount":[res stringForColumn:@"parkingCount"],
+                           @"address":[res stringForColumn:@"address"],
+                           @"flag":[res stringForColumn:@"flag"],
+                           }];
+        }
+        
+        return a;
+    }
+    
+    return nil;
+}
+
 - (void)removeAll
 {
     NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE 1", _tableName];

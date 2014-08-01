@@ -16,6 +16,8 @@
 
 - (NSArray *)fetchAll;
 
+- (NSArray *)search:(NSString *)keyword;
+
 - (void)removeAll;
 
 - (void)insert:(NSDictionary *)history;

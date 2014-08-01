@@ -37,6 +37,11 @@
     return [_historyDb fetchAll];
 }
 
+- (NSArray *)filterHistoryList:(NSString *)keyword
+{
+    return [_historyDb search:keyword];
+}
+
 - (void)doSearch:(NSString *)keyword complete:(void(^)(NSArray *data, NSError *error))complete
 {
     NSDictionary *p = @{

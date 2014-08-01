@@ -524,6 +524,16 @@ typedef enum {
     {
         [_searchViewController showHistory];
     }
+    else
+    {
+        if (range.length)
+        {
+            NSMutableString *s = [NSMutableString stringWithString:textField.text];
+            [s replaceCharactersInRange:range withString:string];
+            
+            [_searchViewController filterHistory:s];
+        }
+    }
     
     return YES;
 }

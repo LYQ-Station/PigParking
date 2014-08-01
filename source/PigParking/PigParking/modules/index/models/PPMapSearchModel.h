@@ -14,6 +14,8 @@
 
 - (NSArray *)fetchHistoryList;
 
+- (NSArray *)filterHistoryList:(NSString *)keyword;
+
 - (void)doSearch:(NSString *)keyword complete:(void(^)(NSArray *data, NSError *error))complete;
 
 @end
