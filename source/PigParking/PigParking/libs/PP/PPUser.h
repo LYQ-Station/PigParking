@@ -13,6 +13,7 @@
 @property (nonatomic, readonly) NSMutableDictionary *userInfo;
 
 @property (nonatomic, readonly) NSString *uid;
+@property (nonatomic, assign) BOOL isSaveSearchHistory;
 
 + (PPUser *)currentUser;
 

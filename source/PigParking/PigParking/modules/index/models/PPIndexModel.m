@@ -21,12 +21,12 @@
     [_request cancelAllHTTPOperationsWithMethod:nil path:nil];
 }
 
-- (void)fetchAroundParking:(CLLocationCoordinate2D)coordinate block:(void(^)(NSArray *data, NSError *error))complete
+- (void)fetchAroundParking:(CLLocationCoordinate2D)coordinate params:(NSDictionary *)params block:(void(^)(NSArray *data, NSError *error))complete
 {
     NSDictionary *p = @{
                         @"lat":[NSString stringWithFormat:@"%u", (uint)(coordinate.latitude*100000)],
                         @"lng":[NSString stringWithFormat:@"%u", (uint)(coordinate.longitude*100000)],
-                        @"distance":@"500",
+                        @"distance":(params && params[@"distance"])?params[@"distance"]:@"300",
                         @"uid":[PPUser currentUser].uid
                         };
     

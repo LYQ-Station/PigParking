@@ -123,6 +123,8 @@
         cell.textLabel.text = @"保存我的停车记录";
         
         UISwitch *sw = [[UISwitch alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50.0f, 30.0f)];
+        sw.on = [PPUser currentUser].isSaveSearchHistory;
+        [sw addTarget:self action:@selector(swSaveHistoryClick:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = sw;
     }
     
@@ -182,6 +184,11 @@
 - (void)btnBackClick:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)swSaveHistoryClick:(UISwitch *)sender
+{
+    [PPUser currentUser].isSaveSearchHistory = sender.isOn;
 }
 
 @end

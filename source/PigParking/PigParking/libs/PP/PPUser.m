@@ -30,6 +30,7 @@ static NSMutableDictionary *__users = nil;
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithDictionary:userInfo];
     [d setObject:@(YES) forKey:@"logined"];
+    [d setObject:@(YES) forKey:@"is_save_search_history"];
     
     __currentUser = [[PPUser alloc] initWithUserInfo:d];
     __currentUserID = userInfo[@"uid"];
@@ -98,6 +99,18 @@ static NSMutableDictionary *__users = nil;
 - (NSString *)description
 {
     return [_userInfo description];
+}
+
+- (void)setIsSaveSearchHistory:(BOOL)isSaveSearchHistory
+{
+    [_userInfo setObject:@(isSaveSearchHistory) forKey:@"is_save_search_history"];
+    
+    [PPUser saveToCache];
+}
+
+- (BOOL)isSaveSearchHistory
+{
+    return [[_userInfo objectForKey:@"is_save_search_history"] boolValue];
 }
 
 @end

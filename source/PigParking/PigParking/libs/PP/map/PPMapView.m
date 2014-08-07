@@ -48,8 +48,6 @@ static PPMapView *__instance = nil;
 
 + (void)navigateFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
 {
-    NSLog(@"xxx");return;
-    
         //from Baidu to GPS
     from.latitude -= 0.0060f;
     from.longitude -= 0.0065f;

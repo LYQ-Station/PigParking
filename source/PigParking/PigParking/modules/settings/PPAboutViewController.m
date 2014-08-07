@@ -46,14 +46,14 @@
     lb.textColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
     [self.view addSubview:lb];
     
-    lb = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 370.0f, self.view.bounds.size.width, 25.0f)];
+    lb = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 430.0f, self.view.bounds.size.width, 50.0f)];
     lb.textAlignment = NSTextAlignmentCenter;
     lb.backgroundColor = [UIColor clearColor];
     lb.font = [UIFont systemFontOfSize:13.0f];
-    lb.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight;
+    lb.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     lb.textColor = [UIColor colorWithRed:0.51f green:0.51f blue:0.51f alpha:1.0f];
-//    lb.numberOfLines = 2;
-    lb.text = @"想联系我们，请发邮件至 xxx@xxx.com";
+    lb.numberOfLines = 2;
+    lb.text = @"流创梦工厂\n想联系我们，请发邮件至 xxx@xxx.com";
     [self.view addSubview:lb];
 }
 

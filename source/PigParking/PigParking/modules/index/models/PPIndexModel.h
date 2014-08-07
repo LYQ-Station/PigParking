@@ -12,6 +12,6 @@
 
 - (void)cancel;
 
-- (void)fetchAroundParking:(CLLocationCoordinate2D)coordinate block:(void(^)(NSArray *data, NSError *error))complete;
+- (void)fetchAroundParking:(CLLocationCoordinate2D)coordinate params:(NSDictionary *)params block:(void(^)(NSArray *data, NSError *error))complete;
 
 @end

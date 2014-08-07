@@ -15,3 +15,9 @@
 - (id)initWithDelegate:(id)delegate;
 
 @end
+
+@protocol ParkingFilterViewDelegate <NSObject>
+
+- (void)parkingFilterViewDidSelectOption:(PPParkingFilterView *)view options:(NSDictionary *)options;
+
+@end

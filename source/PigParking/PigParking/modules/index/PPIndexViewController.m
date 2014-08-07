@@ -24,7 +24,7 @@ typedef enum {
     PPIndexViewTagMapToolBar,
 }PPIndexViewTags;
 
-@interface PPIndexViewController () <PPParkingTableViewActDelegate, PPMapViewDelegate, PPParkingDetailsViewDelegate, PPMapSearchTableViewControllerDelegate, PPPullViewDelegate>
+@interface PPIndexViewController () <PPParkingTableViewActDelegate, PPMapViewDelegate, PPParkingDetailsViewDelegate, PPMapSearchTableViewControllerDelegate, PPPullViewDelegate, ParkingFilterViewDelegate>
 
 @property (nonatomic, assign) BOOL isStartPage;
 
@@ -35,6 +35,9 @@ typedef enum {
 @property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
 
 @property (nonatomic, strong) PPPullView *pullView;
+
+@property (nonatomic, strong) PPParkingFilterView *filterView;
+@property (nonatomic, strong) NSDictionary *filterOptions;
 
 @property (nonatomic, strong) PPIndexModel *indexModel;
 @property (nonatomic, strong) NSArray *parkingArray;
@@ -332,8 +335,12 @@ typedef enum {
         self.pullView = nil;
     }
     
-    PPParkingFilterView *fv = [[PPParkingFilterView alloc] initWithDelegate:self];
-    self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:fv mask:YES];
+    if (!_filterView)
+    {
+        self.filterView = [[PPParkingFilterView alloc] initWithDelegate:self];
+    }
+    
+    self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:_filterView mask:YES];
     _pullView.delegate = self;
     _pullView.tag = 102;
     [_pullView show];
@@ -431,7 +438,7 @@ typedef enum {
         self.indexModel = [PPIndexModel model];
     }
     
-    [_indexModel fetchAroundParking:_mapView.coordinate block:^(NSArray *data, NSError *error) {
+    [_indexModel fetchAroundParking:_mapView.coordinate params:_filterOptions block:^(NSArray *data, NSError *error) {
         if (error)
         {
             MBProgressHUD *alert = [[MBProgressHUD alloc] initWithView:self.view];
@@ -586,14 +593,12 @@ typedef enum {
 {
     [self btnQuitSearchClick];
     
-//    NSLog(@"%@", item);
-    
     CLLocationCoordinate2D coor = MAKE_COOR_S(item[@"lat"], item[@"lon"]);
     [_mapView updateUserLocation:coor];
     
     _mapView.scopeMode = PPMapViewscopeModeBrowser;
     
-    [_indexModel fetchAroundParking:coor block:^(NSArray *data, NSError *error) {
+    [_indexModel fetchAroundParking:coor params:_filterOptions block:^(NSArray *data, NSError *error) {
         self.parkingArray = data;
         [self.mapView showAroundParking:data];
     }];
@@ -603,14 +608,12 @@ typedef enum {
 {
     [self btnQuitSearchClick];
     
-//    NSLog(@"%@", item);
-    
     CLLocationCoordinate2D coor = MAKE_COOR_S(item[@"lat"], item[@"lon"]);
     [_mapView updateUserLocation:coor];
     
     _mapView.scopeMode = PPMapViewscopeModeBrowser;
     
-    [_indexModel fetchAroundParking:coor block:^(NSArray *data, NSError *error) {
+    [_indexModel fetchAroundParking:coor params:_filterOptions block:^(NSArray *data, NSError *error) {
         self.parkingArray = data;
         [self.mapView showAroundParking:data];
     }];
@@ -629,6 +632,17 @@ typedef enum {
     v.data = view.data;
     v.fromCoordinate = _mapView.coordinate;
     [self.navigationController pushViewController:v animated:YES];
+}
+
+#pragma mark - ParkingFilterViewDelegate
+
+- (void)parkingFilterViewDidSelectOption:(PPParkingFilterView *)view options:(NSDictionary *)options
+{
+    self.filterOptions = options;
+    
+    [self btnBarFilterClick:nil];
+    
+    [self fetchAroundParking];
 }
 
 @end

@@ -13,6 +13,7 @@
 - (id)initWithBarButtonThemeItem:(UIBarButtonThemeItem)item target:(id)target action:(SEL)action
 {
     UIImage *img = nil;
+//    UIImage *img_h = nil;
     
     switch (item)
     {
@@ -49,7 +50,7 @@
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     btn.bounds = CGRectMake(0.0f, 0.0f, img.size.width, img.size.height);
     [btn setImage:img forState:UIControlStateNormal];
-//    [btn setImage:img forState:UIControlStateHighlighted];
+    [btn setImage:img forState:UIControlStateHighlighted];
     btn.enabled = YES;
     
     self = [self initWithCustomView:btn];

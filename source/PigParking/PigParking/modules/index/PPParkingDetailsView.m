@@ -118,7 +118,10 @@
 
 - (void)btnGoHereClick
 {
-    [[PPHistoryDB db] insert:_data];
+    if ([PPUser currentUser].isSaveSearchHistory)
+    {
+        [[PPHistoryDB db] insert:_data];
+    }
     
     [PPMapView navigateFrom:_fromCoordinate to:_toCoordinate];
     

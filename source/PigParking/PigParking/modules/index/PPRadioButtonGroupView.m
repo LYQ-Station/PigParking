@@ -62,6 +62,7 @@
     if (1 == _buttons.count)
     {
         btn = _buttons[0];
+        btn.tag = 200;
         btn.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
         
         return;
@@ -72,6 +73,7 @@
     for (int i=0; i<_buttons.count; i++)
     {
         btn = _buttons[i];
+        btn.tag = 200 + i;
         
         if (!v)
         {
@@ -95,16 +97,30 @@
 }
 */
 
+- (NSArray *)selectedIndexes
+{
+    NSMutableArray *arr = [NSMutableArray array];
+    
+    for (UIButton *btn in _buttons)
+    {
+        if (btn.selected)
+        {
+            [arr addObject:@(btn.tag-200)];
+        }
+    }
+    
+    return arr;
+}
+
 #pragma mark -
 
 - (void)btnClick:(UIButton *)sender
 {
     if (_mode == PPButtonGroupModeNone)
     {
-        return;
+        
     }
-    
-    if (_mode == PPButtonGroupModeRadio)
+    else if (_mode == PPButtonGroupModeRadio)
     {
         for (UIButton *btn in _buttons)
         {
@@ -116,6 +132,11 @@
     else if (_mode == PPButtonGroupModeSelect)
     {
         sender.selected = !sender.selected;
+    }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(radioButtonGroupViewDidCheckedOption:buttonIndex:)])
+    {
+        [_delegate performSelector:@selector(radioButtonGroupViewDidCheckedOption:buttonIndex:) withObject:self withObject:@(sender.tag-200)];
     }
 }
 

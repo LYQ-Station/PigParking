@@ -17,7 +17,16 @@ typedef enum {
 @interface PPRadioButtonGroupView : UIView
 
 @property (nonatomic, assign) PPButtonGroupMode mode;
+@property (nonatomic, assign) id delegate;
+
+@property (nonatomic, readonly) NSArray *selectedIndexes;
 
 - (void)addButton:(UIButton *)button;
+
+@end
+
+@protocol RadioButtonGroupViewDelegate <NSObject>
+
+- (void)radioButtonGroupViewDidCheckedOption:(PPRadioButtonGroupView *)view buttonIndex:(NSNumber *)index;
 
 @end

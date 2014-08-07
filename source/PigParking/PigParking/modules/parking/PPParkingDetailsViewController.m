@@ -14,6 +14,7 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "PPParkingModel.h"
+#import "PPHistoryDB.h"
 
 @interface PPParkingDetailsViewController () <FBImagesWheelDelegate>
 
@@ -123,6 +124,11 @@
 
 - (IBAction)btnGoHereClick:(id)sender
 {
+    if ([PPUser currentUser].isSaveSearchHistory)
+    {
+        [[PPHistoryDB db] insert:_data];
+    }
+    
     [PPMapView navigateFrom:_fromCoordinate to:_toCoordinate];
 }
 
