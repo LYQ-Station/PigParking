@@ -59,7 +59,7 @@
     cell.distanceLabel.text = [NSString stringWithFormat:@"距离：%@", d[@"charge"]]; //@"距离：步行至此地5分钟";
     cell.parkingCountLabel.text = [NSString stringWithFormat:@"车位：%@", d[@"parkingCount"]];//@"车位：500个";
     cell.addressLabel.text = [NSString stringWithFormat:@"地址：%@", d[@"address"]];// @"地址：深圳市区松坪山公园";
-    cell.flag = (PPParkingTableViewCellFlag)[[d objectForKey:@"type"] intValue];
+    cell.flag = (PPParkingTableViewCellFlag)[[d objectForKey:@"flag"] intValue];
     
     return cell;
 }

@@ -94,9 +94,32 @@
     }
     else
     {
-        UIImageView *fv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parking-cell-flag1"]];
-        fv.frame = CGRectMake(self.bounds.size.width-fv.bounds.size.width-15.0f, 0.0f, fv.bounds.size.width, fv.bounds.size.height);
-        [self addSubview:fv];
+        UIImage *im = nil;
+        
+        switch (flag)
+        {
+            case PPParkingTableViewCellFlagCheap:
+                im = [UIImage imageNamed:@"parking-cell-flag1"];
+                break;
+                
+            case PPParkingTableViewCellFlagMost:
+                im = [UIImage imageNamed:@"parking-cell-flag2"];
+                break;
+                
+            case PPParkingTableViewCellFlagNearest:
+                im = [UIImage imageNamed:@"parking-cell-flag3"];
+                break;
+                
+            default:
+                break;
+        }
+        
+        if (im)
+        {
+            UIImageView *fv = [[UIImageView alloc] initWithImage:im];
+            fv.frame = CGRectMake(self.bounds.size.width-fv.bounds.size.width-15.0f, 0.0f, fv.bounds.size.width, fv.bounds.size.height);
+            [self addSubview:fv];
+        }
     }
 }
 

@@ -107,6 +107,17 @@ typedef enum {
     [self setupStartUI];
     
     [[PPConfigsModel model] fetchConfigs:^(id json, NSError *err) {
+        if (err)
+        {
+            MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+            hud.labelText = @"无法获取数据，请检查网络。";
+            hud.mode = MBProgressHUDModeText;
+            [self.view addSubview:hud];
+            [hud show:YES];
+            [hud hide:YES afterDelay:1.5];
+            return ;
+        }
+        
         [PPUser loginUser:json];
         
         [_mapView startUpdatingLocation];
@@ -136,7 +147,6 @@ typedef enum {
                                             capInsets:UIEdgeInsetsMake(0, 25, 0, 25)
                                          resizingMode:UIImageResizingModeStretch
                                              duration:0.0f];
-
     }
     else
     {
@@ -151,6 +161,7 @@ typedef enum {
     tf_srh.font = [UIFont systemFontOfSize:15.0f];
     tf_srh.leftView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 15.0f, tf_srh.bounds.size.height)];
     tf_srh.leftViewMode = UITextFieldViewModeAlways;
+    tf_srh.clearsOnBeginEditing = YES;
     self.tfSearchBox = tf_srh;
     
     self.navigationItem.titleView = tf_srh;
@@ -567,6 +578,7 @@ typedef enum {
     v.data = annotation.data;
     v.fromCoordinate = _mapView.coordinate;
     v.toCoordinate = MAKE_COOR_S(d[@"lat"], d[@"lon"]);
+    v.flag = (PPParkingTableViewCellFlag)[d[@"flag"] intValue];
     
     _pullView = [[PPPullView alloc] initWithParentView:self.view contentView:v mask:NO];
     [_pullView showNoMask];

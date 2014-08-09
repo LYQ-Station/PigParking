@@ -159,6 +159,8 @@ static PPMapView *__instance = nil;
 
 - (void)updateUserLocation:(CLLocationCoordinate2D)coordinate
 {
+    _userAnnotation.coordinate = coordinate;
+    
     if (PPMapViewscopeModeFollow == _scopeMode || PPMapViewscopeModeDirect == _scopeMode)
     {
         [_mapView setRegion:BMKCoordinateRegionMake(coordinate, BMKCoordinateSpanMake(0.005, 0.005)) animated:YES];
@@ -174,8 +176,6 @@ static PPMapView *__instance = nil;
         
         return;
     }
-    
-    _userAnnotation.coordinate = coordinate;
 }
 
 - (void)showAroundParking:(NSArray *)list
