@@ -16,10 +16,24 @@
     
     if (self)
     {
-        self.image = [UIImage imageNamed:@"map-free-parking"];
+        
     }
     
     return self;
+}
+
+- (void)setIsFree:(BOOL)isFree
+{
+    _isFree = isFree;
+    
+    if (isFree)
+    {
+        self.image = [UIImage imageNamed:@"map-free-parking"];
+    }
+    else
+    {
+        self.image = [UIImage imageNamed:@"map-nofree-parking"];
+    }
 }
 
 /*

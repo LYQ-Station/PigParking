@@ -53,7 +53,7 @@
     lb.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     lb.textColor = [UIColor colorWithRed:0.51f green:0.51f blue:0.51f alpha:1.0f];
     lb.numberOfLines = 2;
-    lb.text = @"流创梦工厂\n想联系我们，请发邮件至 xxx@xxx.com";
+    lb.text = @"流创梦工厂\n想联系我们，请发邮件至kiko@starnet007.com";
     [self.view addSubview:lb];
 }
 

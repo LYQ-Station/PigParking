@@ -96,6 +96,7 @@ typedef enum {
 {
     [super viewDidLoad];
     
+    [self setupTheme];
     [self.navigationController.navigationBar setupTheme];
     
     _mapView = [PPMapView mapViewWithFrame:self.view.bounds];

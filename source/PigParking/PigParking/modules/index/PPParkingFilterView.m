@@ -80,7 +80,7 @@
         btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0.0f, 0.0f, 94.0f, 37.0f);
         [btn setTitle:@"凭购物\n小票免费" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:10.0f];
+        btn.titleLabel.font = [UIFont systemFontOfSize:7.0f];
         btn.titleLabel.numberOfLines = 2;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [v addButton:btn];

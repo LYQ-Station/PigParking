@@ -36,11 +36,16 @@
 {
     button.titleLabel.font = [UIFont systemFontOfSize:14.5];
     
-    [button setTitleColor:[UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f] forState:UIControlStateNormal];
+    if (2 == button.titleLabel.numberOfLines)
+    {
+        button.titleLabel.font = [UIFont systemFontOfSize:12];
+    }
+    
+    [button setTitleColor:[UIColor colorWithRed:0.22f green:0.22f blue:0.22f alpha:1.0f] forState:UIControlStateNormal];
 //    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     
-    [button setBackgroundImage:[[UIImage imageNamed:@"btn-bg-white"] resizableImageWithCapInsets:UIEdgeInsetsMake(22.0f, 18.0f, 18.0f, 22.0f)] forState:UIControlStateNormal];
+    [button setBackgroundImage:[[UIImage imageNamed:@"btn-bg-white"] resizableImageWithCapInsets:UIEdgeInsetsMake(20.0f, 18.0f, 18.0f, 22.0f)] forState:UIControlStateNormal];
 //    [button setBackgroundImage:[[UIImage imageNamed:@"btn-bg-blue"] resizableImageWithCapInsets:UIEdgeInsetsMake(22.0f, 18.0f, 18.0f, 22.0f)] forState:UIControlStateHighlighted];
     [button setBackgroundImage:[[UIImage imageNamed:@"btn-bg-blue"] resizableImageWithCapInsets:UIEdgeInsetsMake(22.0f, 18.0f, 18.0f, 22.0f)] forState:UIControlStateSelected];
     

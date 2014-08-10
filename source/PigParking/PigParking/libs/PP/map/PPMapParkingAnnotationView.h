@@ -10,4 +10,6 @@
 
 @interface PPMapParkingAnnotationView : BMKAnnotationView
 
+@property (nonatomic, assign) BOOL isFree;
+
 @end

@@ -17,6 +17,8 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) BMKRouteSearch *routeSearch;
 
+@property (nonatomic, assign) PPMapAnnoation *selectedParkingAnnoation;
+
 @end
 
 @implementation PPMapView
@@ -237,6 +239,8 @@ static PPMapView *__instance = nil;
             v = [[PPMapParkingAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"parking"];
         }
         
+        v.isFree = [[((PPMapAnnoation *)annotation).data objectForKey:@"flag"] boolValue];
+        
         return v;
     }
     
@@ -245,6 +249,8 @@ static PPMapView *__instance = nil;
 
 - (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view
 {
+    _selectedParkingAnnoation = nil;
+    
     NSArray *os = [NSArray arrayWithArray:_mapView.overlays];
     [_mapView removeOverlays:os];
     
@@ -256,6 +262,8 @@ static PPMapView *__instance = nil;
 
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
+    _selectedParkingAnnoation = view.annotation;
+
     NSArray *os = [NSArray arrayWithArray:_mapView.overlays];
     [_mapView removeOverlays:os];
     
@@ -345,6 +353,8 @@ static PPMapView *__instance = nil;
 - (void)onGetWalkingRouteResult:(BMKRouteSearch *)searcher result:(BMKWalkingRouteResult *)result errorCode:(BMKSearchErrorCode)error
 {
     BMKWalkingRouteLine *l = (BMKWalkingRouteLine *)(result.routes[0]);
+    
+    _selectedParkingAnnoation.title = [NSString stringWithFormat:@"步行%d分钟", l.duration.minutes];
     
     CLLocationCoordinate2D *cs = (CLLocationCoordinate2D *)malloc(sizeof(CLLocationCoordinate2D) * l.steps.count);
     CLLocationCoordinate2D *cs_p = cs;
