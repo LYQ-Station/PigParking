@@ -239,7 +239,7 @@ static PPMapView *__instance = nil;
             v = [[PPMapParkingAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"parking"];
         }
         
-        v.isFree = [[((PPMapAnnoation *)annotation).data objectForKey:@"flag"] boolValue];
+        v.isFree = [[((PPMapAnnoation *)annotation).data objectForKey:@"charge"] intValue] == 0;
         
         return v;
     }

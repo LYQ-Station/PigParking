@@ -57,7 +57,7 @@
                         <outlet property="delegate" destination="-1" id="a3g-z6-RcH"/>
                     </connections>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tEC-5f-uJM">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tEC-5f-uJM">
                     <rect key="frame" x="13" y="217" width="294" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="到这去" backgroundImage="btn-bg.png">

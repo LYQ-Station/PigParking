@@ -132,6 +132,7 @@
 		B05C89061976B0DD007AE669 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B05C89051976B0DD007AE669 /* MBProgressHUD.m */; };
 		B05C89091976B1D4007AE669 /* PPParkingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B05C89081976B1D4007AE669 /* PPParkingModel.m */; };
 		B05C890D1976B39F007AE669 /* PPHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B05C890C1976B39F007AE669 /* PPHistoryModel.m */; };
+		B0E4D7671998F9FA00189B6F /* parking-details-pull-view-bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0E4D7661998F9FA00189B6F /* parking-details-pull-view-bg2@2x.png */; };
 		B0F60D96196FEE1B00CE7516 /* idx-btn-details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */; };
 		B0F60D97196FEE1B00CE7516 /* idx-btn-go-here@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */; };
 		B0F60D9A19700ACD00CE7516 /* st-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F60D9919700ACD00CE7516 /* st-logo@2x.png */; };
@@ -410,6 +411,7 @@
 		B05C89081976B1D4007AE669 /* PPParkingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPParkingModel.m; path = PigParking/modules/parking/PPParkingModel.m; sourceTree = SOURCE_ROOT; };
 		B05C890B1976B39F007AE669 /* PPHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPHistoryModel.h; sourceTree = "<group>"; };
 		B05C890C1976B39F007AE669 /* PPHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPHistoryModel.m; sourceTree = "<group>"; };
+		B0E4D7661998F9FA00189B6F /* parking-details-pull-view-bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parking-details-pull-view-bg2@2x.png"; sourceTree = "<group>"; };
 		B0F60D94196FEE1B00CE7516 /* idx-btn-details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idx-btn-details@2x.png"; sourceTree = "<group>"; };
 		B0F60D95196FEE1B00CE7516 /* idx-btn-go-here@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idx-btn-go-here@2x.png"; sourceTree = "<group>"; };
 		B0F60D9919700ACD00CE7516 /* st-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "st-logo@2x.png"; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 		8B88E0CF196A30B900722F22 /* index */ = {
 			isa = PBXGroup;
 			children = (
+				B0E4D7661998F9FA00189B6F /* parking-details-pull-view-bg2@2x.png */,
 				B03EEF0B197D526300F391D8 /* parking-list-cell-bg@2x.png */,
 				8BEC1B741976550700E827CF /* idx-filter-bg@2x.png */,
 				B0431989197410980001B905 /* parking-cell-flag2@2x.png */,
@@ -1149,6 +1152,7 @@
 				B0F60D9E1970207C00CE7516 /* cell-bg-bot@2x.png in Resources */,
 				B0F60D9A19700ACD00CE7516 /* st-logo@2x.png in Resources */,
 				B01BB9ED196EC2370082F10C /* feedback-bg@2x.png in Resources */,
+				B0E4D7671998F9FA00189B6F /* parking-details-pull-view-bg2@2x.png in Resources */,
 				8B88E0D3196A30B900722F22 /* start-mask@2x.png in Resources */,
 				8B88E0EF196A7B2500722F22 /* tool-zoomout@2x.png in Resources */,
 				B0562DA3197AAB37007CFDC4 /* MBProgressHUD.bundle in Resources */,

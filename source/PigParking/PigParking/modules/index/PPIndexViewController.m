@@ -574,7 +574,7 @@ typedef enum {
     
     NSDictionary *d = (NSDictionary *)annotation.data;
     
-    PPParkingDetailsView *v = [[PPParkingDetailsView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, 138.0f)];
+    PPParkingDetailsView *v = [[PPParkingDetailsView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, 147.0f)];
     v.delegate = self;
     v.data = annotation.data;
     v.fromCoordinate = _mapView.coordinate;
