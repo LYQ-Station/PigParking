@@ -15,6 +15,8 @@
 @property (nonatomic, weak) PPRadioButtonGroupView *optionsView2;
 @property (nonatomic, weak) PPRadioButtonGroupView *optionsView3;
 
+@property (nonatomic, retain) NSDictionary *options;
+
 @end
 
 @implementation PPParkingFilterView
@@ -92,6 +94,16 @@
         
         [self addSubview:v];
         self.optionsView3 = v;
+        
+        btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0.0f, 0.0f, 146.0f, 36.0f);
+        btn.center = CGPointMake(159.0f, 194.0f);
+        btn.titleLabel.font = [UIFont systemFontOfSize:14.5];
+        [btn setTitle:@"确定" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor colorWithRed:0.22f green:0.22f blue:0.22f alpha:1.0f] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[[UIImage imageNamed:@"btn-bg-white"] resizableImageWithCapInsets:UIEdgeInsetsMake(20.0f, 18.0f, 18.0f, 22.0f)] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(btnSubmitClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
     }
     return self;
 }
@@ -130,10 +142,16 @@
         [d setObject:p forKey:@"price"];
     }
     
+    self.options = d;
+}
+
+- (void)btnSubmitClick
+{
     if (_delegate && [_delegate respondsToSelector:@selector(parkingFilterViewDidSelectOption:options:)])
     {
-        [_delegate performSelector:@selector(parkingFilterViewDidSelectOption:options:) withObject:self withObject:d];
+        [_delegate performSelector:@selector(parkingFilterViewDidSelectOption:options:) withObject:self withObject:self.options];
     }
+
 }
 
 @end

@@ -75,6 +75,8 @@
     {
         [_actDelegate performSelector:@selector(parkingTableView:didSelectRowAtIndexPath:) withObject:self withObject:indexPath];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*

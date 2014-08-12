@@ -15,7 +15,7 @@
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+//        self.selectionStyle = UITableViewCellSelectionStyleNone;
         _flag = PPParkingTableViewCellFlagNone;
         
         _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.0f, 9.0f, self.bounds.size.width, 14.0f)];
@@ -43,6 +43,7 @@
         [self addSubview:_parkingCountLabel];
         
         self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parking-list-cell-bg"]];
+        self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parking-list-cell-bg-h"]];
     }
     return self;
 }
