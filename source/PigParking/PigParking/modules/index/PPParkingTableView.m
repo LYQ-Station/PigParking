@@ -8,10 +8,14 @@
 
 #import "PPParkingTableView.h"
 #import "PPParkingTableViewCell.h"
+#import "PPParkingFilterView.h"
+#import "PPMapView.h"
+#import "PPIndexModel.h"
 
 @interface PPParkingTableView ()
 
-@property (nonatomic, assign) NSArray *data;
+@property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) PPIndexModel *model;
 
 @end
 
@@ -33,13 +37,18 @@
 
 #pragma mark -
 
-- (NSInteger)numberOfSections
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (0 == section)
+    {
+        return 0;
+    }
+    
     return _data.count;
 }
 
@@ -79,6 +88,31 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (1 == section)
+    {
+        return 0.0f;
+    }
+    
+    return 165.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (1 == section)
+    {
+        return nil;
+    }
+    
+    PPParkingFilterView *v = [[PPParkingFilterView alloc] initWithDelegate:self];
+    v.isResponseImmediately = YES;
+    v.frame = CGRectMake(0.0f, 0.0f, v.bounds.size.width, 165.0f);
+    v.clipsToBounds = YES;
+    return v;
+}
+
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -87,5 +121,32 @@
     // Drawing code
 }
 */
+
+#pragma mark - model
+
+- (void)fetchData:(NSDictionary *)options
+{
+    if (!_model)
+    {
+        self.model = [PPIndexModel model];
+    }
+    
+    [_model fetchAroundParking:[PPMapView sharedInstance].coordinate params:options block:^(NSArray *data, NSError *error) {
+        if (error)
+        {
+            return ;
+        }
+        
+        self.data = data;
+        [self reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    }];
+}
+
+#pragma mark - ParkingFilterViewDelegate
+
+- (void)parkingFilterViewDidSelectOption:(PPParkingFilterView *)view options:(NSDictionary *)options
+{
+    [self fetchData:options];
+}
 
 @end

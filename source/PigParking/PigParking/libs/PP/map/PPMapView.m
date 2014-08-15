@@ -356,7 +356,7 @@ static PPMapView *__instance = nil;
     
     _selectedParkingAnnoation.title = [NSString stringWithFormat:@"步行%d分钟", l.duration.minutes];
     
-    CLLocationCoordinate2D *cs = (CLLocationCoordinate2D *)malloc(sizeof(CLLocationCoordinate2D) * l.steps.count);
+    CLLocationCoordinate2D *cs = (CLLocationCoordinate2D *)malloc(sizeof(CLLocationCoordinate2D) * l.steps.count + 1);
     CLLocationCoordinate2D *cs_p = cs;
     
     for (BMKWalkingStep *p in l.steps)
@@ -365,7 +365,10 @@ static PPMapView *__instance = nil;
         cs_p++;
     }
     
-    BMKPolyline *pl = [BMKPolyline polylineWithCoordinates:cs count:l.steps.count];
+    BMKWalkingStep *p = [l.steps lastObject];
+    *cs_p = p.exit.location;
+    
+    BMKPolyline *pl = [BMKPolyline polylineWithCoordinates:cs count:l.steps.count+1];
     [_mapView addOverlay:pl];
     
     free(cs);

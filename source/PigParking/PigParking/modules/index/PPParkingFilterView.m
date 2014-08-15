@@ -24,6 +24,7 @@
 - (id)initWithDelegate:(id)delegate
 {
     UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"idx-filter-bg"]];
+    iv.contentMode = UIViewContentModeTop;
     
     self = [super initWithFrame:iv.bounds];
     if (self)
@@ -143,6 +144,14 @@
     }
     
     self.options = d;
+    
+    if (_isResponseImmediately)
+    {
+        if (_delegate && [_delegate respondsToSelector:@selector(parkingFilterViewDidSelectOption:options:)])
+        {
+            [_delegate performSelector:@selector(parkingFilterViewDidSelectOption:options:) withObject:self withObject:self.options];
+        }
+    }
 }
 
 - (void)btnSubmitClick
@@ -151,7 +160,6 @@
     {
         [_delegate performSelector:@selector(parkingFilterViewDidSelectOption:options:) withObject:self withObject:self.options];
     }
-
 }
 
 @end

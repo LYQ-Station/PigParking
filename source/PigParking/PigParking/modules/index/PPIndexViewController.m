@@ -579,6 +579,8 @@ typedef enum {
     v.data = annotation.data;
     v.fromCoordinate = _mapView.coordinate;
     v.toCoordinate = MAKE_COOR_S(d[@"lat"], d[@"lon"]);
+//    v.toCoordinate = CLLocationCoordinate2DMake([d[@"lat"] floatValue], [d[@"lon"] floatValue]);
+//    v.toCoordinate = annotation.coordinate;
     v.flag = (PPParkingTableViewCellFlag)[d[@"flag"] intValue];
     
     _pullView = [[PPPullView alloc] initWithParentView:self.view contentView:v mask:NO];

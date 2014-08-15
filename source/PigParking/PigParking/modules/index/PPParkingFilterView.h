@@ -10,6 +10,7 @@
 
 @interface PPParkingFilterView : UIView
 
+@property (nonatomic, assign) BOOL isResponseImmediately;
 @property (nonatomic, assign) id delegate;
 
 - (id)initWithDelegate:(id)delegate;

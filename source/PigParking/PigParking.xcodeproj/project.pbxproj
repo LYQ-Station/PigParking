@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48160AE7199E620000275D46 /* Directions.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 48160AE6199E620000275D46 /* Directions.geojson */; };
 		8B0125F3196B9E7800775FDD /* PPMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0125F2196B9E7800775FDD /* PPMapView.m */; };
 		8B0125F9196BCAD300775FDD /* map-user-point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0125F8196BCAD300775FDD /* map-user-point@2x.png */; };
 		8B0125FF196BD11400775FDD /* PPBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0125FE196BD11400775FDD /* PPBaseModel.m */; };
@@ -162,6 +163,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48160AE6199E620000275D46 /* Directions.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
 		8B0125F1196B9E7800775FDD /* PPMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMapView.h; sourceTree = "<group>"; };
 		8B0125F2196B9E7800775FDD /* PPMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMapView.m; sourceTree = "<group>"; };
 		8B0125F8196BCAD300775FDD /* map-user-point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-user-point@2x.png"; sourceTree = "<group>"; };
@@ -800,6 +802,7 @@
 			children = (
 				8BF3469619776167004018D6 /* databases */,
 				B00043C619680472008CBB2C /* images */,
+				48160AE6199E620000275D46 /* Directions.geojson */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -1146,6 +1149,7 @@
 				B01BB9F4196EC9080082F10C /* tool-scope-h@2x.png in Resources */,
 				B0F60D9F1970207C00CE7516 /* cell-bg-midd@2x.png in Resources */,
 				B0F60DAC19702AB800CE7516 /* PPHistoryViewController.xib in Resources */,
+				48160AE7199E620000275D46 /* Directions.geojson in Resources */,
 				8B88E0D2196A30B900722F22 /* nav-bar-srh@2x.png in Resources */,
 				B01BB9F5196EC9080082F10C /* tool-settings-h@2x.png in Resources */,
 				B0F60D9E1970207C00CE7516 /* cell-bg-bot@2x.png in Resources */,
@@ -1409,9 +1413,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PigParking/libs/BaiduMap",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7940F1C6-2F28-4259-8F1A-3AA08F49A3DB";
+				PROVISIONING_PROFILE = "165b7367-c153-42cb-800f-b56073d89dc3";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1436,7 +1441,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7940F1C6-2F28-4259-8F1A-3AA08F49A3DB";
+				PROVISIONING_PROFILE = "165b7367-c153-42cb-800f-b56073d89dc3";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
