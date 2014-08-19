@@ -238,6 +238,13 @@ typedef enum {
     lb.textColor = [UIColor colorWithRed:0.73f green:0.73f blue:0.73f alpha:1.0f];
     lb.text = @"已累计为 XXXXXXXX 位用户找到免费车位";
     [mask addSubview:lb];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.isStartPage)
+        {
+            [self transacteToIndexUI];
+        }
+    });
 }
 
 - (void)onTapStartUIGesture:(UIGestureRecognizer *)gesture
