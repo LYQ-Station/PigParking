@@ -35,31 +35,29 @@
         iv = [[UIImageView alloc] initWithImage:im];
         [self addSubview:iv];
         
-        _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, 0.0f, self.bounds.size.width, 32.0f)];
+        _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, 0.0f, self.bounds.size.width-45.0f, 32.0f)];
         _addressLabel.font = [UIFont systemFontOfSize:15.0];
         _addressLabel.textColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
         _addressLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_addressLabel];
         
-        _chargeLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, _addressLabel.frame.origin.y+_addressLabel.frame.size.height+5.0f, self.bounds.size.width, 17.0f)];
+        _chargeLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, _addressLabel.frame.origin.y+_addressLabel.frame.size.height+5.0f, self.bounds.size.width-45.0f, 17.0f)];
         _chargeLabel.font = [UIFont systemFontOfSize:15.0];
         _chargeLabel.textColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
         _chargeLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_chargeLabel];
         
-        _distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, _chargeLabel.frame.origin.y+_chargeLabel.frame.size.height+5.0f, self.bounds.size.width, 17.0f)];
+        _distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, _chargeLabel.frame.origin.y+_chargeLabel.frame.size.height+5.0f, self.bounds.size.width-45.0f, 17.0f)];
         _distanceLabel.font = [UIFont systemFontOfSize:15.0];
         _distanceLabel.textColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
         _distanceLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_distanceLabel];
         
-        _parkingCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, _distanceLabel.frame.origin.y+_distanceLabel.frame.size.height+5.0f, self.bounds.size.width, 17.0f)];
+        _parkingCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, _distanceLabel.frame.origin.y+_distanceLabel.frame.size.height+5.0f, self.bounds.size.width-45.0f, 17.0f)];
         _parkingCountLabel.font = [UIFont systemFontOfSize:15.0];
         _parkingCountLabel.textColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
         _parkingCountLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_parkingCountLabel];
-        
-        
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(12.0f, 104.0f, 145.0f, 35.0f);
@@ -143,7 +141,7 @@
     
     _chargeLabel.text = [NSString stringWithFormat:@"费用：%@", data[@"charge"]];
     _distanceLabel.text = [NSString stringWithFormat:@"距离：%@", data[@"distance"]];
-    _parkingCountLabel.text = [NSString stringWithFormat:@"车位：%@", data[@"parkingCount"]];
+    _parkingCountLabel.text = [NSString stringWithFormat:@"车位：%@ 个", data[@"parkingCount"]];
     _addressLabel.text = [NSString stringWithFormat:@"地址：%@", data[@"address"]];
     
     _toCoordinate = CLLocationCoordinate2DMake([data[@"lat"] floatValue], [data[@"lon"] floatValue]);

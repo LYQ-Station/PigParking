@@ -21,6 +21,7 @@ typedef enum {
 
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, readonly) BMKMapView *mapView;
+@property (nonatomic, readonly) BMKMapView *tempMapView; //for calculator region only!
 @property (nonatomic, assign) PPMapViewscopeMode scopeMode;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 

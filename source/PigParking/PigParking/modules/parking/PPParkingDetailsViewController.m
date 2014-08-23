@@ -96,7 +96,7 @@
 //                                   [a addObject:d[@"thumb"]];
 //                               }
                                
-                               [self setupImagesScrollView:data[@"samllImages"]];
+                               [self setupImagesScrollView:data[@"smallImages"]];
                            }];
     
     _toCoordinate = MAKE_COOR_S(_data[@"lat"], _data[@"lon"]);
@@ -147,19 +147,11 @@
 - (void)imageWheelDidChangeImage:(FBImagesWheel *)wheel imageView:(UIImageView *)imageView
 {
     NSMutableArray *a = [NSMutableArray array];
-//    for (NSDictionary *d in _parkingInfo[@"images"])
-//    {
-//        NSString *url = d[@"original"];
-//        MJPhoto *photo = [[MJPhoto alloc] init];
-//        photo.url = [NSURL URLWithString:url];
-//        photo.srcImageView = imageView;
-//        [a addObject:photo];
-//    }
     
     for (NSString *d in _parkingInfo[@"bigImages"])
     {
         MJPhoto *photo = [[MJPhoto alloc] init];
-        photo.url = [NSURL URLWithString:d];
+        photo.url = [d hasPrefix:@"http"] ? [NSURL URLWithString:d] : [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", d]];
         photo.srcImageView = imageView;
         [a addObject:photo];
     }

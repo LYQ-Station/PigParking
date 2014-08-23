@@ -79,7 +79,7 @@ static PPMapView *__instance = nil;
         MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
         
         //起点
-        //        MKMapItem *currentLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords1 addressDictionary:nil]];
+//        MKMapItem *currentLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords1 addressDictionary:nil]];
         
         //目的地的位置
         MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:to addressDictionary:nil]];
@@ -128,6 +128,8 @@ static PPMapView *__instance = nil;
     if (self)
     {
         _scopeMode = PPMapViewscopeModeFollow;
+        
+        _tempMapView = [[BMKMapView alloc] init];
         
         _mapView = [[BMKMapView alloc] initWithFrame:self.bounds];
         _mapView.delegate = self;
@@ -316,8 +318,15 @@ static PPMapView *__instance = nil;
         center.longitude = n_end.pt.longitude + (n_start.pt.longitude - n_end.pt.longitude) * 0.5;
     }
     
-    region = [_mapView regionThatFits:BMKCoordinateRegionMake(center, BMKCoordinateSpanMake(ABS(n_start.pt.latitude - n_end.pt.latitude), ABS(n_start.pt.longitude - n_end.pt.longitude)))];
-    [_mapView setRegion:region animated:YES];
+    CGPoint p = [_mapView convertCoordinate:center toPointToView:self];
+    p.y -= 147*0.5;
+    
+    center = [_mapView convertPoint:p toCoordinateFromView:self];
+    [_mapView setCenterCoordinate:center animated:YES];
+    
+//    region = [_tempMapView regionThatFits:BMKCoordinateRegionMake(center, BMKCoordinateSpanMake(ABS(n_start.pt.latitude - n_end.pt.latitude), ABS(n_start.pt.longitude - n_end.pt.longitude)))];
+//    region = [_mapView regionThatFits:BMKCoordinateRegionMake(center, BMKCoordinateSpanMake(ABS(n_start.pt.latitude - n_end.pt.latitude), ABS(n_start.pt.longitude - n_end.pt.longitude)))];
+//    [_mapView setRegion:region animated:YES];
 }
 
 - (BMKOverlayView *) mapView:(BMKMapView *)mapView viewForOverlay:(id< BMKOverlay >)overlay

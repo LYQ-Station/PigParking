@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		48160AE7199E620000275D46 /* Directions.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 48160AE6199E620000275D46 /* Directions.geojson */; };
+		48F6D0AE19A8A1280076BC9A /* PPParkingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F6D0AD19A8A1280076BC9A /* PPParkingDetailViewController.m */; };
 		8B0125F3196B9E7800775FDD /* PPMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0125F2196B9E7800775FDD /* PPMapView.m */; };
 		8B0125F9196BCAD300775FDD /* map-user-point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0125F8196BCAD300775FDD /* map-user-point@2x.png */; };
 		8B0125FF196BD11400775FDD /* PPBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0125FE196BD11400775FDD /* PPBaseModel.m */; };
@@ -164,6 +165,8 @@
 
 /* Begin PBXFileReference section */
 		48160AE6199E620000275D46 /* Directions.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
+		48F6D0AC19A8A1280076BC9A /* PPParkingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPParkingDetailViewController.h; sourceTree = "<group>"; };
+		48F6D0AD19A8A1280076BC9A /* PPParkingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPParkingDetailViewController.m; sourceTree = "<group>"; };
 		8B0125F1196B9E7800775FDD /* PPMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMapView.h; sourceTree = "<group>"; };
 		8B0125F2196B9E7800775FDD /* PPMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMapView.m; sourceTree = "<group>"; };
 		8B0125F8196BCAD300775FDD /* map-user-point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-user-point@2x.png"; sourceTree = "<group>"; };
@@ -896,6 +899,8 @@
 				B01123F219698B3700046745 /* PPParkingDetailsViewController.h */,
 				B01123F319698B3700046745 /* PPParkingDetailsViewController.m */,
 				B043198D197415210001B905 /* PPParkingDetailsViewController.xib */,
+				48F6D0AC19A8A1280076BC9A /* PPParkingDetailViewController.h */,
+				48F6D0AD19A8A1280076BC9A /* PPParkingDetailViewController.m */,
 			);
 			path = parking;
 			sourceTree = "<group>";
@@ -1278,6 +1283,7 @@
 				B00043BF19680441008CBB2C /* UIImageView+AFNetworking.m in Sources */,
 				B00043B719680441008CBB2C /* AFHTTPClient.m in Sources */,
 				B03EEF0A197D42B600F391D8 /* Base64.m in Sources */,
+				48F6D0AE19A8A1280076BC9A /* PPParkingDetailViewController.m in Sources */,
 				8B5247FB1974B1B00061FADB /* PPMapSearchTableViewController.m in Sources */,
 				B01123F419698B3700046745 /* PPParkingDetailsViewController.m in Sources */,
 				B0562DBC197AAF1A007CFDC4 /* UIImageView+MJWebCache.m in Sources */,

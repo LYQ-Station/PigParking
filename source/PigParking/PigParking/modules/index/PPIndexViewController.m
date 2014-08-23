@@ -9,6 +9,7 @@
 #import "PPIndexViewController.h"
 #import "PPSettingsViewController.h"
 #import "PPParkingDetailsViewController.h"
+#import "PPParkingDetailViewController.h"
 #import "PPMapSearchTableViewController.h"
 #import "PPMapView.h"
 #import "PPPullView.h"
@@ -592,6 +593,8 @@ typedef enum {
     
     _pullView = [[PPPullView alloc] initWithParentView:self.view contentView:v mask:NO];
     [_pullView showNoMask];
+    
+//    _mapView.tempMapView.frame = CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.view.bounds.size.height-147.0f);
 }
 
 - (void)ppMapView:(PPMapView *)mapView didDeselectAnnotation:(PPMapAnnoation *)annotation
@@ -650,10 +653,17 @@ typedef enum {
 
 - (void)ppParkingDetailsViewShowDetails:(PPParkingDetailsView *)view
 {
-    PPParkingDetailsViewController *v = [[PPParkingDetailsViewController alloc] initWithNibName:nil bundle:nil];
-    v.data = view.data;
-    v.fromCoordinate = _mapView.coordinate;
-    [self.navigationController pushViewController:v animated:YES];
+//    PPParkingDetailsViewController *v = [[PPParkingDetailsViewController alloc] initWithNibName:nil bundle:nil];
+//    v.data = view.data;
+//    v.fromCoordinate = _mapView.coordinate;
+//    [self.navigationController pushViewController:v animated:YES];
+    
+    PPParkingDetailViewController *c = [[PPParkingDetailViewController alloc] initWithNibName:nil bundle:nil];
+    c.title = view.data[@"title"];
+    c.data = view.data;
+    c.fromCoordinate = _mapView.coordinate;
+    [c setupTheme];
+    [self.navigationController pushViewController:c animated:YES];
 }
 
 #pragma mark - ParkingFilterViewDelegate

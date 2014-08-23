@@ -14,7 +14,7 @@
 {
     UINavigationItem *item = self.navigationItem;
     
-    UILabel *title_lab = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 140.0, 44.0)];
+    UILabel *title_lab = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 200.0, 44.0)];
     title_lab.tag = 101;
     title_lab.backgroundColor = [UIColor clearColor];
     title_lab.text = self.title;
