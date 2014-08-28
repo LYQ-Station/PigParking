@@ -59,6 +59,7 @@
     _imagesWheelView.delegate = self;
     
     UITableView *tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     tv.showsVerticalScrollIndicator = NO;
     [self.view addSubview:tv];
     self.tableView = tv;
@@ -86,6 +87,7 @@
                                
                                tv.dataSource = self;
                                tv.delegate = self;
+                               tv.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
                                [self.tableView reloadData];
                                
                                [self setupImagesScrollView:data[@"smallImages"]];
