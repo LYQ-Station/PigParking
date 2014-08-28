@@ -7,9 +7,11 @@
 //
 
 #import "BMKAnnotationView.h"
+#import "PPParkingTableViewCell.h"
 
 @interface PPMapParkingAnnotationView : BMKAnnotationView
 
 @property (nonatomic, assign) BOOL isFree;
+@property (nonatomic, assign) PPParkingTableViewCellFlag flag;
 
 @end

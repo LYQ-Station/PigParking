@@ -242,6 +242,7 @@ static PPMapView *__instance = nil;
         }
         
         v.isFree = [[((PPMapAnnoation *)annotation).data objectForKey:@"charge"] intValue] == 0;
+        v.flag = (PPParkingTableViewCellFlag)([[((PPMapAnnoation *)annotation).data objectForKey:@"flag"] intValue]);
         
         return v;
     }
@@ -298,7 +299,7 @@ static PPMapView *__instance = nil;
     }
     
     CLLocationCoordinate2D center;
-    BMKCoordinateRegion region;
+//    BMKCoordinateRegion region;
     
     if (n_end.pt.latitude > n_start.pt.latitude)
     {
