@@ -17,6 +17,10 @@
 		8B012605196BDFA400775FDD /* PPMapAnnoation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B012604196BDFA400775FDD /* PPMapAnnoation.m */; };
 		8B012608196BE01700775FDD /* PPMapUserAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B012607196BE01700775FDD /* PPMapUserAnnotationView.m */; };
 		8B01260B196BE03500775FDD /* PPMapParkingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B01260A196BE03500775FDD /* PPMapParkingAnnotationView.m */; };
+		8B0589C019B07D1C0086D845 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0589BE19B07D1C0086D845 /* Default@2x.png */; };
+		8B0589C219B07D5A0086D845 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0589C119B07D5A0086D845 /* Default-568h@2x.png */; };
+		8B0589C619B07E400086D845 /* AppIcon114@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0589C419B07E400086D845 /* AppIcon114@2x.png */; };
+		8B0589C719B07E400086D845 /* AppIcon120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0589C519B07E400086D845 /* AppIcon120@2x.png */; };
 		8B3A1892196CDC4B00E79A46 /* PPPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A1891196CDC4B00E79A46 /* PPPullView.m */; };
 		8B3A1896196CE48600E79A46 /* PPParkingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A1895196CE48600E79A46 /* PPParkingTableView.m */; };
 		8B3A1899196CE5BD00E79A46 /* PPParkingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A1898196CE5BD00E79A46 /* PPParkingTableViewCell.m */; };
@@ -182,6 +186,10 @@
 		8B012607196BE01700775FDD /* PPMapUserAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMapUserAnnotationView.m; sourceTree = "<group>"; };
 		8B012609196BE03500775FDD /* PPMapParkingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMapParkingAnnotationView.h; sourceTree = "<group>"; };
 		8B01260A196BE03500775FDD /* PPMapParkingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMapParkingAnnotationView.m; sourceTree = "<group>"; };
+		8B0589BE19B07D1C0086D845 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		8B0589C119B07D5A0086D845 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8B0589C419B07E400086D845 /* AppIcon114@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon114@2x.png"; sourceTree = "<group>"; };
+		8B0589C519B07E400086D845 /* AppIcon120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon120@2x.png"; sourceTree = "<group>"; };
 		8B3A1890196CDC4B00E79A46 /* PPPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPullView.h; sourceTree = "<group>"; };
 		8B3A1891196CDC4B00E79A46 /* PPPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPullView.m; sourceTree = "<group>"; };
 		8B3A1894196CE48600E79A46 /* PPParkingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPParkingTableView.h; sourceTree = "<group>"; };
@@ -496,6 +504,15 @@
 			path = map;
 			sourceTree = "<group>";
 		};
+		8B0589C319B07E400086D845 /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				8B0589C419B07E400086D845 /* AppIcon114@2x.png */,
+				8B0589C519B07E400086D845 /* AppIcon120@2x.png */,
+			);
+			path = AppIcon;
+			sourceTree = "<group>";
+		};
 		8B3A1893196CE45300E79A46 /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,6 +627,8 @@
 		B00043551968025C008CBB2C = {
 			isa = PBXGroup;
 			children = (
+				8B0589C119B07D5A0086D845 /* Default-568h@2x.png */,
+				8B0589BE19B07D1C0086D845 /* Default@2x.png */,
 				B00043671968025D008CBB2C /* PigParking */,
 				B00043801968025D008CBB2C /* PigParkingTests */,
 				B00043601968025C008CBB2C /* Frameworks */,
@@ -816,6 +835,7 @@
 		B00043C619680472008CBB2C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8B0589C319B07E400086D845 /* AppIcon */,
 				B043198F197415E40001B905 /* details */,
 				B0F60D9819700ACD00CE7516 /* settings */,
 				B01BB9F8196EC91F0082F10C /* parking */,
@@ -1170,13 +1190,16 @@
 				B0F60DA01970207C00CE7516 /* cell-bg-top@2x.png in Resources */,
 				B0F60DA61970264D00CE7516 /* st-icon2@2x.png in Resources */,
 				B000442219680EBC008CBB2C /* mapapi.bundle in Resources */,
+				8B0589C019B07D1C0086D845 /* Default@2x.png in Resources */,
 				B01BB9FF196EC91F0082F10C /* pk-details-cell-icon0@2x.png in Resources */,
 				B0F60DAE19702B3800CE7516 /* his-none-item-bg@2x.png in Resources */,
 				8BEC1B731976537B00E827CF /* btn-bg-white@2x.png in Resources */,
 				B01BBA00196EC91F0082F10C /* pk-details-cell-icon1@2x.png in Resources */,
 				B01BB9EA196EC0260082F10C /* nav-item-up@2x.png in Resources */,
+				8B0589C719B07E400086D845 /* AppIcon120@2x.png in Resources */,
 				B03EEF0C197D526300F391D8 /* parking-list-cell-bg@2x.png in Resources */,
 				8B88E0DA196A3D9A00722F22 /* nav-bar-bg@2x.png in Resources */,
+				8B0589C619B07E400086D845 /* AppIcon114@2x.png in Resources */,
 				B0F60D97196FEE1B00CE7516 /* idx-btn-go-here@2x.png in Resources */,
 				8B88E0F1196A865B00722F22 /* nav-item-back@2x.png in Resources */,
 				B0F704AE1972952B00D0F87F /* parking-details-pull-view-bg@2x.png in Resources */,
@@ -1207,6 +1230,7 @@
 				B01BBA02196EC91F0082F10C /* pk-details-header@2x.png in Resources */,
 				8BACB5AE196BEA8C00D4E32B /* map-nofree-parking@2x.png in Resources */,
 				8BEC1B71197652B900E827CF /* btn-bg-gray@2x.png in Resources */,
+				8B0589C219B07D5A0086D845 /* Default-568h@2x.png in Resources */,
 				B0431984197401510001B905 /* fb-btn-submit@2x.png in Resources */,
 				8B88E0EC196A7B2500722F22 /* tool-scope@2x.png in Resources */,
 				B0F60D96196FEE1B00CE7516 /* idx-btn-details@2x.png in Resources */,
@@ -1410,10 +1434,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 永强 李 (G45GAF4U3B)";
+				CODE_SIGN_IDENTITY = "";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PigParking/PigParking-Prefix.pch";
@@ -1426,7 +1448,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "165b7367-c153-42cb-800f-b56073d89dc3";
+				PROVISIONING_PROFILE = "4aa86f0e-06e8-4f0d-9e1d-fa69dcf68a1e";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1436,10 +1458,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 永强 李 (G45GAF4U3B)";
+				CODE_SIGN_IDENTITY = "";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PigParking/PigParking-Prefix.pch";
@@ -1451,7 +1471,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "165b7367-c153-42cb-800f-b56073d89dc3";
+				PROVISIONING_PROFILE = "4aa86f0e-06e8-4f0d-9e1d-fa69dcf68a1e";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
