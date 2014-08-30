@@ -8,7 +8,7 @@
 
 #import "PPMapSearchTableViewController.h"
 #import "PPMapSearchModel.h"
-
+#import "PPMapView.h"
 
 @interface PPMapSearchTableViewController () <BMKPoiSearchDelegate>
 
@@ -212,7 +212,7 @@
     
     BMKCitySearchOption *o = [[BMKCitySearchOption alloc] init];
     o.keyword = keyword;
-    o.city = @"深圳市";
+    o.city = [PPMapView sharedInstance].city;
     
     BMKPoiSearch *s = [[BMKPoiSearch alloc] init];
     s.delegate = self;
@@ -224,7 +224,12 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     [_data removeAllObjects];
-    [_data addObjectsFromArray:poiResult.poiInfoList];
+    
+    if (BMK_SEARCH_NO_ERROR == errorCode)
+    {
+        [_data addObjectsFromArray:poiResult.poiInfoList];
+    }
+    
     [self.tableView reloadData];
 }
 

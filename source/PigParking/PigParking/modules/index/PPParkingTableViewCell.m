@@ -18,7 +18,7 @@
 //        self.selectionStyle = UITableViewCellSelectionStyleNone;
         _flag = PPParkingTableViewCellFlagNone;
         
-        _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.0f, 9.0f, self.bounds.size.width, 14.0f)];
+        _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.0f, 9.0f, self.bounds.size.width-70, 14.0f)];
         _addressLabel.font = [UIFont systemFontOfSize:14.0];
         _addressLabel.textColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
         _addressLabel.backgroundColor = [UIColor clearColor];
@@ -30,7 +30,7 @@
         _chargeLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_chargeLabel];
         
-        _distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.0f, _chargeLabel.frame.origin.y+_chargeLabel.frame.size.height+7.0f, self.bounds.size.width, 14.0f)];
+        _distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.0f, _chargeLabel.frame.origin.y+_chargeLabel.frame.size.height+7.0f, self.bounds.size.width-70, 14.0f)];
         _distanceLabel.font = [UIFont systemFontOfSize:14.0];
         _distanceLabel.textColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
         _distanceLabel.backgroundColor = [UIColor clearColor];

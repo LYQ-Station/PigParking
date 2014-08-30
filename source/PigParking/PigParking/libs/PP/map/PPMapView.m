@@ -11,7 +11,7 @@
 #import "PPMapUserAnnotationView.h"
 #import "PPMapParkingAnnotationView.h"
 
-@interface PPMapView ()
+@interface PPMapView () <BMKGeoCodeSearchDelegate>
 
 @property (nonatomic, strong) PPMapAnnoation *userAnnotation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -140,7 +140,7 @@ static PPMapView *__instance = nil;
         
         self.locationManager = [[CLLocationManager alloc] init];
         [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-        [_locationManager setDistanceFilter:500.0f];
+        [_locationManager setDistanceFilter:300.0f];
         [_locationManager setDelegate:self];
     }
     return self;
@@ -343,6 +343,11 @@ static PPMapView *__instance = nil;
 
 - (void)onGetDrivingRouteResult:(BMKRouteSearch *)searcher result:(BMKDrivingRouteResult *)result errorCode:(BMKSearchErrorCode)error
 {
+    if (BMK_SEARCH_NO_ERROR != error)
+    {
+        return;
+    }
+    
     BMKDrivingRouteLine *l = (BMKDrivingRouteLine *)(result.routes[0]);
     
     CLLocationCoordinate2D *cs = (CLLocationCoordinate2D *)malloc(sizeof(CLLocationCoordinate2D) * l.steps.count);
@@ -362,6 +367,11 @@ static PPMapView *__instance = nil;
 
 - (void)onGetWalkingRouteResult:(BMKRouteSearch *)searcher result:(BMKWalkingRouteResult *)result errorCode:(BMKSearchErrorCode)error
 {
+    if (BMK_SEARCH_NO_ERROR != error)
+    {
+        return;
+    }
+    
     BMKWalkingRouteLine *l = (BMKWalkingRouteLine *)(result.routes[0]);
     
     _selectedParkingAnnoation.title = [NSString stringWithFormat:@"步行%d分钟", l.duration.minutes];
@@ -388,19 +398,33 @@ static PPMapView *__instance = nil;
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
-{
-    NSLog(@"Unable to find current location. error: %@",error);
+{    
+    _city = @"深圳市";
+    
+    CLLocationCoordinate2D coor = CLLocationCoordinate2DMake(22.55355, 114.09940);
+    coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
+    
+    [self updateUserLocation:coor];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didUpdateToLocation:)])
+    {
+        [_delegate performSelector:@selector(ppMapView:didUpdateToLocation:)
+                        withObject:self
+                        withObject:[[CLLocation alloc] initWithLatitude:coor.latitude longitude:coor.longitude]];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    CLLocationCoordinate2D coor = [locations[0] coordinate];
+    coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
+    
+    [self doGeoSearch:coor];
+    
     if (PPMapViewscopeModeFollow != _scopeMode)
     {
         return;
     }
-    
-    CLLocationCoordinate2D coor = [locations[0] coordinate];
-    coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
     
     [self updateUserLocation:coor];
     
@@ -419,6 +443,13 @@ static PPMapView *__instance = nil;
     CLLocationCoordinate2D coor = newLocation.coordinate;
     coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
     
+    [self doGeoSearch:coor];
+    
+    if (PPMapViewscopeModeFollow != _scopeMode)
+    {
+        return;
+    }
+    
     [self updateUserLocation:coor];
     
     if (_delegate && [_delegate respondsToSelector:@selector(ppMapView:didUpdateToLocation:)])
@@ -427,6 +458,43 @@ static PPMapView *__instance = nil;
                         withObject:self
                         withObject:[[CLLocation alloc] initWithLatitude:coor.latitude longitude:coor.longitude]];
     }
+}
+
+#pragma mark - geo search
+
+- (void)doGeoSearch:(CLLocationCoordinate2D)location
+{
+    static int i=0;
+    
+    if (i<50)
+    {
+        i++;
+    }
+    i=0;
+    
+    BMKReverseGeoCodeOption *o = [[BMKReverseGeoCodeOption alloc] init];
+    o.reverseGeoPoint = location;
+    
+    BMKGeoCodeSearch *s = [[BMKGeoCodeSearch alloc] init];
+    s.delegate = self;
+    [s reverseGeoCode:o];
+}
+
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher
+                           result:(BMKReverseGeoCodeResult *)result
+                        errorCode:(BMKSearchErrorCode)error
+{
+    if (BMK_SEARCH_NO_ERROR != error)
+    {
+        if (!_city)
+        {
+            _city = @"深圳市";
+        }
+        
+        return;
+    }
+    
+    _city = result.addressDetail.city;
 }
 
 @end

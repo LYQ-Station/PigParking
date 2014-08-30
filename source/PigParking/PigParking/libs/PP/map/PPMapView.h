@@ -24,6 +24,7 @@ typedef enum {
 @property (nonatomic, readonly) BMKMapView *tempMapView; //for calculator region only!
 @property (nonatomic, assign) PPMapViewscopeMode scopeMode;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readonly, copy) NSString *city;
 
 + (PPMapView *)sharedInstance;
 
