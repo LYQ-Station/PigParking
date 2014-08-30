@@ -49,11 +49,27 @@
         return 0;
     }
     
+    if (0 == _data.count)
+    {
+        return 1;
+    }
+    
     return _data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (0 == _data.count)
+    {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"empty-cell"];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.text = @"附近没有停车场。";
+        cell.textLabel.textColor = [UIColor lightGrayColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    }
+    
     static NSString *cid = @"parking-cell";
     
     PPParkingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cid];
@@ -64,7 +80,7 @@
     
     NSDictionary *d = _data[indexPath.row];
     
-    cell.chargeLabel.text = [NSString stringWithFormat:@"费用：%@", d[@"charge"]];
+    cell.chargeLabel.text = [NSString stringWithFormat:@"费用：%@", 0==[d[@"charge"] intValue]?@"免费":d[@"charge"]];
     cell.distanceLabel.text = [NSString stringWithFormat:@"地址：%@", d[@"address"]]; //@"距离：步行至此地5分钟";
     cell.parkingCountLabel.text = [NSString stringWithFormat:@"车位：%@", d[@"parkingCount"]];//@"车位：500个";
     cell.addressLabel.text = [NSString stringWithFormat:@"%@", d[@"title"]];// @"地址：深圳市区松坪山公园";

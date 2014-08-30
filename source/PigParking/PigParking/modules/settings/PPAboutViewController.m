@@ -40,7 +40,7 @@
     
     UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 235.0f, self.view.bounds.size.width, 20.0f)];
     lb.textAlignment = NSTextAlignmentCenter;
-    lb.text = @"猪猪停车 v1.0";
+    lb.text = @"人人停车 v1.0";
     lb.font = [UIFont systemFontOfSize:18.0f];
     lb.backgroundColor = [UIColor clearColor];
     lb.textColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
@@ -50,7 +50,7 @@
     lb.textAlignment = NSTextAlignmentCenter;
     lb.backgroundColor = [UIColor clearColor];
     lb.font = [UIFont systemFontOfSize:13.0f];
-    lb.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+    lb.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleHeight;
     lb.textColor = [UIColor colorWithRed:0.51f green:0.51f blue:0.51f alpha:1.0f];
     lb.numberOfLines = 2;
     lb.text = @"流创梦工厂\n想联系我们，请发邮件至kiko@starnet007.com";

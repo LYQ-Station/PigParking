@@ -536,7 +536,8 @@ typedef enum {
 {
     [textField resignFirstResponder];
     
-    [_searchViewController doSearch:textField.text];
+//    [_searchViewController doSearch:textField.text];
+    [_searchViewController doMapSDKSearch:textField.text];
     
     return YES;
 }
@@ -633,7 +634,17 @@ typedef enum {
 {
     [self btnQuitSearchClick];
     
-    CLLocationCoordinate2D coor = MAKE_COOR_S(item[@"lat"], item[@"lon"]);
+    CLLocationCoordinate2D coor;
+    
+    if (PPMapSearchTableViewControllerModeMapSDKSearch == controller.mode)
+    {
+        coor = ((BMKPoiInfo *)item).pt;
+    }
+    else
+    {
+        coor = MAKE_COOR_S(item[@"lat"], item[@"lon"]);
+    }
+    
     [_mapView updateUserLocation:coor];
     
     _mapView.scopeMode = PPMapViewscopeModeBrowser;

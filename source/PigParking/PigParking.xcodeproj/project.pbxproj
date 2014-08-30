@@ -1448,7 +1448,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4aa86f0e-06e8-4f0d-9e1d-fa69dcf68a1e";
+				PROVISIONING_PROFILE = "165b7367-c153-42cb-800f-b56073d89dc3";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1471,7 +1471,7 @@
 				);
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4aa86f0e-06e8-4f0d-9e1d-fa69dcf68a1e";
+				PROVISIONING_PROFILE = "165b7367-c153-42cb-800f-b56073d89dc3";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

@@ -139,7 +139,7 @@
 {
     _data = data;
     
-    _chargeLabel.text = [NSString stringWithFormat:@"费用：%@", data[@"charge"]];
+    _chargeLabel.text = [NSString stringWithFormat:@"费用：%@", 0==[data[@"charge"] intValue]?@"免费":data[@"charge"]];
     _distanceLabel.text = [NSString stringWithFormat:@"距离：%@", data[@"distance"]];
     _parkingCountLabel.text = [NSString stringWithFormat:@"车位：%@ 个", data[@"parkingCount"]];
     _addressLabel.text = [NSString stringWithFormat:@"地址：%@", data[@"address"]];

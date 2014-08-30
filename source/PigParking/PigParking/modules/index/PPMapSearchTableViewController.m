@@ -9,17 +9,11 @@
 #import "PPMapSearchTableViewController.h"
 #import "PPMapSearchModel.h"
 
-typedef enum {
-    PPMapSearchTableViewControllerModeHistory = 1,
-    PPMapSearchTableViewControllerModeSearch
-} PPMapSearchTableViewControllerMode;
 
-@interface PPMapSearchTableViewController ()
+@interface PPMapSearchTableViewController () <BMKPoiSearchDelegate>
 
 @property (nonatomic, strong) PPMapSearchModel *model;
 @property (nonatomic, strong) NSMutableArray *data;
-
-@property (nonatomic, assign) PPMapSearchTableViewControllerMode mode;
 
 @end
 
@@ -48,12 +42,6 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,6 +91,17 @@ typedef enum {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"srh-cell"];
     }
     
+    if (PPMapSearchTableViewControllerModeMapSDKSearch == _mode)
+    {
+        BMKPoiInfo *d = _data[indexPath.row];
+        
+        cell.imageView.image = [UIImage imageNamed:@"pk-details-cell-icon0"];
+        cell.textLabel.text = d.name;
+        cell.detailTextLabel.text = d.address;
+        
+        return cell;
+    }
+    
     NSDictionary *d = (NSDictionary *)(_data[indexPath.row]);
     
     if ([d[@"charge"] hasPrefix:@"0"])
@@ -139,44 +138,6 @@ typedef enum {
         }
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark -
 
@@ -236,6 +197,35 @@ typedef enum {
                 
                 [self.tableView reloadData];
             }];
+}
+
+- (void)doMapSDKSearch:(NSString *)keyword
+{
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    hud.labelText = @"搜索中...";
+    [self.view addSubview:hud];
+    [hud show:YES];
+    
+    _mode = PPMapSearchTableViewControllerModeMapSDKSearch;
+    
+    [self clean];
+    
+    BMKCitySearchOption *o = [[BMKCitySearchOption alloc] init];
+    o.keyword = keyword;
+    o.city = @"深圳市";
+    
+    BMKPoiSearch *s = [[BMKPoiSearch alloc] init];
+    s.delegate = self;
+    [s poiSearchInCity:o];
+}
+
+- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult *)poiResult errorCode:(BMKSearchErrorCode)errorCode
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    [_data removeAllObjects];
+    [_data addObjectsFromArray:poiResult.poiInfoList];
+    [self.tableView reloadData];
 }
 
 @end
