@@ -135,6 +135,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (1 == indexPath.section)
+    {
+        return;
+    }
+    
     if (0 == indexPath.row)
     {
         PPFeedbackViewController *c = [[PPFeedbackViewController alloc] initWithNibName:nil bundle:nil];

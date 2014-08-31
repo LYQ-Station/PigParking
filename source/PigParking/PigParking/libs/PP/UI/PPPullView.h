@@ -11,6 +11,7 @@
 @interface PPPullView : UIView
 
 @property (nonatomic, assign) id delegate;
+@property (nonatomic, strong) UIView *contentView;
 
 - (id)initWithParentView:(UIView *)parentView contentView:(UIView *)contentView mask:(BOOL)hasMask;
 

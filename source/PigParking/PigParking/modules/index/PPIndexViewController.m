@@ -358,6 +358,8 @@ typedef enum {
     if (!_filterView)
     {
         self.filterView = [[PPParkingFilterView alloc] initWithDelegate:self];
+        _filterView.tag = 999;
+        _filterView.frame = CGRectMake(0, -57.0-(_filterView.bounds.size.height-57.0), _filterView.bounds.size.width, _filterView.bounds.size.height-57.0);
     }
     
     self.pullView = [[PPPullView alloc] initWithParentView:self.view contentView:_filterView mask:YES];

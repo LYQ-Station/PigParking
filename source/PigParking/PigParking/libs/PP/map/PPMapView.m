@@ -165,7 +165,7 @@ static PPMapView *__instance = nil;
 {
     _userAnnotation.coordinate = coordinate;
     
-    if (PPMapViewscopeModeFollow == _scopeMode || PPMapViewscopeModeDirect == _scopeMode)
+    if (PPMapViewscopeModeFollow == _scopeMode || PPMapViewscopeModeDirect == _scopeMode || PPMapViewscopeModeBrowser == _scopeMode)
     {
         [_mapView setRegion:BMKCoordinateRegionMake(coordinate, BMKCoordinateSpanMake(0.005, 0.005)) animated:YES];
     }
