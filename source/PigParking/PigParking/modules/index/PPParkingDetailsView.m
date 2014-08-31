@@ -160,26 +160,17 @@
 
 - (void)btnGoHereClick
 {
-    {
-        UIApplication *app = [UIApplication sharedApplication];
-        
-        NSURL *URL = nil;
-        
-        URL = [NSURL URLWithString:@""];
-    }
-    
-    
-    if ([PPUser currentUser].isSaveSearchHistory)
-    {
-        [[PPHistoryDB db] insert:_data];
-    }
-    
-    [PPMapView navigateFrom:_fromCoordinate to:_toCoordinate];
-    
-//    if (_delegate && [_delegate respondsToSelector:@selector(ppParkingDetailsViewGoHere:)])
+//    if ([PPUser currentUser].isSaveSearchHistory)
 //    {
-//        [_delegate performSelector:@selector(ppParkingDetailsViewGoHere:) withObject:self];
+//        [[PPHistoryDB db] insert:_data];
 //    }
+    
+//    [PPMapView navigateFrom:_fromCoordinate to:_toCoordinate];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(ppParkingDetailsViewGoHere:)])
+    {
+        [_delegate performSelector:@selector(ppParkingDetailsViewGoHere:) withObject:self];
+    }
 }
 
 - (void)btnShowDetailsClick

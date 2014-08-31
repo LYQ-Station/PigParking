@@ -18,6 +18,7 @@
 #import "PPParkingDetailsView.h"
 #import "PPIndexModel.h"
 #import "PPConfigsModel.h"
+#import "PPMapNavigators.h"
 
 typedef enum {
     PPIndexViewTagMask          = 901,
@@ -25,7 +26,7 @@ typedef enum {
     PPIndexViewTagMapToolBar,
 }PPIndexViewTags;
 
-@interface PPIndexViewController () <PPParkingTableViewActDelegate, PPMapViewDelegate, PPParkingDetailsViewDelegate, PPMapSearchTableViewControllerDelegate, PPPullViewDelegate, ParkingFilterViewDelegate>
+@interface PPIndexViewController () <PPParkingTableViewActDelegate, PPMapViewDelegate, PPParkingDetailsViewDelegate, PPMapSearchTableViewControllerDelegate, PPPullViewDelegate, ParkingFilterViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, assign) BOOL isStartPage;
 
@@ -668,7 +669,9 @@ typedef enum {
 
 - (void)ppParkingDetailsViewGoHere:(PPParkingDetailsView *)view
 {
-    
+    UIActionSheet *as = [[PPMapNavigators sharedInstance] navigatorsSheet];
+    as.delegate = self;
+    [as showInView:self.view];
 }
 
 - (void)ppParkingDetailsViewShowDetails:(PPParkingDetailsView *)view
@@ -684,6 +687,20 @@ typedef enum {
     c.fromCoordinate = _mapView.coordinate;
     [c setupTheme];
     [self.navigationController pushViewController:c animated:YES];
+}
+
+#pragma mark -
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex+1 > [PPMapNavigators sharedInstance].navigators.count)
+    {
+        return;
+    }
+    
+    PPParkingDetailsView *dv = (PPParkingDetailsView *)_pullView.contentView;
+    NSDictionary *d = dv.data;
+    [PPMapNavigators navigateFrom:_mapView.currentCoordinate to:MAKE_COOR_S(d[@"lat"], d[@"lon"]) destionName:d[@"title"] type:buttonIndex];
 }
 
 #pragma mark - ParkingFilterViewDelegate

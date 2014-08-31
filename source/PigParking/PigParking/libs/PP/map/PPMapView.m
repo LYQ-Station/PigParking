@@ -161,6 +161,27 @@ static PPMapView *__instance = nil;
     [_locationManager startUpdatingLocation];
 }
 
+- (void)updateCurrentLocation:(CLLocationCoordinate2D)coordinate
+{
+    _userAnnotation.coordinate = coordinate;
+    
+    if (PPMapViewscopeModeFollow == _scopeMode || PPMapViewscopeModeDirect == _scopeMode || PPMapViewscopeModeBrowser == _scopeMode)
+    {
+        [_mapView setRegion:BMKCoordinateRegionMake(coordinate, BMKCoordinateSpanMake(0.005, 0.005)) animated:YES];
+    }
+    
+    if (!_userAnnotation)
+    {
+        _userAnnotation = [[PPMapAnnoation alloc] init];
+        _userAnnotation.type = PPMapAnnoationTypeUser;
+        _userAnnotation.coordinate = coordinate;
+        
+        [_mapView addAnnotation:_userAnnotation];
+        
+        return;
+    }
+}
+
 - (void)updateUserLocation:(CLLocationCoordinate2D)coordinate
 {
     _userAnnotation.coordinate = coordinate;
@@ -419,6 +440,8 @@ static PPMapView *__instance = nil;
     CLLocationCoordinate2D coor = [locations[0] coordinate];
     coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
     
+    _currentCoordinate = [locations[0] coordinate];
+    
     [self doGeoSearch:coor];
     
     if (PPMapViewscopeModeFollow != _scopeMode)
@@ -442,6 +465,8 @@ static PPMapView *__instance = nil;
 {
     CLLocationCoordinate2D coor = newLocation.coordinate;
     coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
+    
+    _currentCoordinate = newLocation.coordinate;
     
     [self doGeoSearch:coor];
     
