@@ -610,8 +610,15 @@ typedef enum {
 
 - (void)parkingTableView:(PPParkingTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PPParkingDetailsViewController *c = [[PPParkingDetailsViewController alloc] initWithNibName:nil bundle:nil];
+//    PPParkingDetailsViewController *c = [[PPParkingDetailsViewController alloc] initWithNibName:nil bundle:nil];
+//    c.data = [_parkingArray objectAtIndex:indexPath.row];
+//    [self.navigationController pushViewController:c animated:YES];
+    
+    PPParkingDetailViewController *c = [[PPParkingDetailViewController alloc] initWithNibName:nil bundle:nil];
     c.data = [_parkingArray objectAtIndex:indexPath.row];
+    c.title = c.data[@"title"];
+    c.fromCoordinate = _mapView.coordinate;
+    [c setupTheme];
     [self.navigationController pushViewController:c animated:YES];
 }
 

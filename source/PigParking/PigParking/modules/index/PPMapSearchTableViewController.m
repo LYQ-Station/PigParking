@@ -80,6 +80,7 @@
         cell.textLabel.text = @"暂无记录。";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.textColor = [UIColor grayColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
     }

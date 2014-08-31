@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		48160AE7199E620000275D46 /* Directions.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 48160AE6199E620000275D46 /* Directions.geojson */; };
+		481FE7A719B321F6003612E4 /* PPMapNavigators.m in Sources */ = {isa = PBXBuildFile; fileRef = 481FE7A619B321F6003612E4 /* PPMapNavigators.m */; };
 		48530C8619AF71C10030C52C /* ann-bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48530C8519AF71C10030C52C /* ann-bubble@2x.png */; };
 		48F6D0AE19A8A1280076BC9A /* PPParkingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F6D0AD19A8A1280076BC9A /* PPParkingDetailViewController.m */; };
 		8B0125F3196B9E7800775FDD /* PPMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0125F2196B9E7800775FDD /* PPMapView.m */; };
@@ -170,6 +171,8 @@
 
 /* Begin PBXFileReference section */
 		48160AE6199E620000275D46 /* Directions.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
+		481FE7A519B321F6003612E4 /* PPMapNavigators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMapNavigators.h; sourceTree = "<group>"; };
+		481FE7A619B321F6003612E4 /* PPMapNavigators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMapNavigators.m; sourceTree = "<group>"; };
 		48530C8519AF71C10030C52C /* ann-bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ann-bubble@2x.png"; sourceTree = "<group>"; };
 		48F6D0AC19A8A1280076BC9A /* PPParkingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPParkingDetailViewController.h; sourceTree = "<group>"; };
 		48F6D0AD19A8A1280076BC9A /* PPParkingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPParkingDetailViewController.m; sourceTree = "<group>"; };
@@ -490,6 +493,8 @@
 				8B012607196BE01700775FDD /* PPMapUserAnnotationView.m */,
 				8B012609196BE03500775FDD /* PPMapParkingAnnotationView.h */,
 				8B01260A196BE03500775FDD /* PPMapParkingAnnotationView.m */,
+				481FE7A519B321F6003612E4 /* PPMapNavigators.h */,
+				481FE7A619B321F6003612E4 /* PPMapNavigators.m */,
 			);
 			path = map;
 			sourceTree = "<group>";
@@ -1319,6 +1324,7 @@
 				B000440E196809B5008CBB2C /* PPSettingsViewController.m in Sources */,
 				8BEC1B6D19764FDC00E827CF /* PPRadioButtonGroupView.m in Sources */,
 				8B012608196BE01700775FDD /* PPMapUserAnnotationView.m in Sources */,
+				481FE7A719B321F6003612E4 /* PPMapNavigators.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

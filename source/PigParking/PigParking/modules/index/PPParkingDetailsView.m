@@ -35,7 +35,7 @@
         iv = [[UIImageView alloc] initWithImage:im];
         [self addSubview:iv];
         
-        _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, 0.0f, self.bounds.size.width-45.0f, 32.0f)];
+        _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(17.0f, 0.0f, self.bounds.size.width-70.0f, 32.0f)];
         _addressLabel.font = [UIFont systemFontOfSize:15.0];
         _addressLabel.textColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
         _addressLabel.backgroundColor = [UIColor clearColor];
@@ -80,12 +80,17 @@
 
 - (void)setChargeText:(NSString *)chargeText
 {
-    _chargeLabel.text = [NSString stringWithFormat:@"费用：%@", chargeText];
+    _chargeLabel.text = [NSString stringWithFormat:@"费用：%@", 0==[chargeText intValue]?@"免费":chargeText];
 }
 
 -(void)setDistanceText:(NSString *)distanceText
 {
     _distanceLabel.text = [NSString stringWithFormat:@"距离：%@", distanceText];
+}
+
+- (void)setNameText:(NSString *)nameText
+{
+    _addressLabel.text = nameText;
 }
 
 - (void)setParkingCountText:(NSString *)parkingCountText
@@ -95,7 +100,8 @@
 
 - (void)setAddressText:(NSString *)addressText
 {
-    _addressLabel.text = [NSString stringWithFormat:@"地址：%@", addressText];
+//    _addressLabel.text = [NSString stringWithFormat:@"地址：%@", addressText];
+    _distanceLabel.text = [NSString stringWithFormat:@"距离：%@", addressText];
 }
 
 - (void)setFlag:(PPParkingTableViewCellFlag)flag
@@ -140,9 +146,10 @@
     _data = data;
     
     _chargeLabel.text = [NSString stringWithFormat:@"费用：%@", 0==[data[@"charge"] intValue]?@"免费":data[@"charge"]];
-    _distanceLabel.text = [NSString stringWithFormat:@"距离：%@", data[@"distance"]];
+//    _distanceLabel.text = [NSString stringWithFormat:@"距离：%@", data[@"distance"]];
+    _distanceLabel.text = [NSString stringWithFormat:@"地址：%@", data[@"address"]];
     _parkingCountLabel.text = [NSString stringWithFormat:@"车位：%@ 个", data[@"parkingCount"]];
-    _addressLabel.text = [NSString stringWithFormat:@"地址：%@", data[@"address"]];
+    _addressLabel.text = data[@"title"];
     
     _toCoordinate = CLLocationCoordinate2DMake([data[@"lat"] floatValue], [data[@"lon"] floatValue]);
     
@@ -153,6 +160,15 @@
 
 - (void)btnGoHereClick
 {
+    {
+        UIApplication *app = [UIApplication sharedApplication];
+        
+        NSURL *URL = nil;
+        
+        URL = [NSURL URLWithString:@""];
+    }
+    
+    
     if ([PPUser currentUser].isSaveSearchHistory)
     {
         [[PPHistoryDB db] insert:_data];

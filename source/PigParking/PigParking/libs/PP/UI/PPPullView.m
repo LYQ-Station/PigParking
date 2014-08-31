@@ -39,16 +39,15 @@
             [self addSubview:_maskView];
             
             UITapGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapMaskGesture:)];
-            
-            if (999 != contentView.tag)
-            {
-                _contentView.frame = CGRectMake(0.0f, 0.0f-_contentView.bounds.size.height, _contentView.bounds.size.width, _contentView.bounds.size.height);
-            }
-            
             [_maskView addGestureRecognizer:g];
         }
         
         self.contentView = contentView;
+        
+        if (999 != contentView.tag)
+        {
+            _contentView.frame = CGRectMake(0.0f, 0.0f-_contentView.bounds.size.height, _contentView.bounds.size.width, _contentView.bounds.size.height);
+        }
         [self addSubview:_contentView];
     }
     return self;

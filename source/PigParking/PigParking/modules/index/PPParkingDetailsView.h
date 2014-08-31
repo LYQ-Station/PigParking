@@ -21,6 +21,7 @@
 
 @property (nonatomic, copy) NSString *title;
 
+@property (nonatomic, assign) NSString *nameText;
 @property (nonatomic, assign) NSString *chargeText;
 @property (nonatomic, assign) NSString *distanceText;
 @property (nonatomic, assign) NSString *parkingCountText;
