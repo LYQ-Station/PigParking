@@ -10,6 +10,7 @@
 #import "PPStartViewController.h"
 #import "PPIndexViewController.h"
 #import "PPMapView.h"
+#import "PPIntroView.h"
 
 @interface PPAppDelegate ()
 
@@ -28,10 +29,12 @@
         NSLog(@"BaiduMap manager start failed!");
     }
     
-//    _window.rootViewController = [[PPStartViewController alloc] initWithNibName:nil bundle:nil];
     _window.rootViewController = [PPIndexViewController navController];
     
     [self.window makeKeyAndVisible];
+    
+    PPIntroView *intro_view = [[PPIntroView alloc] initWithFrame:_window.bounds];
+    [_window addSubview:intro_view];
     
     return YES;
 }

@@ -80,7 +80,7 @@
     
     NSDictionary *d = _data[indexPath.row];
     
-    cell.chargeLabel.text = [NSString stringWithFormat:@"费用：%@", 0==[d[@"charge"] intValue]?@"免费":d[@"charge"]];
+    cell.chargeLabel.text = [NSString stringWithFormat:@"费用：%@", 0==[d[@"charge"] intValue]?@"免费":d[@"priceIntro"]];
     cell.distanceLabel.text = [NSString stringWithFormat:@"地址：%@", d[@"address"]]; //@"距离：步行至此地5分钟";
     cell.parkingCountLabel.text = [NSString stringWithFormat:@"车位：%@", d[@"parkingCount"]];//@"车位：500个";
     cell.addressLabel.text = [NSString stringWithFormat:@"%@", d[@"title"]];// @"地址：深圳市区松坪山公园";

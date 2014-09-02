@@ -27,6 +27,7 @@
         
         self.lbFlag = [[UILabel alloc] initWithFrame:CGRectZero];
         _lbFlag.font = [UIFont systemFontOfSize:13.0];
+        _lbFlag.textColor = [UIColor whiteColor];
         
         self.clipsToBounds = NO;
     }

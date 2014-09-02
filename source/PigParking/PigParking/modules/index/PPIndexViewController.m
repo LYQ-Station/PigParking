@@ -19,6 +19,7 @@
 #import "PPIndexModel.h"
 #import "PPConfigsModel.h"
 #import "PPMapNavigators.h"
+#import "PPIntroView.h"
 
 typedef enum {
     PPIndexViewTagMask          = 901,
@@ -100,6 +101,13 @@ typedef enum {
     
     [self setupTheme];
     [self.navigationController.navigationBar setupTheme];
+    
+//    {
+//        UIWindow *win = [[UIApplication sharedApplication].windows objectAtIndex:0];
+//        PPIntroView *intro_view = [[PPIntroView alloc] initWithFrame:win.bounds];
+//        [win addSubview:intro_view];
+//        return;
+//    }
     
     _mapView = [PPMapView mapViewWithFrame:self.view.bounds];
     _mapView.mapView.userInteractionEnabled = YES;

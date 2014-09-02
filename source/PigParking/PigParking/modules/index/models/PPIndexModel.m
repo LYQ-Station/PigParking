@@ -64,6 +64,7 @@
                    @"lat":d[@"lat"],
                    @"lon":d[@"lng"],
                    @"charge":d[@"price"],
+                   @"priceIntro":d[@"priceIntro"],
                    @"distance":@"0",
                    @"parkingCount":d[@"carNum"],
                    @"address":d[@"addr"],
