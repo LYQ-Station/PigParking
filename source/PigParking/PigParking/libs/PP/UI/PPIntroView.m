@@ -30,6 +30,7 @@
         
         UIScrollView *sv = [[UIScrollView alloc] initWithFrame:frame];
         sv.delegate = self;
+        sv.showsHorizontalScrollIndicator = NO;
         sv.contentSize = CGSizeMake(frame.size.width*_imagesName.count, frame.size.height);
         sv.pagingEnabled = YES;
         [self addSubview:sv];
@@ -51,6 +52,13 @@
             
             iv.frame = CGRectMake(i*im.size.width, 0, im.size.width, im.size.height);
             i++;
+            
+            if (3 <= i)
+            {
+                iv.userInteractionEnabled = YES;
+                UITapGestureRecognizer *g = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapGesture:)];
+                [iv addGestureRecognizer:g];
+            }
         }
     }
     return self;
@@ -62,6 +70,24 @@
     
     UIImage *im = [UIImage imageNamed:[NSString stringWithFormat:@"%@-x", _imagesName[i]]];
     _indexImageView.image = im;
+}
+
+- (void)onTapGesture:(UITapGestureRecognizer *)gesture
+{
+    [gesture.view removeGestureRecognizer:gesture];
+    
+    [UIView animateWithDuration:0.3
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.alpha = 0.0;
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished)
+                         {
+                             [self removeFromSuperview];
+                         }
+                     }];
 }
 
 /*

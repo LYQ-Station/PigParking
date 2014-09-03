@@ -19,7 +19,6 @@
 #import "PPIndexModel.h"
 #import "PPConfigsModel.h"
 #import "PPMapNavigators.h"
-#import "PPIntroView.h"
 
 typedef enum {
     PPIndexViewTagMask          = 901,
@@ -101,13 +100,6 @@ typedef enum {
     
     [self setupTheme];
     [self.navigationController.navigationBar setupTheme];
-    
-//    {
-//        UIWindow *win = [[UIApplication sharedApplication].windows objectAtIndex:0];
-//        PPIntroView *intro_view = [[PPIntroView alloc] initWithFrame:win.bounds];
-//        [win addSubview:intro_view];
-//        return;
-//    }
     
     _mapView = [PPMapView mapViewWithFrame:self.view.bounds];
     _mapView.mapView.userInteractionEnabled = YES;
@@ -239,15 +231,15 @@ typedef enum {
     }
     
         //tips
-    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 405.0f, [UIScreen mainScreen].bounds.size.width, 20.0f)];
-    lb.tag = PPIndexViewTagTipsLabel;
-    lb.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
-    lb.font = [UIFont systemFontOfSize:13.0f];
-    lb.backgroundColor = [UIColor clearColor];
-    lb.textAlignment = NSTextAlignmentCenter;
-    lb.textColor = [UIColor colorWithRed:0.73f green:0.73f blue:0.73f alpha:1.0f];
-    lb.text = @"已累计为 XXXXXXXX 位用户找到免费车位";
-    [mask addSubview:lb];
+//    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 405.0f, [UIScreen mainScreen].bounds.size.width, 20.0f)];
+//    lb.tag = PPIndexViewTagTipsLabel;
+//    lb.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+//    lb.font = [UIFont systemFontOfSize:13.0f];
+//    lb.backgroundColor = [UIColor clearColor];
+//    lb.textAlignment = NSTextAlignmentCenter;
+//    lb.textColor = [UIColor colorWithRed:0.73f green:0.73f blue:0.73f alpha:1.0f];
+//    lb.text = @"已累计为 XXXXXXXX 位用户找到免费车位";
+//    [mask addSubview:lb];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isStartPage)

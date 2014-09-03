@@ -33,8 +33,15 @@
     
     [self.window makeKeyAndVisible];
     
-    PPIntroView *intro_view = [[PPIntroView alloc] initWithFrame:_window.bounds];
-    [_window addSubview:intro_view];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if (![ud objectForKey:@"isUsed"])
+    {
+        PPIntroView *intro_view = [[PPIntroView alloc] initWithFrame:_window.bounds];
+        [_window addSubview:intro_view];
+        
+        [ud setObject:@"1" forKey:@"isUsed"];
+        [ud synchronize];
+    }
     
     return YES;
 }
