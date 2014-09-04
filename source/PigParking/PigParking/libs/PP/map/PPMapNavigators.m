@@ -140,7 +140,7 @@
     
     if (1==_myNavigators.count)
     {
-        as = [[UIActionSheet alloc] initWithTitle:nil
+        as = [[UIActionSheet alloc] initWithTitle:@"请选择导航"
                                          delegate:nil
                                 cancelButtonTitle:@"取消"
                            destructiveButtonTitle:nil
@@ -148,7 +148,7 @@
     }
     else if (2 == _myNavigators.count)
     {
-        as = [[UIActionSheet alloc] initWithTitle:nil
+        as = [[UIActionSheet alloc] initWithTitle:@"请选择导航"
                                          delegate:nil
                                 cancelButtonTitle:@"取消"
                            destructiveButtonTitle:nil
@@ -156,7 +156,7 @@
     }
     else if (3 == _myNavigators.count)
     {
-        as = [[UIActionSheet alloc] initWithTitle:nil
+        as = [[UIActionSheet alloc] initWithTitle:@"请选择导航"
                                          delegate:nil
                                 cancelButtonTitle:@"取消"
                            destructiveButtonTitle:nil
@@ -164,7 +164,7 @@
     }
     else if (4 == _myNavigators.count)
     {
-        as = [[UIActionSheet alloc] initWithTitle:nil
+        as = [[UIActionSheet alloc] initWithTitle:@"请选择导航"
                                          delegate:nil
                                 cancelButtonTitle:@"取消"
                            destructiveButtonTitle:nil

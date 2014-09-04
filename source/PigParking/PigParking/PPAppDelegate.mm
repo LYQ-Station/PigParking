@@ -20,6 +20,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    {
+        NSString *str = @"gz+GHfdYlDm6dqiTkTNUzQ==";
+        NSData *d = [str base64DecodedData];
+        d = [d DESDecryptWithKey:@"PPK$12345678"];
+        str = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
+        NSLog(@"===>%@", str);
+        return YES;
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.mapManager = [[BMKMapManager alloc] init];
