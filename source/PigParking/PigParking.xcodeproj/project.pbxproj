@@ -89,7 +89,6 @@
 		B000440819680886008CBB2C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B000440719680886008CBB2C /* libsqlite3.dylib */; };
 		B000440E196809B5008CBB2C /* PPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B000440D196809B5008CBB2C /* PPSettingsViewController.m */; };
 		B000441119680A39008CBB2C /* PPIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B000441019680A39008CBB2C /* PPIndexViewController.m */; };
-		B000441419680A49008CBB2C /* PPStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B000441319680A49008CBB2C /* PPStartViewController.m */; };
 		B000441A19680E2C008CBB2C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B000441919680E2C008CBB2C /* CoreLocation.framework */; };
 		B000441C19680E35008CBB2C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B000441B19680E35008CBB2C /* OpenGLES.framework */; };
 		B000441E19680E4A008CBB2C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B000441D19680E4A008CBB2C /* SystemConfiguration.framework */; };
@@ -363,8 +362,6 @@
 		B000440D196809B5008CBB2C /* PPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSettingsViewController.m; sourceTree = "<group>"; };
 		B000440F19680A39008CBB2C /* PPIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPIndexViewController.h; sourceTree = "<group>"; };
 		B000441019680A39008CBB2C /* PPIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPIndexViewController.m; sourceTree = "<group>"; };
-		B000441219680A49008CBB2C /* PPStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPStartViewController.h; sourceTree = "<group>"; };
-		B000441319680A49008CBB2C /* PPStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPStartViewController.m; sourceTree = "<group>"; };
 		B000441519680AC0008CBB2C /* PPConfigs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPConfigs.h; sourceTree = "<group>"; };
 		B000441919680E2C008CBB2C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B000441B19680E35008CBB2C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -828,8 +825,6 @@
 			children = (
 				8B3A1893196CE45300E79A46 /* views */,
 				B01123F519698BFA00046745 /* models */,
-				B000441219680A49008CBB2C /* PPStartViewController.h */,
-				B000441319680A49008CBB2C /* PPStartViewController.m */,
 				B000440F19680A39008CBB2C /* PPIndexViewController.h */,
 				B000441019680A39008CBB2C /* PPIndexViewController.m */,
 				8B5247F91974B1B00061FADB /* PPMapSearchTableViewController.h */,
@@ -1294,7 +1289,6 @@
 				B000441119680A39008CBB2C /* PPIndexViewController.m in Sources */,
 				8B0125F3196B9E7800775FDD /* PPMapView.m in Sources */,
 				8BF3469B197761AD004018D6 /* PPBaseDB.m in Sources */,
-				B000441419680A49008CBB2C /* PPStartViewController.m in Sources */,
 				B0F704A9197212BF00D0F87F /* PPHistoryTableViewCell.m in Sources */,
 				FFE6732719B5FBEF0035DFB1 /* PPIntroView.m in Sources */,
 				B00043B919680441008CBB2C /* AFImageRequestOperation.m in Sources */,

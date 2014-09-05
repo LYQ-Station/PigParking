@@ -7,7 +7,6 @@
 //
 
 #import "PPAppDelegate.h"
-#import "PPStartViewController.h"
 #import "PPIndexViewController.h"
 #import "PPMapView.h"
 #import "PPIntroView.h"
@@ -20,15 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    {
-//        NSString *str = @"Kt79iTtKJpHEqSq9eZ4dGA==";
-//        NSData *d = [str base64DecodedData];
-//        d = [d DESDecryptWithKey:@"abc"];
-//        str = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
-//        NSLog(@"===>%@", str);
-//        return YES;
-//    }
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.mapManager = [[BMKMapManager alloc] init];

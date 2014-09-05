@@ -24,7 +24,7 @@
         _addressLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_addressLabel];
         
-        _chargeLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.0f, _addressLabel.frame.origin.y+_addressLabel.frame.size.height+11.0f, self.bounds.size.width, 14.0f)];
+        _chargeLabel = [[UILabel alloc] initWithFrame:CGRectMake(19.0f, _addressLabel.frame.origin.y+_addressLabel.frame.size.height+11.0f, self.bounds.size.width-70, 14.0f)];
         _chargeLabel.font = [UIFont systemFontOfSize:14.0];
         _chargeLabel.textColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
         _chargeLabel.backgroundColor = [UIColor clearColor];
