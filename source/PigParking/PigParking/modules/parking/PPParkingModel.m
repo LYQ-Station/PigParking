@@ -58,19 +58,7 @@
                             @"fristHourCharge":j[@"frist_hour"],
                             @"fullDayCharge":j[@"highest"],
                             @"bigImages":j[@"bigPic"],
-                            @"smallImages":j[@"smallPic"],
-//                            @"smallImages":@[@"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314179993130_120x90.jpg",
-//                                             @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314180016869_120x90.jpg",
-//                                             @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314180096203_120x90.jpg",
-//                                             @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314179996120_120x90.jpg",
-//                                             @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314180134788_120x90.jpg"
-//                                             ],
-//                            @"bigImages":@[@"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314179993130_800x600.jpg",
-//                                           @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314180016869_800x600.jpg",
-//                                           @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314180096203_800x600.jpg",
-//                                           @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314179996120_800x600.jpg",
-//                                           @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1108/24/c20/8755883_8755883_1314180134788_800x600.jpg"
-//                                           ]
+                            @"smallImages":j[@"smallPic"]
                             };
         
         complete(d, nil);

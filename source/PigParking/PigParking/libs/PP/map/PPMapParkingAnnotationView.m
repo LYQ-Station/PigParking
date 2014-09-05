@@ -26,6 +26,7 @@
         self.ivFlagBubbleView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"ann-bubble"] resizableImageWithCapInsets:UIEdgeInsetsMake(11.0, 14.0, 17.0, 14.0)]];
         
         self.lbFlag = [[UILabel alloc] initWithFrame:CGRectZero];
+        _lbFlag.backgroundColor = [UIColor clearColor];
         _lbFlag.font = [UIFont systemFontOfSize:13.0];
         _lbFlag.textColor = [UIColor whiteColor];
         

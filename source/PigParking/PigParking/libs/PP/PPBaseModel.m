@@ -23,9 +23,33 @@
     return @{@"V": json};
 }
 
-- (id)parseResponseData:(NSData *)data error:(NSError **)error
+- (id)parseResponseData:(NSData *)data error:(NSError *__autoreleasing *)error
 {
     if (!data)
+    {
+        *error = [NSError errorWithDomain:PP_BASE_DOMAIN
+                                     code:1002
+                                 userInfo:@{NSLocalizedDescriptionKey:@"无效的data"}];
+        
+        return nil;
+    }
+    
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSData *d = [str base64DecodedData];
+    d = [d DESDecryptWithKey:PP_SECRET_KEY];
+    
+        //if cloud not decrypt data restore it!
+    if (!d)
+    {
+        d = data;
+    }
+    
+    *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:d
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:error];
+    
+    if (*error)
     {
         *error = [NSError errorWithDomain:PP_BASE_DOMAIN
                                      code:1002
@@ -33,10 +57,6 @@
         
         return nil;
     }
-    
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:nil];
     
     if (!json)
     {

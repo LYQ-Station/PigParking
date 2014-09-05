@@ -20,6 +20,8 @@
 
 #pragma mark - URLs
 
+#define PP_SECRET_KEY       @"fxQ5FtFi"
+
 #define PP_BASE_DOMAIN      @"pig-parking.com"
 #define PP_API_URL          @"http://www.sanxinba.cn/zz_manage/index.php?r=interface"
 

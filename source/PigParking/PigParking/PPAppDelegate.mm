@@ -20,14 +20,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    {
-        NSString *str = @"gz+GHfdYlDm6dqiTkTNUzQ==";
-        NSData *d = [str base64DecodedData];
-        d = [d DESDecryptWithKey:@"PPK$12345678"];
-        str = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
-        NSLog(@"===>%@", str);
-        return YES;
-    }
+//    {
+//        NSString *str = @"Kt79iTtKJpHEqSq9eZ4dGA==";
+//        NSData *d = [str base64DecodedData];
+//        d = [d DESDecryptWithKey:@"abc"];
+//        str = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
+//        NSLog(@"===>%@", str);
+//        return YES;
+//    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
