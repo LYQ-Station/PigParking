@@ -68,7 +68,7 @@
                    @"distance":@"0",
                    @"parkingCount":d[@"carNum"],
                    @"address":d[@"addr"],
-                   @"flag":d[@"type"]
+                   @"flag":[d[@"type"] length]==0?@"0":[NSString stringWithFormat:@"%d", [d[@"type"] intValue]+1]
                    };
             
             [arr addObject:nd];

@@ -11,8 +11,8 @@
 typedef enum {
     PPParkingTableViewCellFlagNone = 0,
     PPParkingTableViewCellFlagCheap,
-    PPParkingTableViewCellFlagMost,
     PPParkingTableViewCellFlagNearest,
+    PPParkingTableViewCellFlagMost
 } PPParkingTableViewCellFlag;
 
 @interface PPParkingTableViewCell : UITableViewCell
