@@ -23,6 +23,9 @@
         if (LESS_THAN_IOS6)
         {
                 //from Baidu to GPS
+            from.latitude -= 0.0060f;
+            from.longitude -= 0.0065f;
+            
             to.latitude -= 0.0060f;
             to.longitude -= 0.0065f;
             
@@ -72,7 +75,7 @@
     else if (1 == type)
     {
             //from GPS to Baidu
-        from = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(from, BMK_COORDTYPE_GPS));
+//        from = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(from, BMK_COORDTYPE_GPS));
         
         NSString *url = [NSString stringWithFormat:@"baidumap://map/direction?origin=%f,%f&destination=%f,%f&mode=driving&src=人人停车", from.latitude, from.longitude, to.latitude, to.longitude];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
@@ -80,6 +83,9 @@
     else if (2 == type)
     {
             //from Baidu to GPS
+        from.latitude -= 0.0060f;
+        from.longitude -= 0.0065f;
+        
         to.latitude -= 0.0060f;
         to.longitude -= 0.0065f;
         

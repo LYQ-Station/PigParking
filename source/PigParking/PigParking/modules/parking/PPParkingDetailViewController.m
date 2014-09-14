@@ -15,8 +15,9 @@
 #import "MJPhoto.h"
 #import "PPParkingModel.h"
 #import "PPHistoryDB.h"
+#import "PPMapNavigators.h"
 
-@interface PPParkingDetailViewController () <UITableViewDataSource, UITableViewDelegate, FBImagesWheelDelegate>
+@interface PPParkingDetailViewController () <UITableViewDataSource, UITableViewDelegate, FBImagesWheelDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, assign) UITableView *tableView;
 @property (nonatomic, strong) PPParkingModel *model;
@@ -152,7 +153,7 @@
     b.frame = CGRectMake(0, 0, im.size.width, im.size.height);
     b.center = CGPointMake(v.bounds.size.width*0.5, v.bounds.size.height*0.5);
     [b setBackgroundImage:im forState:UIControlStateNormal];
-    [b addTarget:self action:@selector(btnGoHereClick:) forControlEvents:UIControlEventTouchDragInside];
+    [b addTarget:self action:@selector(btnGoHereClick:) forControlEvents:UIControlEventTouchUpInside];
     [v addSubview:b];
     
     return v;
@@ -241,18 +242,35 @@
 
 - (IBAction)btnGoHereClick:(id)sender
 {
-    if ([PPUser currentUser].isSaveSearchHistory)
-    {
-        [[PPHistoryDB db] insert:_data];
-    }
+//    if ([PPUser currentUser].isSaveSearchHistory)
+//    {
+//        [[PPHistoryDB db] insert:_data];
+//    }
+//    
+//    CLLocationCoordinate2D to = MAKE_COOR_S(_data[@"lat"], _data[@"lon"]);
+//    [PPMapView navigateFrom:_fromCoordinate to:to];
     
-    CLLocationCoordinate2D to = MAKE_COOR_S(_data[@"lat"], _data[@"lon"]);
-    [PPMapView navigateFrom:_fromCoordinate to:to];
+    UIActionSheet *as = [[PPMapNavigators sharedInstance] navigatorsSheet];
+    as.delegate = self;
+    [as showInView:self.view];
 }
 
 - (void)btnBackClick:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark -
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex+1 > [PPMapNavigators sharedInstance].navigators.count)
+    {
+        return;
+    }
+    
+    NSDictionary *d = self.data;
+    [PPMapNavigators navigateFrom:[PPMapView sharedInstance].currentCoordinate to:MAKE_COOR_S(d[@"lat"], d[@"lon"]) destionName:d[@"title"] type:buttonIndex];
 }
 
 @end

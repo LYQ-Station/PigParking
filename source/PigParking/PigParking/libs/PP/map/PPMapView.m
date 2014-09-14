@@ -440,7 +440,8 @@ static PPMapView *__instance = nil;
     CLLocationCoordinate2D coor = [locations[0] coordinate];
     coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
     
-    _currentCoordinate = [locations[0] coordinate];
+//    _currentCoordinate = [locations[0] coordinate];
+    _currentCoordinate = coor;
     
     [self doGeoSearch:coor];
     
@@ -466,7 +467,8 @@ static PPMapView *__instance = nil;
     CLLocationCoordinate2D coor = newLocation.coordinate;
     coor = BMKCoorDictionaryDecode(BMKConvertBaiduCoorFrom(coor, BMK_COORDTYPE_GPS));
     
-    _currentCoordinate = newLocation.coordinate;
+//    _currentCoordinate = newLocation.coordinate;
+    _currentCoordinate = coor;
     
     [self doGeoSearch:coor];
     
