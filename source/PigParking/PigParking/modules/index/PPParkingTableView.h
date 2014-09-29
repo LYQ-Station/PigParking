@@ -21,4 +21,6 @@
 @optional
 - (void)parkingTableView:(PPParkingTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
+- (void)parkingTableView:(PPParkingTableView *)tableView didSelectRowWithData:(id)data;
+
 @end

@@ -17,6 +17,8 @@
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, strong) PPIndexModel *model;
 
+@property (nonatomic, assign) BOOL isReloadData;
+
 @end
 
 @implementation PPParkingTableView
@@ -63,7 +65,7 @@
     {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"empty-cell"];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.text = @"附近没有停车场。";
+        cell.textLabel.text = @"暂无数据，请尝试扩大范围。";
         cell.textLabel.textColor = [UIColor lightGrayColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -96,9 +98,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_actDelegate && [_actDelegate respondsToSelector:@selector(parkingTableView:didSelectRowAtIndexPath:)])
+    if (!_data.count)
     {
-        [_actDelegate performSelector:@selector(parkingTableView:didSelectRowAtIndexPath:) withObject:self withObject:indexPath];
+        return;
+    }
+    
+    if (!_isReloadData)
+    {
+        if (_actDelegate && [_actDelegate respondsToSelector:@selector(parkingTableView:didSelectRowAtIndexPath:)])
+        {
+            [_actDelegate performSelector:@selector(parkingTableView:didSelectRowAtIndexPath:) withObject:self withObject:indexPath];
+        }
+    }
+    else
+    {
+        if (_actDelegate && [_actDelegate respondsToSelector:@selector(parkingTableView:didSelectRowWithData:)])
+        {
+            [_actDelegate performSelector:@selector(parkingTableView:didSelectRowWithData:) withObject:self withObject:_data[indexPath.row]];
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -153,6 +170,7 @@
             return ;
         }
         
+        self.isReloadData = YES;
         self.data = data;
         [self reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     }];

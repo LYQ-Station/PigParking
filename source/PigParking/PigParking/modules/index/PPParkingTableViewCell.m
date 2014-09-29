@@ -64,10 +64,13 @@
 
 - (void)setFlag:(PPParkingTableViewCellFlag)flag
 {
+    _flagImageView.frame = CGRectZero;
+    [_flagImageView removeFromSuperview];
+    _flagImageView = nil;
+    
     if (PPParkingTableViewCellFlagNone == flag)
     {
-        [_flagImageView removeFromSuperview];
-        _flagImageView = nil;
+        
     }
     else if (PPParkingTableViewCellFlagCheap == flag)
     {

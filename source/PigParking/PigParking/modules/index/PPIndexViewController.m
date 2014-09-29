@@ -623,6 +623,16 @@ typedef enum {
     [self.navigationController pushViewController:c animated:YES];
 }
 
+- (void)parkingTableView:(PPParkingTableView *)tableView didSelectRowWithData:(id)data
+{
+    PPParkingDetailViewController *c = [[PPParkingDetailViewController alloc] initWithNibName:nil bundle:nil];
+    c.data = data;
+    c.title = c.data[@"title"];
+    c.fromCoordinate = _mapView.coordinate;
+    [c setupTheme];
+    [self.navigationController pushViewController:c animated:YES];
+}
+
 #pragma mark - search tableview controller delegate
 
 - (void)ppMapSearchTableViewContrllerDidSelectHistory:(PPMapSearchTableViewController *)controller item:(id)item
